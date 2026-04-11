@@ -1,0 +1,276 @@
+@prefix ex: <http://example.org/ontology-express#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix tmfac: <https://w3id.org/transmodel/facilities#> .
+@prefix tmj: <https://w3id.org/transmodel/journeys#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/ontology-express> a owl:Ontology ;
+    rdfs:label "London Underground Ontology Foundation"@en ;
+    rdfs:comment "A TBox ontology for modelling London Underground stations, lines, routes, incidents, accessibility, maintenance, and rolling stock in line with the defined competency questions."@en ;
+    owl:imports <http://www.w3.org/2006/time>,
+        tmfac:,
+        tmj: .
+
+ex:affectsLine a owl:ObjectProperty ;
+    rdfs:label "affects line"@en ;
+    rdfs:comment "Relates a disruption event to a London Underground line affected by the disruption."@en ;
+    rdfs:domain ex:DisruptionEvent ;
+    rdfs:range ex:UndergroundLine .
+
+ex:closureReason a owl:DatatypeProperty ;
+    rdfs:label "closure reason"@en ;
+    rdfs:comment "Stores the reported reason for a closure event in the London Underground network."@en ;
+    rdfs:domain ex:ClosureEvent ;
+    rdfs:range xsd:string .
+
+ex:currentStatus a owl:DatatypeProperty ;
+    rdfs:label "current status"@en ;
+    rdfs:comment "Stores the current operational status of a disruption event affecting the London Underground."@en ;
+    rdfs:domain ex:DisruptionEvent ;
+    rdfs:range xsd:string .
+
+ex:delayMinutes a owl:DatatypeProperty ;
+    rdfs:label "delay in minutes"@en ;
+    rdfs:comment "Stores the delay caused by a delay event as a number of minutes."@en ;
+    rdfs:domain ex:DelayEvent ;
+    rdfs:range xsd:integer .
+
+ex:disruptionName a owl:DatatypeProperty ;
+    rdfs:label "disruption name"@en ;
+    rdfs:comment "Stores the reported name or title of a disruption event."@en ;
+    rdfs:domain ex:DisruptionEvent ;
+    rdfs:range xsd:string .
+
+ex:hasDelayDuration a owl:DatatypeProperty ;
+    rdfs:label "has delay duration"@en ;
+    rdfs:comment "Stores the duration of a delay event using an xsd:duration value."@en ;
+    rdfs:domain ex:DelayEvent ;
+    rdfs:range xsd:duration ;
+    rdfs:subPropertyOf time:hasXSDDuration .
+
+ex:hasEndTime a owl:ObjectProperty ;
+    rdfs:label "has end time"@en ;
+    rdfs:comment "Relates an event or temporal entity to its end in time."@en ;
+    rdfs:subPropertyOf time:hasEnd .
+
+ex:hasReplacementService a owl:ObjectProperty ;
+    rdfs:label "has replacement service"@en ;
+    rdfs:comment "Relates a closure event to the bus replacement service provided during the disruption."@en ;
+    rdfs:domain ex:ClosureEvent ;
+    rdfs:range ex:BusReplacementService .
+
+ex:hasStartTime a owl:ObjectProperty ;
+    rdfs:label "has start time"@en ;
+    rdfs:comment "Relates an event or temporal entity to its beginning in time."@en ;
+    rdfs:subPropertyOf time:hasBeginning .
+
+ex:inaugurationDate a owl:DatatypeProperty ;
+    rdfs:label "inauguration date"@en ;
+    rdfs:comment "Stores the inauguration date of a London Underground route."@en ;
+    rdfs:domain ex:UndergroundRoute ;
+    rdfs:range xsd:date .
+
+ex:inaugurationYear a owl:DatatypeProperty ;
+    rdfs:label "inauguration year"@en ;
+    rdfs:comment "Stores the inauguration year of a London Underground route."@en ;
+    rdfs:domain ex:UndergroundRoute ;
+    rdfs:range xsd:gYear .
+
+ex:incidentName a owl:DatatypeProperty ;
+    rdfs:label "incident name"@en ;
+    rdfs:comment "Stores the reported name or title of an incident in the London Underground network."@en ;
+    rdfs:domain ex:Incident ;
+    rdfs:range xsd:string .
+
+ex:interchangesWithLine a owl:ObjectProperty ;
+    rdfs:label "interchanges with line"@en ;
+    rdfs:comment "Relates an interchange station to a line available for interchange at that station."@en ;
+    rdfs:domain ex:InterchangeStation ;
+    rdfs:range ex:UndergroundLine .
+
+ex:isFullyWheelchairAccessible a owl:DatatypeProperty ;
+    rdfs:label "is fully wheelchair accessible"@en ;
+    rdfs:comment "Indicates whether a London Underground station is officially designated as fully wheelchair accessible."@en ;
+    rdfs:domain ex:UndergroundStation ;
+    rdfs:range xsd:boolean .
+
+ex:lineHasRoute a owl:ObjectProperty ;
+    rdfs:label "line has route"@en ;
+    rdfs:comment "Relates a London Underground line to one of its associated routes."@en ;
+    rdfs:domain ex:UndergroundLine ;
+    rdfs:range ex:UndergroundRoute .
+
+ex:lineName a owl:DatatypeProperty ;
+    rdfs:label "line name"@en ;
+    rdfs:comment "Stores the human-readable name of a London Underground line."@en ;
+    rdfs:domain ex:UndergroundLine ;
+    rdfs:range xsd:string .
+
+ex:maintenanceName a owl:DatatypeProperty ;
+    rdfs:label "maintenance name"@en ;
+    rdfs:comment "Stores the name or description of a maintenance event."@en ;
+    rdfs:domain ex:MaintenanceEvent ;
+    rdfs:range xsd:string .
+
+ex:occursAtStation a owl:ObjectProperty ;
+    rdfs:label "occurs at station"@en ;
+    rdfs:comment "Relates an incident to the London Underground station where it occurs or is reported."@en ;
+    rdfs:domain ex:Incident ;
+    rdfs:range ex:UndergroundStation .
+
+ex:occursDuring a owl:ObjectProperty ;
+    rdfs:label "occurs during"@en ;
+    rdfs:comment "Relates an event in the London Underground network to a temporal entity describing when it occurs."@en ;
+    rdfs:subPropertyOf time:hasTime .
+
+ex:officialAccessibilityStatus a owl:DatatypeProperty ;
+    rdfs:label "official accessibility status"@en ;
+    rdfs:comment "Stores the official accessibility designation assigned to a London Underground station."@en ;
+    rdfs:domain ex:UndergroundStation ;
+    rdfs:range xsd:string .
+
+ex:operationalLengthMiles a owl:DatatypeProperty ;
+    rdfs:label "operational length in miles"@en ;
+    rdfs:comment "Stores the operational length of a London Underground line measured in miles."@en ;
+    rdfs:domain ex:UndergroundLine ;
+    rdfs:range xsd:decimal .
+
+ex:plannedEndDate a owl:DatatypeProperty ;
+    rdfs:label "planned end date"@en ;
+    rdfs:comment "Stores the planned end date of a maintenance event."@en ;
+    rdfs:domain ex:MaintenanceEvent ;
+    rdfs:range xsd:date .
+
+ex:plannedStartDate a owl:DatatypeProperty ;
+    rdfs:label "planned start date"@en ;
+    rdfs:comment "Stores the planned start date of a maintenance event."@en ;
+    rdfs:domain ex:MaintenanceEvent ;
+    rdfs:range xsd:date .
+
+ex:replacementFollowsRoute a owl:ObjectProperty ;
+    rdfs:label "replacement follows route"@en ;
+    rdfs:comment "Relates a bus replacement service to the route it follows."@en ;
+    rdfs:domain ex:BusReplacementService ;
+    rdfs:range ex:UndergroundRoute .
+
+ex:replacementRouteName a owl:DatatypeProperty ;
+    rdfs:label "replacement route name"@en ;
+    rdfs:comment "Stores the name of a replacement route used by a bus replacement service."@en ;
+    rdfs:domain ex:BusReplacementService ;
+    rdfs:range xsd:string .
+
+ex:rollingStockName a owl:DatatypeProperty ;
+    rdfs:label "rolling stock name"@en ;
+    rdfs:comment "Stores the name of a rolling stock type used on the London Underground."@en ;
+    rdfs:domain ex:RollingStockType ;
+    rdfs:range xsd:string .
+
+ex:routeName a owl:DatatypeProperty ;
+    rdfs:label "route name"@en ;
+    rdfs:comment "Stores the human-readable name of a London Underground route."@en ;
+    rdfs:domain ex:UndergroundRoute ;
+    rdfs:range xsd:string .
+
+ex:routeServesStop a owl:ObjectProperty ;
+    rdfs:label "route serves stop"@en ;
+    rdfs:comment "Relates a London Underground route to a station served by that route."@en ;
+    rdfs:domain ex:UndergroundRoute ;
+    rdfs:range ex:UndergroundStation .
+
+ex:servedByLine a owl:ObjectProperty ;
+    rdfs:label "served by line"@en ;
+    rdfs:comment "Relates a London Underground station to a line that serves it."@en ;
+    rdfs:domain ex:UndergroundStation ;
+    rdfs:range ex:UndergroundLine .
+
+ex:severityLabel a owl:DatatypeProperty ;
+    rdfs:label "severity label"@en ;
+    rdfs:comment "Stores the reported severity level of an incident, such as Minor, Severe, or Suspended."@en ;
+    rdfs:domain ex:Incident ;
+    rdfs:range xsd:string .
+
+ex:standardPassengerCapacity a owl:DatatypeProperty ;
+    rdfs:label "standard passenger capacity"@en ;
+    rdfs:comment "Stores the standard passenger capacity of a rolling stock type."@en ;
+    rdfs:domain ex:RollingStockType ;
+    rdfs:range xsd:integer .
+
+ex:stationHasAccessibilityAssessment a owl:ObjectProperty ;
+    rdfs:label "station has accessibility assessment"@en ;
+    rdfs:comment "Relates a London Underground station to its wheelchair accessibility assessment."@en ;
+    rdfs:domain ex:UndergroundStation ;
+    rdfs:range ex:WheelchairAccessibilityAssessment ;
+    rdfs:subPropertyOf tmfac:accessibilityAssessment .
+
+ex:stationName a owl:DatatypeProperty ;
+    rdfs:label "station name"@en ;
+    rdfs:comment "Stores the human-readable name of a London Underground station."@en ;
+    rdfs:domain ex:UndergroundStation ;
+    rdfs:range xsd:string .
+
+ex:usesRollingStockType a owl:ObjectProperty ;
+    rdfs:label "uses rolling stock type"@en ;
+    rdfs:comment "Relates a London Underground line to the rolling stock type used on that line."@en ;
+    rdfs:domain ex:UndergroundLine ;
+    rdfs:range ex:RollingStockType .
+
+ex:InterchangeStation a owl:Class ;
+    rdfs:label "Interchange Station"@en ;
+    rdfs:comment "A London Underground station that provides interchange between two or more Underground lines."@en ;
+    rdfs:subClassOf ex:UndergroundStation .
+
+ex:WheelchairAccessibilityAssessment a owl:Class ;
+    rdfs:label "Wheelchair Accessibility Assessment"@en ;
+    rdfs:comment "An accessibility assessment describing wheelchair access at a London Underground station."@en ;
+    rdfs:subClassOf tmfac:AccessibilityAssessment .
+
+ex:ClosureEvent a owl:Class ;
+    rdfs:label "Closure Event"@en ;
+    rdfs:comment "A disruption event in which a station or service is closed temporarily."@en ;
+    rdfs:subClassOf ex:DisruptionEvent .
+
+ex:DelayEvent a owl:Class ;
+    rdfs:label "Delay Event"@en ;
+    rdfs:comment "A disruption event that causes a measurable service delay on the London Underground."@en ;
+    rdfs:subClassOf ex:DisruptionEvent .
+
+ex:BusReplacementService a owl:Class ;
+    rdfs:label "Bus Replacement Service"@en ;
+    rdfs:comment "An alternative bus service provided when a London Underground station or service is unavailable."@en .
+
+ex:MaintenanceEvent a owl:Class ;
+    rdfs:label "Maintenance Event"@en ;
+    rdfs:comment "A planned engineering or maintenance activity affecting the London Underground network."@en ;
+    rdfs:subClassOf ex:DisruptionEvent .
+
+ex:RollingStockType a owl:Class ;
+    rdfs:label "Rolling Stock Type"@en ;
+    rdfs:comment "A type of train stock used on a London Underground line."@en ;
+    rdfs:subClassOf tmfac:VehicleType .
+
+ex:Incident a owl:Class ;
+    rdfs:label "Incident"@en ;
+    rdfs:comment "An operational incident reported within the London Underground network."@en .
+
+ex:DisruptionEvent a owl:Class ;
+    rdfs:label "Disruption Event"@en ;
+    rdfs:comment "An incident that disrupts normal operation of one or more London Underground lines."@en ;
+    rdfs:subClassOf ex:Incident .
+
+ex:UndergroundRoute a owl:Class ;
+    rdfs:label "Underground Route"@en ;
+    rdfs:comment "A route associated with operation of a London Underground line such as West Ruislip to Epping."@en ;
+    rdfs:subClassOf tmj:Route .
+
+ex:UndergroundLine a owl:Class ;
+    rdfs:label "Underground Line"@en ;
+    rdfs:comment "A named London Underground line such as the Victoria Line or Circle Line."@en ;
+    rdfs:subClassOf tmj:Line .
+
+ex:UndergroundStation a owl:Class ;
+    rdfs:label "Underground Station"@en ;
+    rdfs:comment "A London Underground station represented as a stop place where passengers can access rail services."@en ;
+    rdfs:subClassOf tmfac:StopPlace .
+

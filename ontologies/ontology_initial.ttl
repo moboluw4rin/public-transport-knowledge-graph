@@ -1,0 +1,196 @@
+@prefix ex: <http://example.org/ontology-express#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix tmcommon: <https://w3id.org/transmodel/common#> .
+@prefix tmcommons: <https://w3id.org/transmodel/commons#> .
+@prefix tmfac: <https://w3id.org/transmodel/facilities#> .
+@prefix tmj: <https://w3id.org/transmodel/journeys#> .
+@prefix tmorg: <https://w3id.org/transmodel/authorities#> .
+
+ex: a owl:Ontology ;
+    rdfs:label "London Underground Ontology Foundation"@en ;
+    owl:imports time:,
+        tmorg:,
+        tmcommon:,
+        tmcommons:,
+        tmfac:,
+        tmj: .
+
+ex:BusReplacementService a owl:Class ;
+    rdfs:label "Bus Replacement Service"@en .
+
+ex:ClosureEvent a owl:Class ;
+    rdfs:label "Closure Event"@en .
+
+ex:DelayEvent a owl:Class ;
+    rdfs:label "Delay Event"@en .
+
+ex:DisruptionEvent a owl:Class ;
+    rdfs:label "Disruption Event"@en .
+
+ex:DisruptionPeriod a owl:Class ;
+    rdfs:label "Disruption Period"@en ;
+    rdfs:subClassOf time:ProperInterval .
+
+ex:InaugurationInstant a owl:Class ;
+    rdfs:label "Inauguration Instant"@en ;
+    rdfs:subClassOf time:Instant .
+
+ex:Incident a owl:Class ;
+    rdfs:label "Incident"@en .
+
+ex:InterchangeStation a owl:Class ;
+    rdfs:label "Interchange Station"@en ;
+    rdfs:subClassOf tmfac:StopPlace .
+
+ex:MaintenanceEvent a owl:Class ;
+    rdfs:label "Maintenance Event"@en .
+
+ex:MaintenanceWindow a owl:Class ;
+    rdfs:label "Maintenance Window"@en ;
+    rdfs:subClassOf time:ProperInterval .
+
+ex:RollingStockType a owl:Class ;
+    rdfs:label "Rolling Stock Type"@en ;
+    rdfs:subClassOf tmfac:VehicleType .
+
+ex:SeverityLevel a owl:Class ;
+    rdfs:label "Severity Level"@en .
+
+ex:UndergroundLine a owl:Class ;
+    rdfs:label "Underground Line"@en .
+
+ex:UndergroundRoute a owl:Class ;
+    rdfs:label "Underground Route"@en .
+
+ex:UndergroundStation a owl:Class ;
+    rdfs:label "Underground Station"@en ;
+    rdfs:subClassOf tmfac:StopPlace .
+
+ex:WheelchairAccessibilityAssessment a owl:Class ;
+    rdfs:label "Wheelchair Accessibility Assessment"@en ;
+    rdfs:subClassOf tmfac:AccessibilityAssessment .
+
+ex:affectsLine a owl:ObjectProperty ;
+    rdfs:label "affects line"@en .
+
+ex:closureReason a owl:DatatypeProperty ;
+    rdfs:label "closure reason"@en .
+
+ex:currentStatus a owl:DatatypeProperty ;
+    rdfs:label "current status"@en .
+
+ex:delayMinutes a owl:DatatypeProperty ;
+    rdfs:label "delay in minutes"@en .
+
+ex:disruptionName a owl:DatatypeProperty ;
+    rdfs:label "disruption name"@en .
+
+ex:hasAccessibilityLimitation a owl:ObjectProperty ;
+    rdfs:label "has accessibility limitation"@en .
+
+ex:hasDelayDuration a owl:ObjectProperty ;
+    rdfs:label "has delay duration"@en ;
+    rdfs:subPropertyOf time:hasXSDDuration .
+
+ex:hasEndTime a owl:ObjectProperty ;
+    rdfs:label "has end time"@en ;
+    rdfs:subPropertyOf time:hasEnd .
+
+ex:hasInauguration a owl:ObjectProperty ;
+    rdfs:label "has inauguration"@en .
+
+ex:hasReplacementService a owl:ObjectProperty ;
+    rdfs:label "has replacement service"@en .
+
+ex:hasSeverity a owl:ObjectProperty ;
+    rdfs:label "has severity"@en .
+
+ex:hasStartTime a owl:ObjectProperty ;
+    rdfs:label "has start time"@en ;
+    rdfs:subPropertyOf time:hasBeginning .
+
+ex:inaugurationDate a owl:DatatypeProperty ;
+    rdfs:label "inauguration date"@en .
+
+ex:inaugurationYear a owl:DatatypeProperty ;
+    rdfs:label "inauguration year"@en .
+
+ex:incidentName a owl:DatatypeProperty ;
+    rdfs:label "incident name"@en .
+
+ex:interchangesWithLine a owl:ObjectProperty ;
+    rdfs:label "interchanges with line"@en .
+
+ex:isFullyWheelchairAccessible a owl:DatatypeProperty ;
+    rdfs:label "is fully wheelchair accessible"@en .
+
+ex:lineHasRoute a owl:ObjectProperty ;
+    rdfs:label "line has route"@en ;
+    rdfs:subPropertyOf tmj:onLine .
+
+ex:lineName a owl:DatatypeProperty ;
+    rdfs:label "line name"@en .
+
+ex:maintenanceName a owl:DatatypeProperty ;
+    rdfs:label "maintenance name"@en .
+
+ex:occursAtStation a owl:ObjectProperty ;
+    rdfs:label "occurs at station"@en .
+
+ex:occursDuring a owl:ObjectProperty ;
+    rdfs:label "occurs during"@en ;
+    rdfs:subPropertyOf time:hasTime .
+
+ex:officialAccessibilityStatus a owl:DatatypeProperty ;
+    rdfs:label "official accessibility status"@en .
+
+ex:operationalLengthMiles a owl:DatatypeProperty ;
+    rdfs:label "operational length in miles"@en .
+
+ex:plannedEndDate a owl:DatatypeProperty ;
+    rdfs:label "planned end date"@en .
+
+ex:plannedStartDate a owl:DatatypeProperty ;
+    rdfs:label "planned start date"@en .
+
+ex:replacementFollowsRoute a owl:ObjectProperty ;
+    rdfs:label "replacement follows route"@en .
+
+ex:replacementRouteName a owl:DatatypeProperty ;
+    rdfs:label "replacement route name"@en .
+
+ex:rollingStockName a owl:DatatypeProperty ;
+    rdfs:label "rolling stock name"@en .
+
+ex:routeName a owl:DatatypeProperty ;
+    rdfs:label "route name"@en .
+
+ex:routeServesStop a owl:ObjectProperty ;
+    rdfs:label "route serves stop"@en ;
+    rdfs:subPropertyOf tmcommon:stopsAt .
+
+ex:servedByLine a owl:ObjectProperty ;
+    rdfs:label "served by line"@en .
+
+ex:severityLabel a owl:DatatypeProperty ;
+    rdfs:label "severity label"@en .
+
+ex:standardPassengerCapacity a owl:DatatypeProperty ;
+    rdfs:label "standard passenger capacity"@en .
+
+ex:stationContainsPlatformOrQuay a owl:ObjectProperty ;
+    rdfs:label "station contains platform or quay"@en ;
+    rdfs:subPropertyOf tmfac:containing .
+
+ex:stationHasAccessibilityAssessment a owl:ObjectProperty ;
+    rdfs:label "station has accessibility assessment"@en ;
+    rdfs:subPropertyOf tmfac:accessibilityAssessment .
+
+ex:stationName a owl:DatatypeProperty ;
+    rdfs:label "station name"@en .
+
+ex:usesRollingStockType a owl:ObjectProperty ;
+    rdfs:label "uses rolling stock type"@en .
+

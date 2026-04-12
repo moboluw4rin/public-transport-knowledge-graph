@@ -12,6 +12,7 @@ Original Manual CQs:
 10. What is the standard passenger capacity of the rolling stock used on the Victoria Line?
 
 LLM - Generated CQs (Aldrich):
+
 1. Which Underground stations have an accessibility assessment indicating step-free access but not full wheelchair access?
 2. Which lines share at least one interchange station with the Victoria Line?
 3. Which disruption events affected more than one Underground line at the same time?

@@ -1,14 +1,25 @@
+"""
+Build and serialise the London Underground ontology graph.
+
+This module uses rdflib to declare ontology classes, object properties, datatype
+properties, and serialisation to Turtle.
+"""
+
+# pylint: disable=invalid-name,line-too-long
+
 from rdflib import Graph, Namespace, Literal, URIRef
 from rdflib.namespace import RDF, RDFS, OWL, XSD
 
 
 def add_class(graph: Graph, class_iri, label: str, comment: str):
+    """Add an OWL class with English label and comment to the graph."""
     graph.add((class_iri, RDF.type, OWL.Class))
     graph.add((class_iri, RDFS.label, Literal(label, lang="en")))
     graph.add((class_iri, RDFS.comment, Literal(comment, lang="en")))
 
 
 def add_object_property(graph: Graph, prop_iri, label: str, comment: str, domain=None, range_=None):
+    """Add an OWL object property with optional domain and range."""
     graph.add((prop_iri, RDF.type, OWL.ObjectProperty))
     graph.add((prop_iri, RDFS.label, Literal(label, lang="en")))
     graph.add((prop_iri, RDFS.comment, Literal(comment, lang="en")))
@@ -19,6 +30,7 @@ def add_object_property(graph: Graph, prop_iri, label: str, comment: str, domain
 
 
 def add_datatype_property(graph: Graph, prop_iri, label: str, comment: str, domain=None, range_=None):
+    """Add an OWL datatype property with optional domain and range."""
     graph.add((prop_iri, RDF.type, OWL.DatatypeProperty))
     graph.add((prop_iri, RDFS.label, Literal(label, lang="en")))
     graph.add((prop_iri, RDFS.comment, Literal(comment, lang="en")))
@@ -29,6 +41,7 @@ def add_datatype_property(graph: Graph, prop_iri, label: str, comment: str, doma
 
 
 def main():
+    """Construct the ontology graph and serialise it to Turtle."""
     g = Graph()
 
     # ------------------------------------------------------------------
@@ -437,12 +450,11 @@ def main():
     g.add((EX.hasDelayDuration, RDFS.subPropertyOf, TIME.hasXSDDuration))
 
     # ------------------------------------------------------------------
-    # Serialize
+    # Serialise
     # ------------------------------------------------------------------
     output_file = "ontologies/base_ontology.ttl"
     g.serialize(destination=output_file, format="turtle")
-    print(f"Ontology serialized to {output_file}")
-
+    print(f"Ontology serialised to {output_file}")
 
 if __name__ == "__main__":
     main()

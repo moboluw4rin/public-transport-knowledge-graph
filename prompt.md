@@ -511,6 +511,16 @@ This project employs a **sequential two-chat orchestration** methodology to exte
 
 </details>
 
+### 4c. Additional 10 CQs
+<details>
+<summary>Click to view Prompt</summary>
+
+    ```markdown
+    You are an expert in machine learning. Given this London Underground ontology and the existing set of competency questions, generate 10 additional competency questions that complement and help validate the existing ones. Where possible, the questions should be answerable using the current ontology structure. If a question reveals a gap or requires extending the ontology, note what additions would be needed.
+    ```
+
+</details>
+
 ## Phase 5: Documentation Cleanup
 **Goal:** Finalize the knowledge engineering documentation and ensure all scripts and TTL files are formatted.
 

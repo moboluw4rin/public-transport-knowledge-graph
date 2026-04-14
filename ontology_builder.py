@@ -281,6 +281,14 @@ def main():
     )
     add_datatype_property(
         g,
+        EX.fareZone,
+        "fare zone",
+        "Stores the TfL fare zone number of a London Underground station.",
+        EX.UndergroundStation,
+        XSD.integer,
+    )
+    add_datatype_property(
+        g,
         EX.routeName,
         "route name",
         "Stores the human-readable name of a London Underground route.",

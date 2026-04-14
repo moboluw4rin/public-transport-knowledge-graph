@@ -23,3 +23,15 @@ LLM - Generated CQs (Aldrich):
 8. Which routes inaugurated before 1989 are still currently operational?
 9. Which incidents at stations were classified with severity level “Severe”?
 10. What is the average delay duration for signal-failure incidents affecting Underground stations?
+
+LLM - Generated CQs (Atheer):
+1. Which stations are served by more than two Underground lines?
+2. Which Underground lines have no reported disruptions at the current time?
+3. Which stations are affected by both a disruption and a scheduled maintenance event?
+4. What is the total number of stations affected by each disruption event?
+5. Which maintenance events overlap in their scheduled dates? 
+6. Which stations have accessibility limitations and are also affected by current disruptions?
+7. Which rolling stock types are used exclusively by a single Underground line?
+8. Which stations are endpoints (i.e., served by only one line and not interchange stations)?
+9. Which lines have experienced closures with the same closure reason?
+10. Which stations are in Zone 1?

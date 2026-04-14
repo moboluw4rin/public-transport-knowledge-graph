@@ -43,6 +43,12 @@ ex:disruptionName a owl:DatatypeProperty ;
     rdfs:domain ex:DisruptionEvent ;
     rdfs:range xsd:string .
 
+ex:fareZone a owl:DatatypeProperty ;
+    rdfs:label "fare zone"@en ;
+    rdfs:comment "Stores the TfL fare zone number of a London Underground station."@en ;
+    rdfs:domain ex:UndergroundStation ;
+    rdfs:range xsd:integer .
+
 ex:hasDelayDuration a owl:DatatypeProperty ;
     rdfs:label "has delay duration"@en ;
     rdfs:comment "Stores the duration of a delay event using an xsd:duration value."@en ;

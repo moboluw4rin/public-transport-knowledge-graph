@@ -178,5 +178,54 @@ def _add_accessibility_assessments(g: Graph) -> None:
     print(f"[Text] Added {count} WheelchairAccessibilityAssessment individuals")
 
 
+_DELAY_PATTERNS = [
+    re.compile(r"delays?\s+of\s+(?:up\s+to\s+)?(\d+)\s*min",       re.IGNORECASE),
+    re.compile(r"expect\s+(\d+)\s*[- ]?min",                        re.IGNORECASE),
+    re.compile(r"add\s+(\d+)\s*min",                                 re.IGNORECASE),
+    re.compile(r"(\d+)\s*[- ]?min(?:ute)?\s+delay",                 re.IGNORECASE),
+    re.compile(r"running\s+(?:approximately\s+)?(\d+)\s*min",        re.IGNORECASE),
+]
+
 def _extract_from_disruption_text(g: Graph) -> None:
-    pass
+    station_name_clean = re.compile(r"\s*(Underground\s+)?Station$", re.IGNORECASE)
+
+    station_lookup = {}
+    for station, _, name in g.triples((None, EX.stationName, None)):
+        clean = station_name_clean.sub("", str(name)).strip().lower()
+        station_lookup[clean] = station
+    sorted_names = sorted(station_lookup.keys(), key=len, reverse=True)
+
+    query = """
+        PREFIX ex: <http://example.org/ontology-express#>
+        SELECT ?event ?reason WHERE {
+            ?event ex:closureReason ?reason .
+        }
+    """
+    station_count = 0
+    delay_count   = 0
+    name_count    = 0
+
+    for row in g.query(query):
+        event_uri    = row.event
+        reason       = str(row.reason)
+        reason_lower = reason.lower()
+
+        matched_stations = list(dict.fromkeys(station_lookup[n] for n in sorted_names if n in reason_lower))
+        for station_uri in matched_stations:
+            g.add((event_uri, EX.occursAtStation, station_uri))
+            station_count += 1
+
+        for pattern in _DELAY_PATTERNS:
+            m = pattern.search(reason)
+            if m:
+                g.add((event_uri, EX.delayMinutes, Literal(int(m.group(1)), datatype=XSD.integer)))
+                delay_count += 1
+                break
+
+        short_name = reason.split(".")[0].strip()[:80]
+        g.add((event_uri, EX.incidentName, Literal(short_name, datatype=XSD.string)))
+        name_count += 1
+
+    print(f"[Text] occursAtStation triples added: {station_count}")
+    print(f"[Text] delayMinutes triples added:    {delay_count}")
+    print(f"[Text] incidentName triples added:    {name_count}")

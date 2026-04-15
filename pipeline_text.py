@@ -69,6 +69,7 @@ def _extract_infobox_field(wikitext: str, field: str) -> str:
 def build_text_graph(g: Graph) -> Graph:
     _add_rolling_stock(g)
     _add_inauguration_dates(g)
+    _add_operational_lengths(g)
     _add_accessibility_assessments(g)
     _extract_from_disruption_text(g)
     _add_bus_replacements(g)
@@ -153,6 +154,30 @@ def _add_inauguration_dates(g: Graph) -> None:
         count += 1
 
     print(f"[Text] Added {count} inaugurationYear triples")
+
+
+_KM_TO_MI          = 0.621371
+_LENGTH_KM_FIELD   = re.compile(r"\|\s*linelength_km\s*=\s*([\d.]+)", re.DOTALL)
+_LENGTH_CONVERT    = re.compile(r"\{\{convert\|([\d.]+)\|km", re.IGNORECASE)
+
+def _add_operational_lengths(g: Graph) -> None:
+    count = 0
+    for line_id, wiki_title in _LINE_WIKI.items():
+        line_uri = INST[safe_uri(line_id)]
+        wikitext = _fetch_wikitext(wiki_title)
+
+        m = _LENGTH_KM_FIELD.search(wikitext) or _LENGTH_CONVERT.search(wikitext)
+        if not m:
+            print(f"  [Length] WARNING: no length field for {wiki_title}")
+            continue
+
+        km    = float(m.group(1))
+        miles = round(km * _KM_TO_MI, 2)
+        g.add((line_uri, EX.operationalLengthMiles, Literal(miles, datatype=XSD.decimal)))
+        print(f"  [Length] {wiki_title}: {km} km → {miles} mi")
+        count += 1
+
+    print(f"[Text] Added {count} operationalLengthMiles triples")
 
 
 def _add_accessibility_assessments(g: Graph) -> None:

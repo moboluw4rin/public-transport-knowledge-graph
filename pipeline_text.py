@@ -212,7 +212,7 @@ def _add_accessibility_assessments(g: Graph) -> None:
     """
     count = 0
     for row in g.query(query):
-        station_frag  = str(row.station).split("/")[-1]
+        station_frag  = str(row.station).split("#")[-1]
         assess_uri    = INST[f"Accessibility_{station_frag}"]
         is_accessible = bool(row.accessible)
         status_label  = "Full wheelchair access" if is_accessible else "No step-free access"

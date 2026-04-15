@@ -13,9 +13,7 @@ Each sub-pipeline adds to the same rdflib Graph:
 """
 
 from pipeline_structured import build_structured_graph
-
-# Uncomment when Mark's pipeline is ready:
-# from pipeline_text import build_text_graph
+from pipeline_text import build_text_graph
 
 OUTPUT = "ontologies/instances.ttl"
 
@@ -25,7 +23,7 @@ if __name__ == "__main__":
     g = build_structured_graph(verbose=False)
 
     # Step 2: enrich with textual data (uncomment when ready)
-    # build_text_graph(g)
+    build_text_graph(g)
 
     # Serialise final merged graph
     g.serialize(destination=OUTPUT, format="turtle")

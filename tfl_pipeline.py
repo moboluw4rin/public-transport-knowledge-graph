@@ -6,12 +6,18 @@ maps it to the project ontology, and outputs RDF triples in Turtle format.
 
 import os
 import requests
+from rdflib import Graph, Namespace, Literal, URIRef
+from rdflib.namespace import RDF, XSD
 
 # Config
 TFL_API_BASE = "https://api.tfl.gov.uk"
 TFL_API_KEY  = os.environ.get("TFL_API_KEY")
 
+# Namespaces — must match ontology_builder.py exactly
+EX   = Namespace("http://example.org/ontology-express#")
+INST = Namespace("http://example.org/instances#")
 
+#The base get command
 def tfl_get(endpoint: str, params: dict = None) -> dict:
     """GET a TfL Unified API endpoint, injecting the API key."""
     all_params = {**(params or {}), "app_key": TFL_API_KEY}
@@ -38,15 +44,51 @@ def fetch_line_status() -> list:
     """
     return tfl_get("/Line/Mode/tube/Status")
 
+# Helpers
+def safe_uri(value: str) -> str:
+    """Turn a raw string into a safe URI fragment (no spaces or slashes)."""
+    return value.strip().replace(" ", "_").replace("/", "-")
+
+
+def load_tbox(path: str = "ontologies/base_ontology.ttl") -> Graph:
+    """Load the TBox ontology into a graph so instances inherit its structure."""
+    g = Graph()
+    g.parse(path, format="turtle")
+    g.bind("ex",   EX)
+    g.bind("inst", INST)
+    g.bind("xsd",  XSD)
+    print(f"[TBox] Loaded {len(g)} triples from {path}")
+    return g
+
+
+#map lines to RDF individuals
+def add_lines(g: Graph, lines: list) -> None:
+    """
+    Each TfL line becomes an inst:<line-id> individual of type ex:UndergroundLine.
+    We also attach ex:lineName as a datatype property.
+    """
+    for line in lines:
+        uri = INST[safe_uri(line["id"])]           # e.g. inst:victoria
+        g.add((uri, RDF.type,    EX.UndergroundLine))
+        g.add((uri, EX.lineName, Literal(line["name"], datatype=XSD.string)))
+    print(f"[RDF] Added {len(lines)} UndergroundLine individuals")
+
 
 if __name__ == "__main__":
-    print("=== Tube Lines ===")
+    # Load TBox
+    g = load_tbox()
+
+    #fetch lines and add to graph
+    print("\n=== Tube Lines ===")
     lines = fetch_lines()
     for line in lines:
         print(f"  {line['id']}: {line['name']}")
-    print(f"Total: {len(lines)}\n")
+        
+    print(f"Total: {len(lines)}")
+    add_lines(g, lines)
 
-    print("=== Live Line Status ===")
+    #fetch status
+    print("\n=== Live Line Status ===")
     statuses = fetch_line_status()
     for line in statuses:
         for status in line["lineStatuses"]:
@@ -55,4 +97,6 @@ if __name__ == "__main__":
             print(f"  {line['name']}: {severity}")
             if reason:
                 print(f"    Reason: {reason}")
+
+    print(f"\n[Graph] Total triples so far: {len(g)}")
 

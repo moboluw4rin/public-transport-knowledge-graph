@@ -71,6 +71,7 @@ def build_text_graph(g: Graph) -> Graph:
     _add_inauguration_dates(g)
     _add_accessibility_assessments(g)
     _extract_from_disruption_text(g)
+    _add_bus_replacements(g)
 
     print(f"[Text] Pipeline complete — graph now contains {len(g)} triples")
     return g
@@ -185,6 +186,41 @@ _DELAY_PATTERNS = [
     re.compile(r"(\d+)\s*[- ]?min(?:ute)?\s+delay",                 re.IGNORECASE),
     re.compile(r"running\s+(?:approximately\s+)?(\d+)\s*min",        re.IGNORECASE),
 ]
+
+_BUS_REPLACEMENT_TRIGGERS = re.compile(
+    r"replacement bus|rail replacement|free shuttle|bus service operates|"
+    r"buses (are |will be )?running|london buses",
+    re.IGNORECASE,
+)
+_BUS_ROUTE_NUMBER = re.compile(r"\b([A-Z]?\d{1,3}[A-Z]?)\b")
+
+def _add_bus_replacements(g: Graph) -> None:
+    query = """
+        PREFIX ex: <http://example.org/ontology-express#>
+        SELECT ?event ?reason WHERE {
+            ?event ex:closureReason ?reason .
+        }
+    """
+    count = 0
+    for row in g.query(query):
+        event_uri = row.event
+        reason    = str(row.reason)
+
+        if not _BUS_REPLACEMENT_TRIGGERS.search(reason):
+            continue
+
+        event_frag   = str(event_uri).split("/")[-1].split("#")[-1]
+        bus_uri      = INST[f"BusReplacement_{event_frag}"]
+        route_match  = _BUS_ROUTE_NUMBER.search(reason)
+        route_name   = route_match.group(1) if route_match else "via any reasonable route"
+
+        g.add((bus_uri,    RDF.type,                   EX.BusReplacementService))
+        g.add((bus_uri,    EX.replacementRouteName,    Literal(route_name, datatype=XSD.string)))
+        g.add((event_uri,  EX.hasReplacementService,   bus_uri))
+        count += 1
+
+    print(f"[Text] Added {count} BusReplacementService individuals")
+
 
 def _extract_from_disruption_text(g: Graph) -> None:
     station_name_clean = re.compile(r"\s*(Underground\s+)?Station$", re.IGNORECASE)

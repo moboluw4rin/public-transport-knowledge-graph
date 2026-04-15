@@ -128,7 +128,30 @@ def _add_rolling_stock(g: Graph) -> None:
 
 
 def _add_inauguration_dates(g: Graph) -> None:
-    pass
+    open_field       = re.compile(r"\|\s*open\s*=\s*(.+?)(?=\n\s*\|)", re.DOTALL)
+    year_in_template = re.compile(r"start date[^|]*\|(?:df=y\|)?(\d{4})", re.IGNORECASE)
+
+    count = 0
+    for line_id, wiki_title in _LINE_WIKI.items():
+        line_uri = INST[safe_uri(line_id)]
+
+        wikitext = _fetch_wikitext(wiki_title)
+        m        = open_field.search(wikitext)
+        if not m:
+            print(f"  [Inauguration] WARNING: no open field for {wiki_title}")
+            continue
+
+        ym = year_in_template.search(m.group(1))
+        if not ym:
+            print(f"  [Inauguration] WARNING: could not parse year for {wiki_title}")
+            continue
+
+        year = ym.group(1)
+        g.add((line_uri, EX.inaugurationYear, Literal(year, datatype=XSD.gYear)))
+        print(f"  [Inauguration] {wiki_title}: {year}")
+        count += 1
+
+    print(f"[Text] Added {count} inaugurationYear triples")
 
 
 def _add_accessibility_assessments(g: Graph) -> None:

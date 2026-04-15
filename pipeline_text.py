@@ -155,7 +155,27 @@ def _add_inauguration_dates(g: Graph) -> None:
 
 
 def _add_accessibility_assessments(g: Graph) -> None:
-    pass
+    query = """
+        PREFIX ex:   <http://example.org/ontology-express#>
+        PREFIX inst: <http://example.org/instances#>
+        SELECT ?station ?accessible WHERE {
+            ?station a ex:UndergroundStation ;
+                     ex:isFullyWheelchairAccessible ?accessible .
+        }
+    """
+    count = 0
+    for row in g.query(query):
+        station_frag  = str(row.station).split("/")[-1]
+        assess_uri    = INST[f"Accessibility_{station_frag}"]
+        is_accessible = bool(row.accessible)
+        status_label  = "Full wheelchair access" if is_accessible else "No step-free access"
+
+        g.add((assess_uri, RDF.type,                       EX.WheelchairAccessibilityAssessment))
+        g.add((assess_uri, EX.officialAccessibilityStatus, Literal(status_label, datatype=XSD.string)))
+        g.add((row.station, EX.stationHasAccessibilityAssessment, assess_uri))
+        count += 1
+
+    print(f"[Text] Added {count} WheelchairAccessibilityAssessment individuals")
 
 
 def _extract_from_disruption_text(g: Graph) -> None:

@@ -193,6 +193,36 @@ def add_served_by_line(g: Graph, lines: list) -> None:
     print(f"[RDF] Added {total_links} servedByLine triples")
 
 
+# Step 6 — identify interchange stations
+def add_interchange_stations(g: Graph) -> None:
+    """
+    A station served by 2+ lines is an interchange station.
+    We query the graph we've already built to find these — no extra API calls.
+
+    For each interchange station we:
+      1. Change its rdf:type to ex:InterchangeStation (subclass of ex:UndergroundStation)
+      2. Add ex:interchangesWithLine for every line it is served by
+    """
+    from collections import defaultdict
+
+    # Build a map of station -> set of lines from triples already in the graph
+    station_lines = defaultdict(set)
+    for station, _, line in g.triples((None, EX.servedByLine, None)):
+        station_lines[station].add(line)
+
+    count = 0
+    for station, lines in station_lines.items():
+        if len(lines) >= 2:
+            # Upgrade type to InterchangeStation
+            g.add((station, RDF.type, EX.InterchangeStation))
+            # Add interchangesWithLine for each line
+            for line in lines:
+                g.add((station, EX.interchangesWithLine, line))
+            count += 1
+
+    print(f"[RDF] Identified {count} interchange stations")
+
+
 #map lines to RDF individuals
 def add_lines(g: Graph, lines: list) -> None:
     """
@@ -233,6 +263,9 @@ if __name__ == "__main__":
     if VERBOSE:
         print("\n=== Station-Line Links ===")
     add_served_by_line(g, lines)
+
+    # Identify interchange stations from the links we just added
+    add_interchange_stations(g)
 
     # Fetch status and add disruptions to graph
     statuses = fetch_line_status()

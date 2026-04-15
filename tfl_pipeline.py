@@ -27,7 +27,7 @@ def tfl_get(endpoint: str, params: dict = None) -> dict:
     
     return resp.json()
 
-
+# All fetch commands
 def fetch_lines() -> list:
     """Returns a list of all tube lines with id and name."""
     return tfl_get("/Line/Mode/tube")
@@ -53,6 +53,14 @@ def fetch_stops() -> list:
 def fetch_line_stops(line_id: str) -> list:
     """Returns the ordered list of stop points for a given line id."""
     return tfl_get(f"/Line/{line_id}/StopPoints")
+
+
+def fetch_line_disruptions(line_id: str) -> list:
+    """
+    Returns planned and current disruptions for a given line.
+    Each entry has: description, fromDate, toDate, isWholeLine.
+    """
+    return tfl_get(f"/Line/{line_id}/Disruption")
 
 
 def fetch_line_status() -> list:
@@ -193,7 +201,49 @@ def add_served_by_line(g: Graph, lines: list) -> None:
     print(f"[RDF] Added {total_links} servedByLine triples")
 
 
-# Step 6 — identify interchange stations
+#map planned disruptions to MaintenanceEvent individuals
+def add_maintenance_events(g: Graph, lines: list) -> None:
+    """
+    Calls /Line/{id}/Disruption for each line.
+    Each disruption with a fromDate/toDate is treated as a planned
+    maintenance event and mapped to ex:MaintenanceEvent with:
+      - ex:maintenanceName  <- description
+      - ex:plannedStartDate <- fromDate (date portion only)
+      - ex:plannedEndDate   <- toDate (date portion only)
+      - ex:affectsLine      <- the line
+    """
+    
+    count = 0
+    for line in lines:
+        line_uri     = INST[safe_uri(line["id"])]
+        disruptions  = fetch_line_disruptions(line["id"])
+
+        for i, d in enumerate(disruptions):
+            desc      = d.get("description", "")
+            from_date = d.get("fromDate", "")
+            to_date   = d.get("toDate", "")
+
+            if not desc:
+                continue
+
+            event_uri = INST[f"{safe_uri(line['id'])}_maintenance_{i}"]
+            g.add((event_uri, RDF.type,             EX.MaintenanceEvent))
+            g.add((event_uri, EX.maintenanceName,   Literal(desc, datatype=XSD.string)))
+            g.add((event_uri, EX.affectsLine,       line_uri))
+
+            # Dates come as ISO strings e.g. "2025-04-15T00:00:00" — take date part only
+            if from_date:
+                g.add((event_uri, EX.plannedStartDate,
+                       Literal(from_date[:10], datatype=XSD.date)))
+            if to_date:
+                g.add((event_uri, EX.plannedEndDate,
+                       Literal(to_date[:10], datatype=XSD.date)))
+            count += 1
+
+    print(f"[RDF] Added {count} MaintenanceEvent individuals")
+
+
+#identify interchange stations
 def add_interchange_stations(g: Graph) -> None:
     """
     A station served by 2+ lines is an interchange station.
@@ -279,6 +329,9 @@ if __name__ == "__main__":
                 if reason:
                     print(f"    Reason: {reason}")
     add_disruptions(g, statuses)
+
+    # Fetch planned disruptions and add maintenance events
+    add_maintenance_events(g, lines)
 
     print(f"\n[Graph] Total triples: {len(g)}")
 

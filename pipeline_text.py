@@ -254,7 +254,9 @@ def _extract_from_disruption_text(g: Graph) -> None:
         for pattern in _DELAY_PATTERNS:
             m = pattern.search(reason)
             if m:
-                g.add((event_uri, EX.delayMinutes, Literal(int(m.group(1)), datatype=XSD.integer)))
+                minutes = int(m.group(1))
+                g.add((event_uri, EX.delayMinutes,    Literal(minutes,              datatype=XSD.integer)))
+                g.add((event_uri, EX.hasDelayDuration, Literal(f"PT{minutes}M",     datatype=XSD.duration)))
                 delay_count += 1
                 break
 

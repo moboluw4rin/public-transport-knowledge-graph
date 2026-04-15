@@ -34,6 +34,25 @@ _STOCK_WIKI = {
     "S8 Stock":   "London Underground S7 Stock",
 }
 
+_KM_TO_MI        = 0.621371
+_LENGTH_KM_FIELD = re.compile(r"\|\s*linelength_km\s*=\s*([\d.]+)", re.DOTALL)
+_LENGTH_CONVERT  = re.compile(r"\{\{convert\|([\d.]+)\|km", re.IGNORECASE)
+
+_DELAY_PATTERNS = [
+    re.compile(r"delays?\s+of\s+(?:up\s+to\s+)?(\d+)\s*min",       re.IGNORECASE),
+    re.compile(r"expect\s+(\d+)\s*[- ]?min",                        re.IGNORECASE),
+    re.compile(r"add\s+(\d+)\s*min",                                 re.IGNORECASE),
+    re.compile(r"(\d+)\s*[- ]?min(?:ute)?\s+delay",                 re.IGNORECASE),
+    re.compile(r"running\s+(?:approximately\s+)?(\d+)\s*min",        re.IGNORECASE),
+]
+
+_BUS_REPLACEMENT_TRIGGERS = re.compile(
+    r"replacement bus|rail replacement|free shuttle|bus service operates|"
+    r"buses (are |will be )?running|london buses",
+    re.IGNORECASE,
+)
+_BUS_ROUTE_NUMBER = re.compile(r"\b([A-Z]?\d{1,3}[A-Z]?)\b")
+
 
 def safe_uri(value: str) -> str:
     return value.strip().replace(" ", "_").replace("/", "-")
@@ -157,10 +176,6 @@ def _add_inauguration_dates(g: Graph) -> None:
     print(f"[Text] Added {count} inaugurationYear triples")
 
 
-_KM_TO_MI          = 0.621371
-_LENGTH_KM_FIELD   = re.compile(r"\|\s*linelength_km\s*=\s*([\d.]+)", re.DOTALL)
-_LENGTH_CONVERT    = re.compile(r"\{\{convert\|([\d.]+)\|km", re.IGNORECASE)
-
 def _add_operational_lengths(g: Graph) -> None:
     count = 0
     for line_id, wiki_title in _LINE_WIKI.items():
@@ -224,21 +239,6 @@ def _add_accessibility_assessments(g: Graph) -> None:
 
     print(f"[Text] Added {count} WheelchairAccessibilityAssessment individuals")
 
-
-_DELAY_PATTERNS = [
-    re.compile(r"delays?\s+of\s+(?:up\s+to\s+)?(\d+)\s*min",       re.IGNORECASE),
-    re.compile(r"expect\s+(\d+)\s*[- ]?min",                        re.IGNORECASE),
-    re.compile(r"add\s+(\d+)\s*min",                                 re.IGNORECASE),
-    re.compile(r"(\d+)\s*[- ]?min(?:ute)?\s+delay",                 re.IGNORECASE),
-    re.compile(r"running\s+(?:approximately\s+)?(\d+)\s*min",        re.IGNORECASE),
-]
-
-_BUS_REPLACEMENT_TRIGGERS = re.compile(
-    r"replacement bus|rail replacement|free shuttle|bus service operates|"
-    r"buses (are |will be )?running|london buses",
-    re.IGNORECASE,
-)
-_BUS_ROUTE_NUMBER = re.compile(r"\b([A-Z]?\d{1,3}[A-Z]?)\b")
 
 def _add_bus_replacements(g: Graph) -> None:
     query = """

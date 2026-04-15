@@ -22,9 +22,37 @@ def tfl_get(endpoint: str, params: dict = None) -> dict:
     return resp.json()
 
 
-# Step 1 — fetch all tube lines
 def fetch_lines() -> list:
     """Returns a list of all tube lines with id and name."""
     return tfl_get("/Line/Mode/tube")
 
+
+def fetch_line_status() -> list:
+    """
+    Returns live status for every tube line.
+    Each entry contains the line id, name, and a list of lineStatuses.
+    Each lineStatus has:
+      - statusSeverityDescription  e.g. "Severe Delays", "Good Service"
+      - reason                     human-readable reason (only present if disrupted)
+      - disruption.description     longer description (only present if disrupted)
+    """
+    return tfl_get("/Line/Mode/tube/Status")
+
+
+if __name__ == "__main__":
+    print("=== Tube Lines ===")
+    lines = fetch_lines()
+    for line in lines:
+        print(f"  {line['id']}: {line['name']}")
+    print(f"Total: {len(lines)}\n")
+
+    print("=== Live Line Status ===")
+    statuses = fetch_line_status()
+    for line in statuses:
+        for status in line["lineStatuses"]:
+            severity = status["statusSeverityDescription"]
+            reason   = status.get("reason", "")
+            print(f"  {line['name']}: {severity}")
+            if reason:
+                print(f"    Reason: {reason}")
 

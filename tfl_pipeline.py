@@ -33,6 +33,28 @@ def fetch_lines() -> list:
     return tfl_get("/Line/Mode/tube")
 
 
+def fetch_stops() -> list:
+    """
+    Returns all tube stop points with accessibility and zone info.
+    Uses pagination — TfL returns max 1000 per page.
+    """
+    page = 1
+    all_stops = []
+    while True:
+        data = tfl_get("/StopPoint/Mode/tube", params={"page": page})
+        stops = data.get("stopPoints", [])
+        if not stops:
+            break
+        all_stops.extend(stops)
+        page += 1
+    return all_stops
+
+
+def fetch_line_stops(line_id: str) -> list:
+    """Returns the ordered list of stop points for a given line id."""
+    return tfl_get(f"/Line/{line_id}/StopPoints")
+
+
 def fetch_line_status() -> list:
     """
     Returns live status for every tube line.
@@ -59,6 +81,52 @@ def load_tbox(path: str = "ontologies/base_ontology.ttl") -> Graph:
     g.bind("xsd",  XSD)
     print(f"[TBox] Loaded {len(g)} triples from {path}")
     return g
+
+
+#map stops to RDF individuals
+def add_stops(g: Graph, stops: list) -> None:
+    """
+    Each unique station (identified by stationNaptan) becomes an
+    inst:<stationNaptan> individual of type ex:UndergroundStation.
+
+    We deduplicate by stationNaptan because the API returns multiple
+    entries per station (one per entrance). We take the first occurrence.
+
+    Fields extracted from additionalProperties:
+      - category=Geo, key=Zone         -> ex:fareZone
+      - category=Accessibility,
+        key=AccessViaLift              -> ex:isFullyWheelchairAccessible
+    """
+    seen = set()
+    count = 0
+
+    for stop in stops:
+        #Naptan is the unique identifier for stations.StationNaptan is used to group entrances together.
+        station_id = stop.get("stationNaptan") or stop.get("naptanId")
+        if not station_id or station_id in seen:
+            continue
+        seen.add(station_id)
+
+        props = {
+            p["key"]: p["value"]
+            for p in stop.get("additionalProperties", [])
+        }
+
+        name        = stop.get("commonName", "")
+        zone_str    = props.get("Zone", "")
+        lift_access = props.get("AccessViaLift", "No")
+
+        uri = INST[safe_uri(station_id)]
+        g.add((uri, RDF.type,                       EX.UndergroundStation))
+        g.add((uri, EX.stationName,                 Literal(name, datatype=XSD.string)))
+        g.add((uri, EX.isFullyWheelchairAccessible, Literal(lift_access == "Yes", datatype=XSD.boolean)))
+
+        if zone_str.isdigit():
+            g.add((uri, EX.fareZone, Literal(int(zone_str), datatype=XSD.integer)))
+
+        count += 1
+
+    print(f"[RDF] Added {count} UndergroundStation individuals")
 
 
 #map disruption statuses to RDF individuals
@@ -102,6 +170,29 @@ def add_disruptions(g: Graph, statuses: list) -> None:
     print(f"[RDF] Added {count} disruption event individuals")
 
 
+#link stations to lines via ex:servedByLine
+def add_served_by_line(g: Graph, lines: list) -> None:
+    """
+    For each line, fetches its stop points and adds:
+      inst:<stationNaptan> ex:servedByLine inst:<lineId>
+    This links the UndergroundStation individuals we already created
+    to the UndergroundLine individuals.
+    """
+    total_links = 0
+    for line in lines:
+        line_uri  = INST[safe_uri(line["id"])]
+        stops     = fetch_line_stops(line["id"])
+        for stop in stops:
+            station_id = stop.get("stationNaptan") or stop.get("naptanId")
+            if not station_id:
+                continue
+            station_uri = INST[safe_uri(station_id)]
+            g.add((station_uri, EX.servedByLine, line_uri))
+            total_links += 1
+        print(f"  {line['name']}: {len(stops)} stops linked")
+    print(f"[RDF] Added {total_links} servedByLine triples")
+
+
 #map lines to RDF individuals
 def add_lines(g: Graph, lines: list) -> None:
     """
@@ -116,30 +207,50 @@ def add_lines(g: Graph, lines: list) -> None:
 
 
 if __name__ == "__main__":
+    # Set to True to print detailed output, False for stats only
+    VERBOSE = False
+
     # Load TBox
     g = load_tbox()
 
-    #fetch lines and add to graph
-    print("\n=== Tube Lines ===")
+    # Fetch stops and add stations to graph
+    stops = fetch_stops()
+    if VERBOSE:
+        print("\n=== Tube Stops ===")
+        print(f"Raw stop entries: {len(stops)}")
+    add_stops(g, stops)
+
+    # Fetch lines and add to graph
     lines = fetch_lines()
-    for line in lines:
-        print(f"  {line['id']}: {line['name']}")
-        
-    print(f"Total: {len(lines)}")
+    if VERBOSE:
+        print("\n=== Tube Lines ===")
+        for line in lines:
+            print(f"  {line['id']}: {line['name']}")
+        print(f"Total: {len(lines)}")
     add_lines(g, lines)
 
-    #fetch status and add disruptions to graph
-    print("\n=== Live Line Status ===")
+    # Link stations to their lines
+    if VERBOSE:
+        print("\n=== Station-Line Links ===")
+    add_served_by_line(g, lines)
+
+    # Fetch status and add disruptions to graph
     statuses = fetch_line_status()
-    for line in statuses:
-        for status in line["lineStatuses"]:
-            severity = status["statusSeverityDescription"]
-            reason   = status.get("reason", "")
-            print(f"  {line['name']}: {severity}")
-            if reason:
-                print(f"    Reason: {reason}")
-                
+    if VERBOSE:
+        print("\n=== Live Line Status ===")
+        for line in statuses:
+            for status in line["lineStatuses"]:
+                severity = status["statusSeverityDescription"]
+                reason   = status.get("reason", "")
+                print(f"  {line['name']}: {severity}")
+                if reason:
+                    print(f"    Reason: {reason}")
     add_disruptions(g, statuses)
 
-    print(f"\n[Graph] Total triples so far: {len(g)}")
+    print(f"\n[Graph] Total triples: {len(g)}")
+
+    # Serialise to Turtle
+    out = "ontologies/instances.ttl"
+    g.serialize(destination=out, format="turtle")
+    print(f"[Output] Written to {out}")
 

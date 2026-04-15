@@ -1,0 +1,2402 @@
+@prefix ex: <http://example.org/ontology-express#> .
+@prefix inst: <http://example.org/instances#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix tmfac: <https://w3id.org/transmodel/facilities#> .
+@prefix tmj: <https://w3id.org/transmodel/journeys#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+inst:9400ZZLUCWR1 a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Canada Water Underground Station"^^xsd:string .
+
+inst:9400ZZLUWPL3 a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Whitechapel Underground Station"^^xsd:string .
+
+inst:9400ZZLUWPL4 a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Whitechapel Underground Station"^^xsd:string .
+
+inst:9400ZZLUWR1 a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Bow Road Underground Station"^^xsd:string .
+
+inst:940GZZBPSUST a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Battersea Power Station Underground Station"^^xsd:string .
+
+inst:940GZZLUACT a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:district,
+        inst:piccadilly ;
+    ex:stationName "Acton Town Station"^^xsd:string .
+
+inst:940GZZLUACY a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Archway Station"^^xsd:string .
+
+inst:940GZZLUADE a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district,
+        inst:hammersmith-city ;
+    ex:stationName "Aldgate East Station"^^xsd:string .
+
+inst:940GZZLUAGL a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Angel Station"^^xsd:string .
+
+inst:940GZZLUALD a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:metropolitan ;
+    ex:stationName "Aldgate Station"^^xsd:string .
+
+inst:940GZZLUALP a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Alperton Station"^^xsd:string .
+
+inst:940GZZLUAMS a ex:UndergroundStation ;
+    ex:fareZone 9 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:metropolitan ;
+    ex:stationName "Amersham Underground Station"^^xsd:string .
+
+inst:940GZZLUASG a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Arnos Grove Station"^^xsd:string .
+
+inst:940GZZLUASL a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Arsenal"^^xsd:string .
+
+inst:940GZZLUBBB a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district,
+        inst:hammersmith-city ;
+    ex:stationName "Bromley By Bow Station"^^xsd:string .
+
+inst:940GZZLUBBN a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:hammersmith-city,
+        inst:metropolitan ;
+    ex:stationName "Barbican Station"^^xsd:string .
+
+inst:940GZZLUBDS a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Bounds Green"^^xsd:string .
+
+inst:940GZZLUBEC a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district ;
+    ex:stationName "Becontree Station"^^xsd:string .
+
+inst:940GZZLUBKE a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Barkingside Station"^^xsd:string .
+
+inst:940GZZLUBKF a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:district ;
+    ex:stationName "Blackfriars Underground Station"^^xsd:string .
+
+inst:940GZZLUBKG a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district,
+        inst:hammersmith-city ;
+    ex:stationName "Barking Underground Station"^^xsd:string .
+
+inst:940GZZLUBKH a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Buckhurst Hill Underground Station"^^xsd:string .
+
+inst:940GZZLUBLG a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Bethnal Green"^^xsd:string .
+
+inst:940GZZLUBLM a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Balham Station"^^xsd:string .
+
+inst:940GZZLUBLR a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:victoria ;
+    ex:stationName "Blackhorse Road Station"^^xsd:string .
+
+inst:940GZZLUBMY a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:jubilee ;
+    ex:stationName "Bermondsey Station"^^xsd:string .
+
+inst:940GZZLUBND a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central,
+        inst:jubilee ;
+    ex:stationName "Bond Street Station"^^xsd:string .
+
+inst:940GZZLUBNK a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central,
+        inst:northern,
+        inst:waterloo-city ;
+    ex:stationName "Bank Underground Station"^^xsd:string .
+
+inst:940GZZLUBOR a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Borough Station"^^xsd:string .
+
+inst:940GZZLUBOS a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Boston Manor Station"^^xsd:string .
+
+inst:940GZZLUBSC a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district,
+        inst:piccadilly ;
+    ex:stationName "Barons Court"^^xsd:string .
+
+inst:940GZZLUBST a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:bakerloo,
+        inst:circle,
+        inst:hammersmith-city,
+        inst:jubilee,
+        inst:metropolitan ;
+    ex:stationName "Baker Street Station"^^xsd:string .
+
+inst:940GZZLUBTK a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Burnt Oak Station"^^xsd:string .
+
+inst:940GZZLUBTX a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Brent Cross Station"^^xsd:string .
+
+inst:940GZZLUBWR a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district,
+        inst:hammersmith-city ;
+    ex:stationName "Bow Road Station"^^xsd:string .
+
+inst:940GZZLUBWT a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:district ;
+    ex:stationName "Bayswater Station"^^xsd:string .
+
+inst:940GZZLUBXN a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:victoria ;
+    ex:stationName "Brixton Station"^^xsd:string .
+
+inst:940GZZLUBZP a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Belsize Park Station"^^xsd:string .
+
+inst:940GZZLUCAL a ex:UndergroundStation ;
+    ex:fareZone 8 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:metropolitan ;
+    ex:stationName "Chalfont & Latimer Underground Station"^^xsd:string .
+
+inst:940GZZLUCAR a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Caledonian Road Station"^^xsd:string .
+
+inst:940GZZLUCFM a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Chalk Farm Station"^^xsd:string .
+
+inst:940GZZLUCGN a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Covent Garden Station"^^xsd:string .
+
+inst:940GZZLUCGT a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:jubilee ;
+    ex:stationName "Canning Town Underground Station"^^xsd:string .
+
+inst:940GZZLUCHL a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Chancery Lane Station"^^xsd:string .
+
+inst:940GZZLUCHX a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:bakerloo,
+        inst:northern ;
+    ex:stationName "Charing Cross Station"^^xsd:string .
+
+inst:940GZZLUCKS a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Cockfosters Station"^^xsd:string .
+
+inst:940GZZLUCND a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Colindale Station"^^xsd:string .
+
+inst:940GZZLUCPC a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Clapham Common"^^xsd:string .
+
+inst:940GZZLUCPK a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:jubilee ;
+    ex:stationName "Canons Park Station"^^xsd:string .
+
+inst:940GZZLUCPN a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Clapham North"^^xsd:string .
+
+inst:940GZZLUCPS a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Clapham South"^^xsd:string .
+
+inst:940GZZLUCSD a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Colliers Wood Station"^^xsd:string .
+
+inst:940GZZLUCSM a ex:UndergroundStation ;
+    ex:fareZone 9 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:metropolitan ;
+    ex:stationName "Chesham Underground Station"^^xsd:string .
+
+inst:940GZZLUCST a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:district ;
+    ex:stationName "Cannon Street Station"^^xsd:string .
+
+inst:940GZZLUCTN a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Camden Town Station"^^xsd:string .
+
+inst:940GZZLUCWL a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Chigwell Underground Station"^^xsd:string .
+
+inst:940GZZLUCWP a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district ;
+    ex:stationName "Chiswick Park"^^xsd:string .
+
+inst:940GZZLUCWR a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:jubilee ;
+    ex:stationName "Canada Water Underground Station"^^xsd:string .
+
+inst:940GZZLUCXY a ex:UndergroundStation ;
+    ex:fareZone 7 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:metropolitan ;
+    ex:stationName "Croxley Underground Station"^^xsd:string .
+
+inst:940GZZLUCYD a ex:UndergroundStation ;
+    ex:fareZone 7 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:metropolitan ;
+    ex:stationName "Chorleywood Underground Station"^^xsd:string .
+
+inst:940GZZLUCYF a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:jubilee ;
+    ex:stationName "Canary Wharf Station"^^xsd:string .
+
+inst:940GZZLUDBN a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Debden Underground Station"^^xsd:string .
+
+inst:940GZZLUDGE a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district ;
+    ex:stationName "Dagenham East Station"^^xsd:string .
+
+inst:940GZZLUDGY a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district ;
+    ex:stationName "Dagenham Heathway Station"^^xsd:string .
+
+inst:940GZZLUDOH a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:jubilee ;
+    ex:stationName "Dollis Hill Station"^^xsd:string .
+
+inst:940GZZLUEAC a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:bakerloo,
+        inst:northern ;
+    ex:stationName "Elephant & Castle Station"^^xsd:string .
+
+inst:940GZZLUEAE a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:metropolitan,
+        inst:piccadilly ;
+    ex:stationName "Eastcote Station"^^xsd:string .
+
+inst:940GZZLUEAN a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "East Acton Station"^^xsd:string .
+
+inst:940GZZLUEBY a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central,
+        inst:district ;
+    ex:stationName "Ealing Broadway Underground Station"^^xsd:string .
+
+inst:940GZZLUECM a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district,
+        inst:piccadilly ;
+    ex:stationName "Ealing Common Station"^^xsd:string .
+
+inst:940GZZLUECT a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:district,
+        inst:piccadilly ;
+    ex:stationName "Earl's Court Station"^^xsd:string .
+
+inst:940GZZLUEFY a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "East Finchley Station"^^xsd:string .
+
+inst:940GZZLUEGW a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Edgware Bus Station"^^xsd:string .
+
+inst:940GZZLUEHM a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:district,
+        inst:hammersmith-city ;
+    ex:stationName "East Ham Station"^^xsd:string .
+
+inst:940GZZLUEMB a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:bakerloo,
+        inst:circle,
+        inst:district,
+        inst:northern ;
+    ex:stationName "Embankment Station"^^xsd:string .
+
+inst:940GZZLUEPG a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Epping Underground Station"^^xsd:string .
+
+inst:940GZZLUEPK a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district ;
+    ex:stationName "Elm Park Station"^^xsd:string .
+
+inst:940GZZLUEPY a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district ;
+    ex:stationName "East Putney Station"^^xsd:string .
+
+inst:940GZZLUERB a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:bakerloo ;
+    ex:stationName "Edgware Road (Bakerloo) Underground Station"^^xsd:string .
+
+inst:940GZZLUERC a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:district,
+        inst:hammersmith-city ;
+    ex:stationName "Edgware Road (Circle Line) Underground Station"^^xsd:string .
+
+inst:940GZZLUESQ a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:circle,
+        inst:hammersmith-city,
+        inst:metropolitan ;
+    ex:stationName "Euston Square Station"^^xsd:string .
+
+inst:940GZZLUEUS a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern,
+        inst:victoria ;
+    ex:stationName "Euston Underground Station"^^xsd:string .
+
+inst:940GZZLUFBY a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:district ;
+    ex:stationName "Fulham Broadway Station"^^xsd:string .
+
+inst:940GZZLUFCN a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:circle,
+        inst:hammersmith-city,
+        inst:metropolitan ;
+    ex:stationName "Farringdon Station"^^xsd:string .
+
+inst:940GZZLUFLP a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Fairlop Station"^^xsd:string .
+
+inst:940GZZLUFPK a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly,
+        inst:victoria ;
+    ex:stationName "Finsbury Park Station"^^xsd:string .
+
+inst:940GZZLUFYC a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Finchley Central"^^xsd:string .
+
+inst:940GZZLUFYR a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:jubilee,
+        inst:metropolitan ;
+    ex:stationName "Finchley Road Station"^^xsd:string .
+
+inst:940GZZLUGBY a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district ;
+    ex:stationName "Gunnersbury Station"^^xsd:string .
+
+inst:940GZZLUGDG a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Goodge Street Station"^^xsd:string .
+
+inst:940GZZLUGFD a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Greenford Underground Station"^^xsd:string .
+
+inst:940GZZLUGGH a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Grange Hill Underground Station"^^xsd:string .
+
+inst:940GZZLUGGN a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Golders Green Station"^^xsd:string .
+
+inst:940GZZLUGHK a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:hammersmith-city ;
+    ex:stationName "Goldhawk Road Station"^^xsd:string .
+
+inst:940GZZLUGPK a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:jubilee,
+        inst:piccadilly,
+        inst:victoria ;
+    ex:stationName "Green Park Station"^^xsd:string .
+
+inst:940GZZLUGPS a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:hammersmith-city,
+        inst:metropolitan ;
+    ex:stationName "Great Portland St Stn  / Euston Rd"^^xsd:string .
+
+inst:940GZZLUGTH a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Gants Hill Station"^^xsd:string .
+
+inst:940GZZLUGTR a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:district,
+        inst:piccadilly ;
+    ex:stationName "Gloucester Road Station"^^xsd:string .
+
+inst:940GZZLUHAI a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:victoria ;
+    ex:stationName "Highbury & Islington Underground Station"^^xsd:string .
+
+inst:940GZZLUHAW a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:bakerloo ;
+    ex:stationName "Harrow & Wealdstone Underground Station"^^xsd:string .
+
+inst:940GZZLUHBN a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central,
+        inst:piccadilly ;
+    ex:stationName "Holborn Station"^^xsd:string .
+
+inst:940GZZLUHBT a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "High Barnet Station"^^xsd:string .
+
+inst:940GZZLUHCH a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district ;
+    ex:stationName "Hornchurch Station"^^xsd:string .
+
+inst:940GZZLUHCL a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Hendon Central Station"^^xsd:string .
+
+inst:940GZZLUHGD a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:metropolitan,
+        inst:piccadilly ;
+    ex:stationName "Hillingdon Station"^^xsd:string .
+
+inst:940GZZLUHGR a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Hanger Lane Station"^^xsd:string .
+
+inst:940GZZLUHGT a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Highgate"^^xsd:string .
+
+inst:940GZZLUHLT a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Hainault Underground Station"^^xsd:string .
+
+inst:940GZZLUHNX a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Hatton Cross Station"^^xsd:string .
+
+inst:940GZZLUHOH a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:metropolitan ;
+    ex:stationName "Harrow-on-the-Hill Underground Station"^^xsd:string .
+
+inst:940GZZLUHPC a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Hyde Park Corner"^^xsd:string .
+
+inst:940GZZLUHPK a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Holland Park"^^xsd:string .
+
+inst:940GZZLUHR4 a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Heathrow Terminal 4 Underground Station"^^xsd:string .
+
+inst:940GZZLUHR5 a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Heathrow Terminal 5 Underground Station"^^xsd:string .
+
+inst:940GZZLUHRC a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Heathrow Terminals 1-2-3 Underground Station"^^xsd:string .
+
+inst:940GZZLUHSC a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:hammersmith-city ;
+    ex:stationName "Hammersmith (H&C Line) Underground Station"^^xsd:string .
+
+inst:940GZZLUHSD a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district,
+        inst:piccadilly ;
+    ex:stationName "Hammersmith (Dist&Picc Line) Underground Station"^^xsd:string .
+
+inst:940GZZLUHSK a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:district ;
+    ex:stationName "High Street Kensington Station"^^xsd:string .
+
+inst:940GZZLUHSN a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:bakerloo ;
+    ex:stationName "Harlesden Underground Station"^^xsd:string .
+
+inst:940GZZLUHTD a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Hampstead Station"^^xsd:string .
+
+inst:940GZZLUHWC a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Hounslow Central Station"^^xsd:string .
+
+inst:940GZZLUHWE a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Hounslow East Station"^^xsd:string .
+
+inst:940GZZLUHWT a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Hounslow West Station"^^xsd:string .
+
+inst:940GZZLUHWY a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Holloway Road Station"^^xsd:string .
+
+inst:940GZZLUICK a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:metropolitan,
+        inst:piccadilly ;
+    ex:stationName "Ickenham Station"^^xsd:string .
+
+inst:940GZZLUKBN a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:jubilee ;
+    ex:stationName "Kilburn Station"^^xsd:string .
+
+inst:940GZZLUKBY a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:jubilee ;
+    ex:stationName "Kingsbury Station"^^xsd:string .
+
+inst:940GZZLUKEN a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:bakerloo ;
+    ex:stationName "Kenton Underground Station"^^xsd:string .
+
+inst:940GZZLUKNB a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Knightsbridge Station"^^xsd:string .
+
+inst:940GZZLUKNG a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Kennington Station"^^xsd:string .
+
+inst:940GZZLUKOY a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district ;
+    ex:stationName "Kensington (Olympia) Underground Station"^^xsd:string .
+
+inst:940GZZLUKPK a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:bakerloo ;
+    ex:stationName "Kilburn Park Station"^^xsd:string .
+
+inst:940GZZLUKSH a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Kentish Town Underground Station"^^xsd:string .
+
+inst:940GZZLUKSL a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:bakerloo ;
+    ex:stationName "Kensal Green Underground Station"^^xsd:string .
+
+inst:940GZZLUKSX a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:hammersmith-city,
+        inst:metropolitan,
+        inst:northern,
+        inst:piccadilly,
+        inst:victoria ;
+    ex:stationName "King's Cross St. Pancras Underground Station"^^xsd:string .
+
+inst:940GZZLUKWG a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district ;
+    ex:stationName "Kew Gardens Underground Station"^^xsd:string .
+
+inst:940GZZLULAD a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:hammersmith-city ;
+    ex:stationName "Ladbroke Grove Station"^^xsd:string .
+
+inst:940GZZLULBN a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:bakerloo ;
+    ex:stationName "Lambeth North"^^xsd:string .
+
+inst:940GZZLULGN a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Loughton Underground Station"^^xsd:string .
+
+inst:940GZZLULGT a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Lancaster Gate Station"^^xsd:string .
+
+inst:940GZZLULNB a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:jubilee,
+        inst:northern ;
+    ex:stationName "London Bridge Station"^^xsd:string .
+
+inst:940GZZLULRD a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:hammersmith-city ;
+    ex:stationName "Latimer Road Station"^^xsd:string .
+
+inst:940GZZLULSQ a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern,
+        inst:piccadilly ;
+    ex:stationName "Leicester Square Station"^^xsd:string .
+
+inst:940GZZLULVT a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:central,
+        inst:circle,
+        inst:hammersmith-city,
+        inst:metropolitan ;
+    ex:stationName "Liverpool Street Station"^^xsd:string .
+
+inst:940GZZLULYN a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Leyton Station"^^xsd:string .
+
+inst:940GZZLULYS a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Leytonstone Station"^^xsd:string .
+
+inst:940GZZLUMBA a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Marble Arch"^^xsd:string .
+
+inst:940GZZLUMDN a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Morden Station"^^xsd:string .
+
+inst:940GZZLUMED a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central,
+        inst:district,
+        inst:hammersmith-city ;
+    ex:stationName "Mile End Station"^^xsd:string .
+
+inst:940GZZLUMGT a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:hammersmith-city,
+        inst:metropolitan,
+        inst:northern ;
+    ex:stationName "Moorgate Underground Station"^^xsd:string .
+
+inst:940GZZLUMHL a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Mill Hill East Station"^^xsd:string .
+
+inst:940GZZLUMMT a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:district ;
+    ex:stationName "Monument Station"^^xsd:string .
+
+inst:940GZZLUMPK a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:metropolitan ;
+    ex:stationName "Moor Park Underground Station"^^xsd:string .
+
+inst:940GZZLUMRH a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Manor House"^^xsd:string .
+
+inst:940GZZLUMSH a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:district ;
+    ex:stationName "Mansion House Station"^^xsd:string .
+
+inst:940GZZLUMTC a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Mornington Crescent"^^xsd:string .
+
+inst:940GZZLUMVL a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:bakerloo ;
+    ex:stationName "Maida Vale Station"^^xsd:string .
+
+inst:940GZZLUMYB a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:bakerloo ;
+    ex:stationName "Marylebone Underground Station"^^xsd:string .
+
+inst:940GZZLUNAN a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "North Acton Station"^^xsd:string .
+
+inst:940GZZLUNBP a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Newbury Park Station"^^xsd:string .
+
+inst:940GZZLUNDN a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:jubilee ;
+    ex:stationName "Neasden Station"^^xsd:string .
+
+inst:940GZZLUNEN a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "North Ealing Station"^^xsd:string .
+
+inst:940GZZLUNFD a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Northfields Station"^^xsd:string .
+
+inst:940GZZLUNGW a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:jubilee ;
+    ex:stationName "North Greenwich"^^xsd:string .
+
+inst:940GZZLUNHA a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:metropolitan ;
+    ex:stationName "North Harrow Station"^^xsd:string .
+
+inst:940GZZLUNHG a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central,
+        inst:circle,
+        inst:district ;
+    ex:stationName "Notting Hill Gate Station"^^xsd:string .
+
+inst:940GZZLUNHT a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Northolt Station"^^xsd:string .
+
+inst:940GZZLUNKP a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:metropolitan ;
+    ex:stationName "Northwick Park Station"^^xsd:string .
+
+inst:940GZZLUNOW a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:metropolitan ;
+    ex:stationName "Northwood Station"^^xsd:string .
+
+inst:940GZZLUNWH a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:metropolitan ;
+    ex:stationName "Northwood Hills Station"^^xsd:string .
+
+inst:940GZZLUNWY a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:bakerloo ;
+    ex:stationName "North Wembley Underground Station"^^xsd:string .
+
+inst:940GZZLUOAK a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Oakwood Station"^^xsd:string .
+
+inst:940GZZLUODS a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Old Street Station"^^xsd:string .
+
+inst:940GZZLUOSY a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Osterley Station"^^xsd:string .
+
+inst:940GZZLUOVL a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Oval Station"^^xsd:string .
+
+inst:940GZZLUOXC a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:bakerloo,
+        inst:central,
+        inst:victoria ;
+    ex:stationName "Oxford Circus Station"^^xsd:string .
+
+inst:940GZZLUPAC a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:bakerloo,
+        inst:circle,
+        inst:district ;
+    ex:stationName "Paddington Underground Station"^^xsd:string .
+
+inst:940GZZLUPAH a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:hammersmith-city ;
+    ex:stationName "Paddington (H&C Line)"^^xsd:string .
+
+inst:940GZZLUPCC a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:bakerloo,
+        inst:piccadilly ;
+    ex:stationName "Piccadilly Circus"^^xsd:string .
+
+inst:940GZZLUPCO a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:victoria ;
+    ex:stationName "Pimlico Station"^^xsd:string .
+
+inst:940GZZLUPKR a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Park Royal Station"^^xsd:string .
+
+inst:940GZZLUPLW a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district,
+        inst:hammersmith-city ;
+    ex:stationName "Plaistow Station"^^xsd:string .
+
+inst:940GZZLUPNR a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:metropolitan ;
+    ex:stationName "Pinner Station"^^xsd:string .
+
+inst:940GZZLUPRD a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:metropolitan ;
+    ex:stationName "Preston Road Station"^^xsd:string .
+
+inst:940GZZLUPSG a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district ;
+    ex:stationName "Parsons Green"^^xsd:string .
+
+inst:940GZZLUPVL a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Perivale"^^xsd:string .
+
+inst:940GZZLUPYB a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district ;
+    ex:stationName "Putney Bridge Station"^^xsd:string .
+
+inst:940GZZLUQBY a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:jubilee ;
+    ex:stationName "Queensbury Station"^^xsd:string .
+
+inst:940GZZLUQPS a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:bakerloo ;
+    ex:stationName "Queen's Park Underground Station"^^xsd:string .
+
+inst:940GZZLUQWY a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Queensway Station"^^xsd:string .
+
+inst:940GZZLURBG a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Redbridge Station"^^xsd:string .
+
+inst:940GZZLURGP a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:bakerloo ;
+    ex:stationName "Regent's Park Station"^^xsd:string .
+
+inst:940GZZLURKW a ex:UndergroundStation ;
+    ex:fareZone 7 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:metropolitan ;
+    ex:stationName "Rickmansworth Underground Station"^^xsd:string .
+
+inst:940GZZLURMD a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district ;
+    ex:stationName "Richmond Underground Station"^^xsd:string .
+
+inst:940GZZLURSG a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Ruislip Gardens"^^xsd:string .
+
+inst:940GZZLURSM a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:metropolitan,
+        inst:piccadilly ;
+    ex:stationName "Ruislip Manor Station"^^xsd:string .
+
+inst:940GZZLURSP a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:metropolitan,
+        inst:piccadilly ;
+    ex:stationName "Ruislip Station"^^xsd:string .
+
+inst:940GZZLURSQ a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Russell Square Station"^^xsd:string .
+
+inst:940GZZLURVP a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district ;
+    ex:stationName "Ravenscourt Park Station"^^xsd:string .
+
+inst:940GZZLURVY a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Roding Valley"^^xsd:string .
+
+inst:940GZZLURYL a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:metropolitan,
+        inst:piccadilly ;
+    ex:stationName "Rayners Lane Station"^^xsd:string .
+
+inst:940GZZLURYO a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:hammersmith-city ;
+    ex:stationName "Royal Oak"^^xsd:string .
+
+inst:940GZZLUSBC a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Shepherd's Bush (Central Line)"^^xsd:string .
+
+inst:940GZZLUSBM a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:hammersmith-city ;
+    ex:stationName "Shepherd's Bush Market"^^xsd:string .
+
+inst:940GZZLUSEA a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "South Ealing Station"^^xsd:string .
+
+inst:940GZZLUSFB a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district ;
+    ex:stationName "Stamford Brook Station"^^xsd:string .
+
+inst:940GZZLUSFS a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:district ;
+    ex:stationName "Southfields Station"^^xsd:string .
+
+inst:940GZZLUSGN a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district,
+        inst:hammersmith-city ;
+    ex:stationName "Stepney Green Station"^^xsd:string .
+
+inst:940GZZLUSGP a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:bakerloo ;
+    ex:stationName "Stonebridge Park Underground Station"^^xsd:string .
+
+inst:940GZZLUSGT a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Southgate"^^xsd:string .
+
+inst:940GZZLUSHH a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "South Harrow Station"^^xsd:string .
+
+inst:940GZZLUSJP a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:district ;
+    ex:stationName "St James's Park Station"^^xsd:string .
+
+inst:940GZZLUSJW a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:jubilee ;
+    ex:stationName "St John's Wood Station"^^xsd:string .
+
+inst:940GZZLUSKS a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:district,
+        inst:piccadilly ;
+    ex:stationName "South Kensington Station"^^xsd:string .
+
+inst:940GZZLUSKT a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:bakerloo ;
+    ex:stationName "South Kenton Station"^^xsd:string .
+
+inst:940GZZLUSKW a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern,
+        inst:victoria ;
+    ex:stationName "Stockwell Station"^^xsd:string .
+
+inst:940GZZLUSNB a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Snaresbrook Station"^^xsd:string .
+
+inst:940GZZLUSPU a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "St Paul's Station"^^xsd:string .
+
+inst:940GZZLUSRP a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "South Ruislip Station"^^xsd:string .
+
+inst:940GZZLUSSQ a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:district ;
+    ex:stationName "Sloane Square"^^xsd:string .
+
+inst:940GZZLUSTD a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central,
+        inst:jubilee ;
+    ex:stationName "Stratford Underground Station"^^xsd:string .
+
+inst:940GZZLUSTM a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:jubilee ;
+    ex:stationName "Stanmore Station"^^xsd:string .
+
+inst:940GZZLUSUH a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Sudbury Hill"^^xsd:string .
+
+inst:940GZZLUSUT a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Sudbury Town Station"^^xsd:string .
+
+inst:940GZZLUSVS a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:victoria ;
+    ex:stationName "Seven Sisters Underground Station"^^xsd:string .
+
+inst:940GZZLUSWC a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:jubilee ;
+    ex:stationName "Swiss Cottage Station"^^xsd:string .
+
+inst:940GZZLUSWF a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "South Woodford Station"^^xsd:string .
+
+inst:940GZZLUSWK a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:jubilee ;
+    ex:stationName "Southwark Station"^^xsd:string .
+
+inst:940GZZLUSWN a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "South Wimbledon Station"^^xsd:string .
+
+inst:940GZZLUTAW a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Totteridge & Whetstone Station"^^xsd:string .
+
+inst:940GZZLUTBC a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Tooting Bec Station"^^xsd:string .
+
+inst:940GZZLUTBY a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Tooting Broadway Station"^^xsd:string .
+
+inst:940GZZLUTCR a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central,
+        inst:northern ;
+    ex:stationName "Tottenham Court Road Station"^^xsd:string .
+
+inst:940GZZLUTFP a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Tufnell Park Station"^^xsd:string .
+
+inst:940GZZLUTHB a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Theydon Bois Underground Station"^^xsd:string .
+
+inst:940GZZLUTMH a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:victoria ;
+    ex:stationName "Tottenham Hale"^^xsd:string .
+
+inst:940GZZLUTMP a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:district ;
+    ex:stationName "Temple Station"^^xsd:string .
+
+inst:940GZZLUTNG a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district,
+        inst:piccadilly ;
+    ex:stationName "Turnham Green Station"^^xsd:string .
+
+inst:940GZZLUTPN a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Turnpike Lane Station"^^xsd:string .
+
+inst:940GZZLUTWH a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:district ;
+    ex:stationName "Tower Hill"^^xsd:string .
+
+inst:940GZZLUUPB a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district ;
+    ex:stationName "Upminster Bridge"^^xsd:string .
+
+inst:940GZZLUUPK a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district,
+        inst:hammersmith-city ;
+    ex:stationName "Upton Park Station"^^xsd:string .
+
+inst:940GZZLUUPM a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district ;
+    ex:stationName "Upminster Underground Station"^^xsd:string .
+
+inst:940GZZLUUPY a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district ;
+    ex:stationName "Upney Station"^^xsd:string .
+
+inst:940GZZLUUXB a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:metropolitan,
+        inst:piccadilly ;
+    ex:stationName "Uxbridge Station"^^xsd:string .
+
+inst:940GZZLUVIC a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:district,
+        inst:victoria ;
+    ex:stationName "Victoria Station"^^xsd:string .
+
+inst:940GZZLUVXL a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:victoria ;
+    ex:stationName "Vauxhall"^^xsd:string .
+
+inst:940GZZLUWAF a ex:UndergroundStation ;
+    ex:fareZone 7 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:metropolitan ;
+    ex:stationName "Watford Underground Station"^^xsd:string .
+
+inst:940GZZLUWBN a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district ;
+    ex:stationName "West Brompton Underground Station"^^xsd:string .
+
+inst:940GZZLUWCY a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "White City Station"^^xsd:string .
+
+inst:940GZZLUWFN a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "West Finchley Station"^^xsd:string .
+
+inst:940GZZLUWHM a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district,
+        inst:hammersmith-city,
+        inst:jubilee ;
+    ex:stationName "West Ham Underground Station"^^xsd:string .
+
+inst:940GZZLUWHP a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:jubilee ;
+    ex:stationName "West Hampstead Station"^^xsd:string .
+
+inst:940GZZLUWHW a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:metropolitan ;
+    ex:stationName "West Harrow Station"^^xsd:string .
+
+inst:940GZZLUWIG a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:jubilee,
+        inst:metropolitan ;
+    ex:stationName "Willesden Green Station"^^xsd:string .
+
+inst:940GZZLUWIM a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district ;
+    ex:stationName "Wimbledon Underground Station"^^xsd:string .
+
+inst:940GZZLUWIP a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district ;
+    ex:stationName "Wimbledon Park"^^xsd:string .
+
+inst:940GZZLUWJN a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:bakerloo ;
+    ex:stationName "Willesden Junction Underground Station"^^xsd:string .
+
+inst:940GZZLUWKA a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:bakerloo ;
+    ex:stationName "Warwick Avenue"^^xsd:string .
+
+inst:940GZZLUWKN a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district ;
+    ex:stationName "West Kensington Station"^^xsd:string .
+
+inst:940GZZLUWLA a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:circle,
+        inst:hammersmith-city ;
+    ex:stationName "Wood Lane"^^xsd:string .
+
+inst:940GZZLUWLO a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:bakerloo,
+        inst:jubilee,
+        inst:northern,
+        inst:waterloo-city ;
+    ex:stationName "Waterloo Station"^^xsd:string .
+
+inst:940GZZLUWOF a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Woodford Station"^^xsd:string .
+
+inst:940GZZLUWOG a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationName "Wood Green Station"^^xsd:string .
+
+inst:940GZZLUWOP a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Woodside Park Station"^^xsd:string .
+
+inst:940GZZLUWPL a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:district,
+        inst:hammersmith-city ;
+    ex:stationName "Whitechapel Underground Station"^^xsd:string .
+
+inst:940GZZLUWRP a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "West Ruislip Underground Station"^^xsd:string .
+
+inst:940GZZLUWRR a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern,
+        inst:victoria ;
+    ex:stationName "Warren Street Station"^^xsd:string .
+
+inst:940GZZLUWSD a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "Wanstead Station"^^xsd:string .
+
+inst:940GZZLUWSM a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:circle,
+        inst:district,
+        inst:jubilee ;
+    ex:stationName "Westminster Station"^^xsd:string .
+
+inst:940GZZLUWSP a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:circle,
+        inst:hammersmith-city ;
+    ex:stationName "Westbourne Park Station"^^xsd:string .
+
+inst:940GZZLUWTA a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:central ;
+    ex:stationName "West Acton Station"^^xsd:string .
+
+inst:940GZZLUWWL a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:victoria ;
+    ex:stationName "Walthamstow Central Underground Station"^^xsd:string .
+
+inst:940GZZLUWYC a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:bakerloo ;
+    ex:stationName "Wembley Central Underground Station"^^xsd:string .
+
+inst:940GZZLUWYP a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:servedByLine inst:jubilee,
+        inst:metropolitan ;
+    ex:stationName "Wembley Park Station"^^xsd:string .
+
+inst:940GZZNEUGST a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:servedByLine inst:northern ;
+    ex:stationName "Nine Elms Underground Station"^^xsd:string .
+
+inst:HUBAMR a ex:UndergroundStation ;
+    ex:fareZone 9 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Amersham"^^xsd:string .
+
+inst:HUBBAL a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Balham"^^xsd:string .
+
+inst:HUBBAN a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Bank"^^xsd:string .
+
+inst:HUBBDS a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Bond Street"^^xsd:string .
+
+inst:HUBBFR a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Blackfriars"^^xsd:string .
+
+inst:HUBBHO a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Blackhorse Road"^^xsd:string .
+
+inst:HUBBKG a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Barking"^^xsd:string .
+
+inst:HUBBRX a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Brixton"^^xsd:string .
+
+inst:HUBCAN a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Canning Town"^^xsd:string .
+
+inst:HUBCAW a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Canary Wharf"^^xsd:string .
+
+inst:HUBCFO a ex:UndergroundStation ;
+    ex:fareZone 8 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Chalfont & Latimer"^^xsd:string .
+
+inst:HUBCHX a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Charing Cross"^^xsd:string .
+
+inst:HUBCLW a ex:UndergroundStation ;
+    ex:fareZone 7 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Chorleywood"^^xsd:string .
+
+inst:HUBCST a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Cannon Street"^^xsd:string .
+
+inst:HUBEAL a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Ealing Broadway"^^xsd:string .
+
+inst:HUBEPH a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Elephant & Castle"^^xsd:string .
+
+inst:HUBEUS a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Euston"^^xsd:string .
+
+inst:HUBFPK a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Finsbury Park"^^xsd:string .
+
+inst:HUBGFD a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Greenford"^^xsd:string .
+
+inst:HUBGUN a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Gunnersbury"^^xsd:string .
+
+inst:HUBH13 a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Heathrow Terminals 2 & 3"^^xsd:string .
+
+inst:HUBHDN a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Harlesden"^^xsd:string .
+
+inst:HUBHHY a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Highbury & Islington"^^xsd:string .
+
+inst:HUBHMS a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Hammersmith"^^xsd:string .
+
+inst:HUBHOH a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Harrow-on-the-Hill"^^xsd:string .
+
+inst:HUBHRW a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Harrow & Wealdstone"^^xsd:string .
+
+inst:HUBHX4 a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Heathrow Airport Terminal 4"^^xsd:string .
+
+inst:HUBHX5 a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Heathrow Airport Terminal 5"^^xsd:string .
+
+inst:HUBKGX a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "King's Cross & St Pancras International"^^xsd:string .
+
+inst:HUBKNL a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Kensal Green"^^xsd:string .
+
+inst:HUBKNT a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Kenton"^^xsd:string .
+
+inst:HUBKPA a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Kensington (Olympia)"^^xsd:string .
+
+inst:HUBKTN a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Kentish Town"^^xsd:string .
+
+inst:HUBKWG a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Kew Gardens"^^xsd:string .
+
+inst:HUBLBG a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "London Bridge"^^xsd:string .
+
+inst:HUBLST a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Liverpool Street"^^xsd:string .
+
+inst:HUBMYB a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Marylebone"^^xsd:string .
+
+inst:HUBNGW a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "North Greenwich"^^xsd:string .
+
+inst:HUBNWB a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "North Wembley"^^xsd:string .
+
+inst:HUBOLD a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Old Street"^^xsd:string .
+
+inst:HUBPAD a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Paddington"^^xsd:string .
+
+inst:HUBQPW a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Queen's Park"^^xsd:string .
+
+inst:HUBRIC a ex:UndergroundStation ;
+    ex:fareZone 7 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Rickmansworth"^^xsd:string .
+
+inst:HUBRMD a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Richmond"^^xsd:string .
+
+inst:HUBSBP a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Stonebridge Park"^^xsd:string .
+
+inst:HUBSOK a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "South Kenton"^^xsd:string .
+
+inst:HUBSPB a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Shepherd's Bush"^^xsd:string .
+
+inst:HUBSRA a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Stratford"^^xsd:string .
+
+inst:HUBSRU a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "South Ruislip"^^xsd:string .
+
+inst:HUBSVS a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Seven Sisters"^^xsd:string .
+
+inst:HUBTCR a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Tottenham Court Road"^^xsd:string .
+
+inst:HUBTOM a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Tottenham Hale"^^xsd:string .
+
+inst:HUBUPM a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Upminster"^^xsd:string .
+
+inst:HUBVIC a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Victoria"^^xsd:string .
+
+inst:HUBVXH a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Vauxhall"^^xsd:string .
+
+inst:HUBWAT a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Waterloo"^^xsd:string .
+
+inst:HUBWBP a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "West Brompton"^^xsd:string .
+
+inst:HUBWEH a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "West Ham"^^xsd:string .
+
+inst:HUBWHC a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Walthamstow Central"^^xsd:string .
+
+inst:HUBWHD a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "West Hampstead"^^xsd:string .
+
+inst:HUBWIJ a ex:UndergroundStation ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Willesden Junction"^^xsd:string .
+
+inst:HUBWIM a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Wimbledon"^^xsd:string .
+
+inst:HUBWMB a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Wembley Central"^^xsd:string .
+
+inst:HUBWRU a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "West Ruislip"^^xsd:string .
+
+inst:HUBWSM a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Westminster"^^xsd:string .
+
+inst:HUBZCW a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Canada Water"^^xsd:string .
+
+inst:HUBZFD a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Farringdon"^^xsd:string .
+
+inst:HUBZMG a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Moorgate"^^xsd:string .
+
+inst:HUBZWL a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:stationName "Whitechapel"^^xsd:string .
+
+inst:central_status_0 a ex:DelayEvent ;
+    ex:affectsLine inst:central ;
+    ex:closureReason "Central Line: Minor delays due to train cancellations.  "^^xsd:string ;
+    ex:disruptionName "Minor Delays"^^xsd:string ;
+    ex:severityLabel "Minor Delays"^^xsd:string .
+
+inst:district_status_0 a ex:DelayEvent ;
+    ex:affectsLine inst:district ;
+    ex:closureReason "District Line: No service between Wimbledon and Wimbledon Park and SEVERE DELAYS between Earl's Court and Wimbledon Park while we fix a signal failure at Wimbledon. Tickets are being accepted on London Buses via any reasonable route. GOOD SERVICE on the rest of the line. "^^xsd:string ;
+    ex:disruptionName "Severe Delays"^^xsd:string ;
+    ex:severityLabel "Severe Delays"^^xsd:string .
+
+inst:district_status_1 a ex:ClosureEvent ;
+    ex:affectsLine inst:district ;
+    ex:closureReason "District Line: No service between Wimbledon and Wimbledon Park and SEVERE DELAYS between Earl's Court and Wimbledon Park while we fix a signal failure at Wimbledon. Tickets are being accepted on London Buses via any reasonable route. GOOD SERVICE on the rest of the line. "^^xsd:string ;
+    ex:disruptionName "Part Suspended"^^xsd:string ;
+    ex:severityLabel "Part Suspended"^^xsd:string .
+
+<http://example.org/ontology-express> a owl:Ontology ;
+    rdfs:label "London Underground Ontology Foundation"@en ;
+    rdfs:comment "A TBox ontology for modelling London Underground stations, lines, routes, incidents, accessibility, maintenance, and rolling stock in line with the defined competency questions."@en ;
+    owl:imports <http://www.w3.org/2006/time>,
+        tmfac:,
+        tmj: .
+
+ex:affectsLine a owl:ObjectProperty ;
+    rdfs:label "affects line"@en ;
+    rdfs:comment "Relates a disruption event to a London Underground line affected by the disruption."@en ;
+    rdfs:domain ex:DisruptionEvent ;
+    rdfs:range ex:UndergroundLine .
+
+ex:closureReason a owl:DatatypeProperty ;
+    rdfs:label "closure reason"@en ;
+    rdfs:comment "Stores the reported reason for a closure event in the London Underground network."@en ;
+    rdfs:domain ex:ClosureEvent ;
+    rdfs:range xsd:string .
+
+ex:currentStatus a owl:DatatypeProperty ;
+    rdfs:label "current status"@en ;
+    rdfs:comment "Stores the current operational status of a disruption event affecting the London Underground."@en ;
+    rdfs:domain ex:DisruptionEvent ;
+    rdfs:range xsd:string .
+
+ex:delayMinutes a owl:DatatypeProperty ;
+    rdfs:label "delay in minutes"@en ;
+    rdfs:comment "Stores the delay caused by a delay event as a number of minutes."@en ;
+    rdfs:domain ex:DelayEvent ;
+    rdfs:range xsd:integer .
+
+ex:disruptionName a owl:DatatypeProperty ;
+    rdfs:label "disruption name"@en ;
+    rdfs:comment "Stores the reported name or title of a disruption event."@en ;
+    rdfs:domain ex:DisruptionEvent ;
+    rdfs:range xsd:string .
+
+ex:fareZone a owl:DatatypeProperty ;
+    rdfs:label "fare zone"@en ;
+    rdfs:comment "Stores the TfL fare zone number of a London Underground station."@en ;
+    rdfs:domain ex:UndergroundStation ;
+    rdfs:range xsd:integer .
+
+ex:hasDelayDuration a owl:DatatypeProperty ;
+    rdfs:label "has delay duration"@en ;
+    rdfs:comment "Stores the duration of a delay event using an xsd:duration value."@en ;
+    rdfs:domain ex:DelayEvent ;
+    rdfs:range xsd:duration ;
+    rdfs:subPropertyOf time:hasXSDDuration .
+
+ex:hasEndTime a owl:ObjectProperty ;
+    rdfs:label "has end time"@en ;
+    rdfs:comment "Relates an event or temporal entity to its end in time."@en ;
+    rdfs:subPropertyOf time:hasEnd .
+
+ex:hasReplacementService a owl:ObjectProperty ;
+    rdfs:label "has replacement service"@en ;
+    rdfs:comment "Relates a closure event to the bus replacement service provided during the disruption."@en ;
+    rdfs:domain ex:ClosureEvent ;
+    rdfs:range ex:BusReplacementService .
+
+ex:hasStartTime a owl:ObjectProperty ;
+    rdfs:label "has start time"@en ;
+    rdfs:comment "Relates an event or temporal entity to its beginning in time."@en ;
+    rdfs:subPropertyOf time:hasBeginning .
+
+ex:inaugurationDate a owl:DatatypeProperty ;
+    rdfs:label "inauguration date"@en ;
+    rdfs:comment "Stores the inauguration date of a London Underground route."@en ;
+    rdfs:domain ex:UndergroundRoute ;
+    rdfs:range xsd:date .
+
+ex:inaugurationYear a owl:DatatypeProperty ;
+    rdfs:label "inauguration year"@en ;
+    rdfs:comment "Stores the inauguration year of a London Underground route."@en ;
+    rdfs:domain ex:UndergroundRoute ;
+    rdfs:range xsd:gYear .
+
+ex:incidentName a owl:DatatypeProperty ;
+    rdfs:label "incident name"@en ;
+    rdfs:comment "Stores the reported name or title of an incident in the London Underground network."@en ;
+    rdfs:domain ex:Incident ;
+    rdfs:range xsd:string .
+
+ex:interchangesWithLine a owl:ObjectProperty ;
+    rdfs:label "interchanges with line"@en ;
+    rdfs:comment "Relates an interchange station to a line available for interchange at that station."@en ;
+    rdfs:domain ex:InterchangeStation ;
+    rdfs:range ex:UndergroundLine .
+
+ex:isFullyWheelchairAccessible a owl:DatatypeProperty ;
+    rdfs:label "is fully wheelchair accessible"@en ;
+    rdfs:comment "Indicates whether a London Underground station is officially designated as fully wheelchair accessible."@en ;
+    rdfs:domain ex:UndergroundStation ;
+    rdfs:range xsd:boolean .
+
+ex:lineHasRoute a owl:ObjectProperty ;
+    rdfs:label "line has route"@en ;
+    rdfs:comment "Relates a London Underground line to one of its associated routes."@en ;
+    rdfs:domain ex:UndergroundLine ;
+    rdfs:range ex:UndergroundRoute .
+
+ex:lineName a owl:DatatypeProperty ;
+    rdfs:label "line name"@en ;
+    rdfs:comment "Stores the human-readable name of a London Underground line."@en ;
+    rdfs:domain ex:UndergroundLine ;
+    rdfs:range xsd:string .
+
+ex:maintenanceName a owl:DatatypeProperty ;
+    rdfs:label "maintenance name"@en ;
+    rdfs:comment "Stores the name or description of a maintenance event."@en ;
+    rdfs:domain ex:MaintenanceEvent ;
+    rdfs:range xsd:string .
+
+ex:occursAtStation a owl:ObjectProperty ;
+    rdfs:label "occurs at station"@en ;
+    rdfs:comment "Relates an incident to the London Underground station where it occurs or is reported."@en ;
+    rdfs:domain ex:Incident ;
+    rdfs:range ex:UndergroundStation .
+
+ex:occursDuring a owl:ObjectProperty ;
+    rdfs:label "occurs during"@en ;
+    rdfs:comment "Relates an event in the London Underground network to a temporal entity describing when it occurs."@en ;
+    rdfs:subPropertyOf time:hasTime .
+
+ex:officialAccessibilityStatus a owl:DatatypeProperty ;
+    rdfs:label "official accessibility status"@en ;
+    rdfs:comment "Stores the official accessibility designation assigned to a London Underground station."@en ;
+    rdfs:domain ex:UndergroundStation ;
+    rdfs:range xsd:string .
+
+ex:operationalLengthMiles a owl:DatatypeProperty ;
+    rdfs:label "operational length in miles"@en ;
+    rdfs:comment "Stores the operational length of a London Underground line measured in miles."@en ;
+    rdfs:domain ex:UndergroundLine ;
+    rdfs:range xsd:decimal .
+
+ex:plannedEndDate a owl:DatatypeProperty ;
+    rdfs:label "planned end date"@en ;
+    rdfs:comment "Stores the planned end date of a maintenance event."@en ;
+    rdfs:domain ex:MaintenanceEvent ;
+    rdfs:range xsd:date .
+
+ex:plannedStartDate a owl:DatatypeProperty ;
+    rdfs:label "planned start date"@en ;
+    rdfs:comment "Stores the planned start date of a maintenance event."@en ;
+    rdfs:domain ex:MaintenanceEvent ;
+    rdfs:range xsd:date .
+
+ex:replacementFollowsRoute a owl:ObjectProperty ;
+    rdfs:label "replacement follows route"@en ;
+    rdfs:comment "Relates a bus replacement service to the route it follows."@en ;
+    rdfs:domain ex:BusReplacementService ;
+    rdfs:range ex:UndergroundRoute .
+
+ex:replacementRouteName a owl:DatatypeProperty ;
+    rdfs:label "replacement route name"@en ;
+    rdfs:comment "Stores the name of a replacement route used by a bus replacement service."@en ;
+    rdfs:domain ex:BusReplacementService ;
+    rdfs:range xsd:string .
+
+ex:rollingStockName a owl:DatatypeProperty ;
+    rdfs:label "rolling stock name"@en ;
+    rdfs:comment "Stores the name of a rolling stock type used on the London Underground."@en ;
+    rdfs:domain ex:RollingStockType ;
+    rdfs:range xsd:string .
+
+ex:routeName a owl:DatatypeProperty ;
+    rdfs:label "route name"@en ;
+    rdfs:comment "Stores the human-readable name of a London Underground route."@en ;
+    rdfs:domain ex:UndergroundRoute ;
+    rdfs:range xsd:string .
+
+ex:routeServesStop a owl:ObjectProperty ;
+    rdfs:label "route serves stop"@en ;
+    rdfs:comment "Relates a London Underground route to a station served by that route."@en ;
+    rdfs:domain ex:UndergroundRoute ;
+    rdfs:range ex:UndergroundStation .
+
+ex:servedByLine a owl:ObjectProperty ;
+    rdfs:label "served by line"@en ;
+    rdfs:comment "Relates a London Underground station to a line that serves it."@en ;
+    rdfs:domain ex:UndergroundStation ;
+    rdfs:range ex:UndergroundLine .
+
+ex:severityLabel a owl:DatatypeProperty ;
+    rdfs:label "severity label"@en ;
+    rdfs:comment "Stores the reported severity level of an incident, such as Minor, Severe, or Suspended."@en ;
+    rdfs:domain ex:Incident ;
+    rdfs:range xsd:string .
+
+ex:standardPassengerCapacity a owl:DatatypeProperty ;
+    rdfs:label "standard passenger capacity"@en ;
+    rdfs:comment "Stores the standard passenger capacity of a rolling stock type."@en ;
+    rdfs:domain ex:RollingStockType ;
+    rdfs:range xsd:integer .
+
+ex:stationHasAccessibilityAssessment a owl:ObjectProperty ;
+    rdfs:label "station has accessibility assessment"@en ;
+    rdfs:comment "Relates a London Underground station to its wheelchair accessibility assessment."@en ;
+    rdfs:domain ex:UndergroundStation ;
+    rdfs:range ex:WheelchairAccessibilityAssessment ;
+    rdfs:subPropertyOf tmfac:accessibilityAssessment .
+
+ex:stationName a owl:DatatypeProperty ;
+    rdfs:label "station name"@en ;
+    rdfs:comment "Stores the human-readable name of a London Underground station."@en ;
+    rdfs:domain ex:UndergroundStation ;
+    rdfs:range xsd:string .
+
+ex:usesRollingStockType a owl:ObjectProperty ;
+    rdfs:label "uses rolling stock type"@en ;
+    rdfs:comment "Relates a London Underground line to the rolling stock type used on that line."@en ;
+    rdfs:domain ex:UndergroundLine ;
+    rdfs:range ex:RollingStockType .
+
+ex:InterchangeStation a owl:Class ;
+    rdfs:label "Interchange Station"@en ;
+    rdfs:comment "A London Underground station that provides interchange between two or more Underground lines."@en ;
+    rdfs:subClassOf ex:UndergroundStation .
+
+ex:WheelchairAccessibilityAssessment a owl:Class ;
+    rdfs:label "Wheelchair Accessibility Assessment"@en ;
+    rdfs:comment "An accessibility assessment describing wheelchair access at a London Underground station."@en ;
+    rdfs:subClassOf tmfac:AccessibilityAssessment .
+
+inst:waterloo-city a ex:UndergroundLine ;
+    ex:lineName "Waterloo & City"^^xsd:string .
+
+ex:BusReplacementService a owl:Class ;
+    rdfs:label "Bus Replacement Service"@en ;
+    rdfs:comment "An alternative bus service provided when a London Underground station or service is unavailable."@en .
+
+ex:ClosureEvent a owl:Class ;
+    rdfs:label "Closure Event"@en ;
+    rdfs:comment "A disruption event in which a station or service is closed temporarily."@en ;
+    rdfs:subClassOf ex:DisruptionEvent .
+
+ex:MaintenanceEvent a owl:Class ;
+    rdfs:label "Maintenance Event"@en ;
+    rdfs:comment "A planned engineering or maintenance activity affecting the London Underground network."@en ;
+    rdfs:subClassOf ex:DisruptionEvent .
+
+ex:RollingStockType a owl:Class ;
+    rdfs:label "Rolling Stock Type"@en ;
+    rdfs:comment "A type of train stock used on a London Underground line."@en ;
+    rdfs:subClassOf tmfac:VehicleType .
+
+ex:DelayEvent a owl:Class ;
+    rdfs:label "Delay Event"@en ;
+    rdfs:comment "A disruption event that causes a measurable service delay on the London Underground."@en ;
+    rdfs:subClassOf ex:DisruptionEvent .
+
+ex:Incident a owl:Class ;
+    rdfs:label "Incident"@en ;
+    rdfs:comment "An operational incident reported within the London Underground network."@en .
+
+ex:DisruptionEvent a owl:Class ;
+    rdfs:label "Disruption Event"@en ;
+    rdfs:comment "An incident that disrupts normal operation of one or more London Underground lines."@en ;
+    rdfs:subClassOf ex:Incident .
+
+ex:UndergroundRoute a owl:Class ;
+    rdfs:label "Underground Route"@en ;
+    rdfs:comment "A route associated with operation of a London Underground line such as West Ruislip to Epping."@en ;
+    rdfs:subClassOf tmj:Route .
+
+inst:victoria a ex:UndergroundLine ;
+    ex:lineName "Victoria"^^xsd:string .
+
+ex:UndergroundLine a owl:Class ;
+    rdfs:label "Underground Line"@en ;
+    rdfs:comment "A named London Underground line such as the Victoria Line or Circle Line."@en ;
+    rdfs:subClassOf tmj:Line .
+
+inst:bakerloo a ex:UndergroundLine ;
+    ex:lineName "Bakerloo"^^xsd:string .
+
+inst:jubilee a ex:UndergroundLine ;
+    ex:lineName "Jubilee"^^xsd:string .
+
+inst:hammersmith-city a ex:UndergroundLine ;
+    ex:lineName "Hammersmith & City"^^xsd:string .
+
+inst:metropolitan a ex:UndergroundLine ;
+    ex:lineName "Metropolitan"^^xsd:string .
+
+inst:circle a ex:UndergroundLine ;
+    ex:lineName "Circle"^^xsd:string .
+
+inst:central a ex:UndergroundLine ;
+    ex:lineName "Central"^^xsd:string .
+
+inst:northern a ex:UndergroundLine ;
+    ex:lineName "Northern"^^xsd:string .
+
+inst:piccadilly a ex:UndergroundLine ;
+    ex:lineName "Piccadilly"^^xsd:string .
+
+inst:district a ex:UndergroundLine ;
+    ex:lineName "District"^^xsd:string .
+
+ex:UndergroundStation a owl:Class ;
+    rdfs:label "Underground Station"@en ;
+    rdfs:comment "A London Underground station represented as a stop place where passengers can access rail services."@en ;
+    rdfs:subClassOf tmfac:StopPlace .
+

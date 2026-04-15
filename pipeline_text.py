@@ -71,6 +71,7 @@ def build_text_graph(g: Graph) -> Graph:
     _add_inauguration_dates(g)
     _add_operational_lengths(g)
     _add_accessibility_assessments(g)
+    _add_severity_levels(g)
     _extract_from_disruption_text(g)
     _add_bus_replacements(g)
 
@@ -178,6 +179,26 @@ def _add_operational_lengths(g: Graph) -> None:
         count += 1
 
     print(f"[Text] Added {count} operationalLengthMiles triples")
+
+
+def _add_severity_levels(g: Graph) -> None:
+    created = {}
+    count   = 0
+
+    for event, _, label in list(g.triples((None, EX.severityLabel, None))):
+        label_str = str(label).strip()
+        key       = safe_uri(label_str)
+
+        if key not in created:
+            sev_uri = INST[f"Severity_{key}"]
+            g.add((sev_uri, RDF.type,          EX.SeverityLevel))
+            g.add((sev_uri, EX.severityLabel,  Literal(label_str, datatype=XSD.string)))
+            created[key] = sev_uri
+
+        g.add((event, EX.hasSeverity, created[key]))
+        count += 1
+
+    print(f"[Text] Added {len(created)} SeverityLevel individuals ({count} hasSeverity links)")
 
 
 def _add_accessibility_assessments(g: Graph) -> None:

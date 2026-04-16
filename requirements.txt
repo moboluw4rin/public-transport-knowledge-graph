@@ -1,2 +1,4 @@
 rdflib==7.6.0
 requests==2.33.1
+openai==1.82.0
+python-dotenv==1.1.0

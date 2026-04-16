@@ -3,6 +3,8 @@ import requests
 from rdflib import Graph, Namespace, Literal
 from rdflib.namespace import RDF, XSD
 
+from pipeline_llm import enrich_disruptions_with_llm
+
 EX   = Namespace("http://example.org/ontology-express#")
 INST = Namespace("http://example.org/instances#")
 
@@ -93,6 +95,7 @@ def build_text_graph(g: Graph) -> Graph:
     _add_severity_levels(g)
     _extract_from_disruption_text(g)
     _add_bus_replacements(g)
+    enrich_disruptions_with_llm(g)
 
     print(f"[Text] Pipeline complete — graph now contains {len(g)} triples")
     return g

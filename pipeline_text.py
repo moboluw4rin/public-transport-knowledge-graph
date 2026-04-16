@@ -86,7 +86,11 @@ def _fetch_wikitext(title: str) -> str:
         resp = requests.get(_WIKIPEDIA_API, params=params,
                             headers={"User-Agent": _USER_AGENT}, timeout=10)
         resp.raise_for_status()
-        pages = resp.json()["query"]["pages"]
+        pages = resp.json().get("query", {}).get("pages", {})
+
+        if not pages:
+            return ""
+
         page  = next(iter(pages.values()))
         revs  = page.get("revisions", [])
         return revs[0].get("slots", {}).get("main", {}).get("*", "") if revs else ""
@@ -111,7 +115,7 @@ def build_text_graph(graph: Graph) -> Graph:
     _add_bus_replacements(graph)
     enrich_disruptions_with_llm(graph)
 
-    print(f"[Text] Pipeline complete — graph now contains {len(graph)} triples")
+    print(f"[Text] Pipeline complete. Graph now contains {len(graph)} triples")
     return graph
 
 

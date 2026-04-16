@@ -7,6 +7,7 @@ to the project ontology, and outputs RDF triples in Turtle format.
 
 import os
 from collections import defaultdict
+from typing import Any
 
 import requests
 from rdflib import Graph, Namespace, Literal
@@ -28,14 +29,18 @@ if not TFL_API_KEY:
 
 
 # The base get command
-def tfl_get(endpoint: str, params: dict = None) -> dict:
+def tfl_get(endpoint: str, params: dict | None = None) -> Any:
     """GET a TfL Unified API endpoint, injecting the API key."""
     all_params = {**(params or {}), "app_key": TFL_API_KEY}
     url = TFL_API_BASE + endpoint
-    resp = requests.get(url, params=all_params, timeout=30)
-    resp.raise_for_status()
-
-    return resp.json()
+    try:
+        resp = requests.get(url, params=all_params, timeout=30)
+        resp.raise_for_status()
+        return resp.json()
+    except requests.RequestException as exc:
+        raise RuntimeError(f"TfL request failed for {url}: {exc}") from exc
+    except ValueError as exc:
+        raise RuntimeError(f"TfL response JSON invalid for {url}: {exc}") from exc
 
 # All fetch commands
 def fetch_lines() -> list:

@@ -53,12 +53,22 @@ def _extract_disruption_facts(reason: str) -> dict:
             max_tokens=100,
             temperature=0,
         )
-        content = resp.choices[0].message.content
+        choices = getattr(resp, "choices", [])
+        if not choices:
+            raise ValueError("LLM response missing choices")
+        message = getattr(choices[0], "message", None)
+        content = getattr(message, "content", None)
         if content is None:
             raise ValueError("LLM response has no content")
         return json.loads(content)
+    except json.JSONDecodeError as e:
+        print(f"  [LLM] WARNING: invalid JSON from LLM - {e}")
+        return {}
+    except (IndexError, AttributeError, TypeError, ValueError) as e:
+        print(f"  [LLM] WARNING: malformed LLM response - {e}")
+        return {}
     except Exception as e: # pylint: disable=W0718
-        print(f"  [LLM] WARNING: extraction failed — {e}")
+        print(f"  [LLM] WARNING: extraction failed - {e}")
         return {}
 
 

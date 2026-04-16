@@ -1,16 +1,18 @@
 # Ontology Modeling: Bi-Chat Orchestration Report
 
 ## Methodology Overview
+
 This project employs a **sequential two-chat orchestration** methodology to extend existing ontologies and address specific Competency Questions (CQs). By decoupling design from execution, we maintain high logical consistency and clean code generation.
 
 * **Chat A - The Orchestrator**: Acts as the strategic lead. It handles research, evaluates outputs from the builder, and performs "Prompt Engineering" to create high-fidelity instructions.
 * **Chat B - The Builder**: Acts as the technical executor. It receives refined prompts from the Orchestrator to perform script generation and RDF construction without the "noise" of the brainstorming phase.
 
-
 ## Phase 1: Mapping and Prompt Creation
+
 **Goal:** Identify logical mappings between domain requirements and the existing ontology schema.
 
 ### 1a. Orchestrator - Prompt Creation
+
 <details>
 <summary>Click to view Prompt</summary>
 
@@ -45,6 +47,7 @@ This project employs a **sequential two-chat orchestration** methodology to exte
 </details>
 
 ### 1b. Builder - Ontology Mapping Execution
+
 <details>
 <summary>Click to view Prompt</summary>
 
@@ -191,12 +194,12 @@ This project employs a **sequential two-chat orchestration** methodology to exte
 
 </details>
 
-
-
 ## Phase 2: Ontology Creation & Continuation
+
 **Goal:** Develop the core Python scripts required to programmatically generate the expanded ontology.
 
 ### 2a. Orchestrator - Continuation Script Design
+
 <details>
 <summary>Click to view Prompt</summary>
 
@@ -210,10 +213,10 @@ This project employs a **sequential two-chat orchestration** methodology to exte
     Generate a prompt to task the builder to utilise the its previous response to generate the ontology_builder using rdflib.
     ```
 
-
 </details>
 
 ### 2b. Builder - Ontology Creation
+
 <details>
 <summary>Click to view Prompt</summary>
 
@@ -321,14 +324,14 @@ This project employs a **sequential two-chat orchestration** methodology to exte
     2. Short explanation of how to run it
     ```
 
-
 </details>
 
-
 ## Phase 3: Verification and Correction (1)
+
 **Goal:** Validate the generated ontology against CQs and fix logical inconsistencies or syntax errors.
 
 ### 3a. Orchestrator - Ontology Verifier
+
 <details>
 <summary>Click to view Prompt</summary>
 
@@ -344,6 +347,7 @@ This project employs a **sequential two-chat orchestration** methodology to exte
 </details>
 
 ### 3b. Builder - Ontology Correction
+
 <details>
 <summary>Click to view Prompt</summary>
 
@@ -370,17 +374,19 @@ This project employs a **sequential two-chat orchestration** methodology to exte
     ```
 </details>
 
-## Phase 4: Verification and Correction (2) 
+## Phase 4: Verification and Correction (2)
+
 **Goal:** Ensure alignment with external ontologies and competency questions
 
 ### 4a. Orchestrator - Cleanup Strategy
+
 <details>
 <summary>Click to view Prompt</summary>
 
     ```markdown
     Verify the fixed ontology_builder.py and its declared classes, properties and relationships are valid. 
     ```
-    ontology_builder.py	(updated version)
+    ontology_builder.py (updated version)
     base_ontology.ttl (produced by updated script)
     ```
 
@@ -390,6 +396,7 @@ This project employs a **sequential two-chat orchestration** methodology to exte
 </details>
 
 ### 4b. Builder - Technical Cleanup Execution
+
 <details>
 <summary>Click to view Prompt</summary>
 
@@ -508,10 +515,10 @@ This project employs a **sequential two-chat orchestration** methodology to exte
     2. A short bullet list of what was fixed and why
     ```
 
-
 </details>
 
 ### 4c. Additional 10 CQs
+
 <details>
 <summary>Click to view Prompt</summary>
 
@@ -522,9 +529,11 @@ This project employs a **sequential two-chat orchestration** methodology to exte
 </details>
 
 ## Phase 5: Documentation Cleanup
+
 **Goal:** Finalize the knowledge engineering documentation and ensure all scripts and TTL files are formatted.
 
 ### 5a. Orchestrator - Documentation Structuring
+
 <details>
 <summary>Click to view Prompt</summary>
 
@@ -535,6 +544,7 @@ This project employs a **sequential two-chat orchestration** methodology to exte
 </details>
 
 ### 5b. Builder - Document Generation
+
 <details>
 <summary>Click to view Prompt</summary>
 

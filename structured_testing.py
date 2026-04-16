@@ -1,30 +1,33 @@
 """
-TfL Structured Data Pipeline — London Underground Knowledge Graph
-Fetches data from the TfL Unified API and TfL GTFS feed,
-maps it to the project ontology, and outputs RDF triples in Turtle format.
+TfL Structured Data Pipeline - London Underground Knowledge Graph
+
+Fetches data from the TfL Unified API and TfL GTFS feed, maps it
+to the project ontology, and outputs RDF triples in Turtle format.
 """
 
 import os
+from collections import defaultdict
+
 import requests
-from rdflib import Graph, Namespace, Literal, URIRef
+from rdflib import Graph, Namespace, Literal
 from rdflib.namespace import RDF, XSD
 
 # Config
 TFL_API_BASE = "https://api.tfl.gov.uk"
 TFL_API_KEY  = os.environ.get("TFL_API_KEY")
 
-# Namespaces — must match ontology_builder.py exactly
+# Namespaces. must match ontology_builder.py exactly
 EX   = Namespace("http://example.org/ontology-express#")
 INST = Namespace("http://example.org/instances#")
 
-#The base get command
+# The base get command
 def tfl_get(endpoint: str, params: dict = None) -> dict:
     """GET a TfL Unified API endpoint, injecting the API key."""
     all_params = {**(params or {}), "app_key": TFL_API_KEY}
     url = TFL_API_BASE + endpoint
     resp = requests.get(url, params=all_params, timeout=10)
     resp.raise_for_status()
-    
+
     return resp.json()
 
 # All fetch commands
@@ -36,7 +39,7 @@ def fetch_lines() -> list:
 def fetch_stops() -> list:
     """
     Returns all tube stop points with accessibility and zone info.
-    Uses pagination — TfL returns max 1000 per page.
+    Uses pagination. TfL returns max 1000 per page.
     """
     page = 1
     all_stops = []
@@ -82,17 +85,17 @@ def safe_uri(value: str) -> str:
 
 def load_tbox(path: str = "ontologies/base_ontology.ttl") -> Graph:
     """Load the TBox ontology into a graph so instances inherit its structure."""
-    g = Graph()
-    g.parse(path, format="turtle")
-    g.bind("ex",   EX)
-    g.bind("inst", INST)
-    g.bind("xsd",  XSD)
-    print(f"[TBox] Loaded {len(g)} triples from {path}")
-    return g
+    graph = Graph()
+    graph.parse(path, format="turtle")
+    graph.bind("ex",   EX)
+    graph.bind("inst", INST)
+    graph.bind("xsd",  XSD)
+    print(f"[TBox] Loaded {len(graph)} triples from {path}")
+    return graph
 
 
-#map stops to RDF individuals
-def add_stops(g: Graph, stops: list) -> None:
+# Map stops to RDF individuals
+def add_stops(graph: Graph, stop_records: list) -> None:
     """
     Each unique station (identified by stationNaptan) becomes an
     inst:<stationNaptan> individual of type ex:UndergroundStation.
@@ -108,8 +111,9 @@ def add_stops(g: Graph, stops: list) -> None:
     seen = set()
     count = 0
 
-    for stop in stops:
-        #Naptan is the unique identifier for stations.StationNaptan is used to group entrances together.
+    for stop in stop_records:
+        # Naptan is the unique identifier for stations.StationNaptan is
+        # used to group entrances together.
         station_id = stop.get("stationNaptan") or stop.get("naptanId")
         if not station_id or station_id in seen:
             continue
@@ -125,20 +129,23 @@ def add_stops(g: Graph, stops: list) -> None:
         lift_access = props.get("AccessViaLift", "No")
 
         uri = INST[safe_uri(station_id)]
-        g.add((uri, RDF.type,                       EX.UndergroundStation))
-        g.add((uri, EX.stationName,                 Literal(name, datatype=XSD.string)))
-        g.add((uri, EX.isFullyWheelchairAccessible, Literal(lift_access == "Yes", datatype=XSD.boolean)))
+        graph.add((uri, RDF.type,
+               EX.UndergroundStation))
+        graph.add((uri, EX.stationName,
+               Literal(name, datatype=XSD.string)))
+        graph.add((uri, EX.isFullyWheelchairAccessible,
+               Literal(lift_access == "Yes", datatype=XSD.boolean)))
 
         if zone_str.isdigit():
-            g.add((uri, EX.fareZone, Literal(int(zone_str), datatype=XSD.integer)))
+            graph.add((uri, EX.fareZone, Literal(int(zone_str), datatype=XSD.integer)))
 
         count += 1
 
     print(f"[RDF] Added {count} UndergroundStation individuals")
 
 
-#map disruption statuses to RDF individuals
-def add_disruptions(g: Graph, statuses: list) -> None:
+# Map disruption statuses to RDF individuals
+def add_disruptions(graph: Graph, status_entries: list) -> None:
     """
     Each lineStatus with a reason becomes a disruption individual.
     Picks the most specific subclass based on severity:
@@ -150,9 +157,9 @@ def add_disruptions(g: Graph, statuses: list) -> None:
       inst:district_status_0, inst:district_status_1, etc.
     """
     count = 0
-    for line in statuses:
-        line_uri = INST[safe_uri(line["id"])]
-        for i, status in enumerate(line.get("lineStatuses", [])):
+    for line_entry in status_entries:
+        line_uri = INST[safe_uri(line_entry["id"])]
+        for i, status in enumerate(line_entry.get("lineStatuses", [])):
             severity = status.get("statusSeverityDescription", "")
             reason   = status.get("reason", "")
 
@@ -167,19 +174,19 @@ def add_disruptions(g: Graph, statuses: list) -> None:
             else:
                 event_class = EX.DisruptionEvent
 
-            event_uri = INST[f"{safe_uri(line['id'])}_status_{i}"]
-            g.add((event_uri, RDF.type,          event_class))
-            g.add((event_uri, EX.severityLabel,  Literal(severity, datatype=XSD.string)))
-            g.add((event_uri, EX.disruptionName, Literal(severity, datatype=XSD.string)))
-            g.add((event_uri, EX.closureReason,  Literal(reason,   datatype=XSD.string)))
-            g.add((event_uri, EX.affectsLine,    line_uri))
+            event_uri = INST[f"{safe_uri(line_entry['id'])}_status_{i}"]
+            graph.add((event_uri, RDF.type,          event_class))
+            graph.add((event_uri, EX.severityLabel,  Literal(severity, datatype=XSD.string)))
+            graph.add((event_uri, EX.disruptionName, Literal(severity, datatype=XSD.string)))
+            graph.add((event_uri, EX.closureReason,  Literal(reason,   datatype=XSD.string)))
+            graph.add((event_uri, EX.affectsLine,    line_uri))
             count += 1
 
     print(f"[RDF] Added {count} disruption event individuals")
 
 
-#link stations to lines via ex:servedByLine
-def add_served_by_line(g: Graph, lines: list) -> None:
+# Link stations to lines via ex:servedByLine
+def add_served_by_line(graph: Graph, line_entries: list) -> None:
     """
     For each line, fetches its stop points and adds:
       inst:<stationNaptan> ex:servedByLine inst:<lineId>
@@ -187,22 +194,22 @@ def add_served_by_line(g: Graph, lines: list) -> None:
     to the UndergroundLine individuals.
     """
     total_links = 0
-    for line in lines:
-        line_uri  = INST[safe_uri(line["id"])]
-        stops     = fetch_line_stops(line["id"])
+    for line_entry in line_entries:
+        line_uri  = INST[safe_uri(line_entry["id"])]
+        stops     = fetch_line_stops(line_entry["id"])
         for stop in stops:
             station_id = stop.get("stationNaptan") or stop.get("naptanId")
             if not station_id:
                 continue
             station_uri = INST[safe_uri(station_id)]
-            g.add((station_uri, EX.servedByLine, line_uri))
+            graph.add((station_uri, EX.servedByLine, line_uri))
             total_links += 1
-        print(f"  {line['name']}: {len(stops)} stops linked")
+        print(f"  {line_entry['name']}: {len(stops)} stops linked")
     print(f"[RDF] Added {total_links} servedByLine triples")
 
 
-#map planned disruptions to MaintenanceEvent individuals
-def add_maintenance_events(g: Graph, lines: list) -> None:
+# Map planned disruptions to MaintenanceEvent individuals
+def add_maintenance_events(graph: Graph, line_entries: list) -> None:
     """
     Calls /Line/{id}/Disruption for each line.
     Each disruption with a fromDate/toDate is treated as a planned
@@ -212,11 +219,11 @@ def add_maintenance_events(g: Graph, lines: list) -> None:
       - ex:plannedEndDate   <- toDate (date portion only)
       - ex:affectsLine      <- the line
     """
-    
+
     count = 0
-    for line in lines:
-        line_uri     = INST[safe_uri(line["id"])]
-        disruptions  = fetch_line_disruptions(line["id"])
+    for line_entry in line_entries:
+        line_uri     = INST[safe_uri(line_entry["id"])]
+        disruptions  = fetch_line_disruptions(line_entry["id"])
 
         for i, d in enumerate(disruptions):
             desc      = d.get("description", "")
@@ -226,64 +233,62 @@ def add_maintenance_events(g: Graph, lines: list) -> None:
             if not desc:
                 continue
 
-            event_uri = INST[f"{safe_uri(line['id'])}_maintenance_{i}"]
-            g.add((event_uri, RDF.type,             EX.MaintenanceEvent))
-            g.add((event_uri, EX.maintenanceName,   Literal(desc, datatype=XSD.string)))
-            g.add((event_uri, EX.affectsLine,       line_uri))
+            event_uri = INST[f"{safe_uri(line_entry['id'])}_maintenance_{i}"]
+            graph.add((event_uri, RDF.type,             EX.MaintenanceEvent))
+            graph.add((event_uri, EX.maintenanceName,   Literal(desc, datatype=XSD.string)))
+            graph.add((event_uri, EX.affectsLine,       line_uri))
 
-            # Dates come as ISO strings e.g. "2025-04-15T00:00:00" — take date part only
+            # Dates come as ISO strings e.g. "2025-04-15T00:00:00". Take date part only
             if from_date:
-                g.add((event_uri, EX.plannedStartDate,
+                graph.add((event_uri, EX.plannedStartDate,
                        Literal(from_date[:10], datatype=XSD.date)))
             if to_date:
-                g.add((event_uri, EX.plannedEndDate,
+                graph.add((event_uri, EX.plannedEndDate,
                        Literal(to_date[:10], datatype=XSD.date)))
             count += 1
 
     print(f"[RDF] Added {count} MaintenanceEvent individuals")
 
 
-#identify interchange stations
-def add_interchange_stations(g: Graph) -> None:
+# Identify interchange stations
+def add_interchange_stations(graph: Graph) -> None:
     """
     A station served by 2+ lines is an interchange station.
-    We query the graph we've already built to find these — no extra API calls.
+    We query the graph we've already built to find these. No extra API calls.
 
     For each interchange station we:
       1. Change its rdf:type to ex:InterchangeStation (subclass of ex:UndergroundStation)
       2. Add ex:interchangesWithLine for every line it is served by
     """
-    from collections import defaultdict
-
     # Build a map of station -> set of lines from triples already in the graph
     station_lines = defaultdict(set)
-    for station, _, line in g.triples((None, EX.servedByLine, None)):
-        station_lines[station].add(line)
+    for station, _, line_uri in graph.triples((None, EX.servedByLine, None)):
+        station_lines[station].add(line_uri)
 
     count = 0
-    for station, lines in station_lines.items():
-        if len(lines) >= 2:
+    for station, served_lines in station_lines.items():
+        if len(served_lines) >= 2:
             # Upgrade type to InterchangeStation
-            g.add((station, RDF.type, EX.InterchangeStation))
+            graph.add((station, RDF.type, EX.InterchangeStation))
             # Add interchangesWithLine for each line
-            for line in lines:
-                g.add((station, EX.interchangesWithLine, line))
+            for served_line in served_lines:
+                graph.add((station, EX.interchangesWithLine, served_line))
             count += 1
 
     print(f"[RDF] Identified {count} interchange stations")
 
 
-#map lines to RDF individuals
-def add_lines(g: Graph, lines: list) -> None:
+# Map lines to RDF individuals
+def add_lines(graph: Graph, line_entries: list) -> None:
     """
     Each TfL line becomes an inst:<line-id> individual of type ex:UndergroundLine.
     We also attach ex:lineName as a datatype property.
     """
-    for line in lines:
-        uri = INST[safe_uri(line["id"])]           # e.g. inst:victoria
-        g.add((uri, RDF.type,    EX.UndergroundLine))
-        g.add((uri, EX.lineName, Literal(line["name"], datatype=XSD.string)))
-    print(f"[RDF] Added {len(lines)} UndergroundLine individuals")
+    for line_entry in line_entries:
+        uri = INST[safe_uri(line_entry["id"])]           # e.g. inst:victoria
+        graph.add((uri, RDF.type,    EX.UndergroundLine))
+        graph.add((uri, EX.lineName, Literal(line_entry["name"], datatype=XSD.string)))
+    print(f"[RDF] Added {len(line_entries)} UndergroundLine individuals")
 
 
 if __name__ == "__main__":
@@ -291,52 +296,51 @@ if __name__ == "__main__":
     VERBOSE = False
 
     # Load TBox
-    g = load_tbox()
+    output_graph = load_tbox()
 
     # Fetch stops and add stations to graph
-    stops = fetch_stops()
+    stop_entries = fetch_stops()
     if VERBOSE:
         print("\n=== Tube Stops ===")
-        print(f"Raw stop entries: {len(stops)}")
-    add_stops(g, stops)
+        print(f"Raw stop entries: {len(stop_entries)}")
+    add_stops(output_graph, stop_entries)
 
     # Fetch lines and add to graph
-    lines = fetch_lines()
+    tube_lines = fetch_lines()
     if VERBOSE:
         print("\n=== Tube Lines ===")
-        for line in lines:
+        for line in tube_lines:
             print(f"  {line['id']}: {line['name']}")
-        print(f"Total: {len(lines)}")
-    add_lines(g, lines)
+        print(f"Total: {len(tube_lines)}")
+    add_lines(output_graph, tube_lines)
 
     # Link stations to their lines
     if VERBOSE:
         print("\n=== Station-Line Links ===")
-    add_served_by_line(g, lines)
+    add_served_by_line(output_graph, tube_lines)
 
     # Identify interchange stations from the links we just added
-    add_interchange_stations(g)
+    add_interchange_stations(output_graph)
 
     # Fetch status and add disruptions to graph
-    statuses = fetch_line_status()
+    status_updates = fetch_line_status()
     if VERBOSE:
         print("\n=== Live Line Status ===")
-        for line in statuses:
-            for status in line["lineStatuses"]:
-                severity = status["statusSeverityDescription"]
-                reason   = status.get("reason", "")
-                print(f"  {line['name']}: {severity}")
-                if reason:
-                    print(f"    Reason: {reason}")
-    add_disruptions(g, statuses)
+        for status_line in status_updates:
+            for status_entry in status_line["lineStatuses"]:
+                severity_text = status_entry.get("statusSeverityDescription", "")
+                reason_text   = status_entry.get("reason", "")
+                print(f"  {status_line['name']}: {severity_text}")
+                if reason_text:
+                    print(f"    Reason: {reason_text}")
+    add_disruptions(output_graph, status_updates)
 
     # Fetch planned disruptions and add maintenance events
-    add_maintenance_events(g, lines)
+    add_maintenance_events(output_graph, tube_lines)
 
-    print(f"\n[Graph] Total triples: {len(g)}")
+    print(f"\n[Graph] Total triples: {len(output_graph)}")
 
     # Serialise to Turtle
-    out = "ontologies/instances.ttl"
-    g.serialize(destination=out, format="turtle")
-    print(f"[Output] Written to {out}")
-
+    OUT = "ontologies/instances.ttl"
+    output_graph.serialize(destination=OUT, format="turtle")
+    print(f"[Output] Written to {OUT}")

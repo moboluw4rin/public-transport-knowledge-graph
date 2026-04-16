@@ -193,4 +193,3 @@ ex:stationName a owl:DatatypeProperty ;
 
 ex:usesRollingStockType a owl:ObjectProperty ;
     rdfs:label "uses rolling stock type"@en .
-

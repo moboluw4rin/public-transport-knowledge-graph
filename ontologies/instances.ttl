@@ -2399,4 +2399,3 @@ ex:UndergroundStation a owl:Class ;
     rdfs:label "Underground Station"@en ;
     rdfs:comment "A London Underground station represented as a stop place where passengers can access rail services."@en ;
     rdfs:subClassOf tmfac:StopPlace .
-

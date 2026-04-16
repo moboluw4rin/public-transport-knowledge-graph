@@ -53,6 +53,11 @@ def fetch_stops() -> list:
     return all_stops
 
 
+def fetch_line_route(line_id: str) -> dict:
+    """Returns route info for a given line including origin and destination."""
+    return tfl_get(f"/Line/{line_id}/Route")
+
+
 def fetch_line_stops(line_id: str) -> list:
     """Returns the ordered list of stop points for a given line id."""
     return tfl_get(f"/Line/{line_id}/StopPoints")
@@ -208,6 +213,42 @@ def add_served_by_line(graph: Graph, lines: list) -> None:
     print(f"[RDF] Added {total_links} servedByLine triples")
 
 
+# Map routes to RDF individuals
+def add_routes(g: Graph, lines: list) -> None:
+    """
+    Calls /Line/{id}/Route for each line.
+    Each routeSection becomes an ex:UndergroundRoute individual with:
+      - ex:routeName        <- section name (e.g. "Walthamstow Central - Brixton")
+      - ex:lineHasRoute     <- links the line to this route
+      - ex:routeServesStop  <- links route to origin and destination stations
+    One route per direction (inbound/outbound) per line.
+    """
+    count = 0
+    for line in lines:
+        line_uri = INST[safe_uri(line["id"])]
+        data     = fetch_line_route(line["id"])
+
+        for section in data.get("routeSections", []):
+            direction = section.get("direction", "")
+            name      = section.get("name", "")
+            origin_id = section.get("originator", "")
+            dest_id   = section.get("destination", "")
+
+            route_uri = INST[f"{safe_uri(line['id'])}_route_{direction}"]
+            g.add((route_uri, RDF.type,        EX.UndergroundRoute))
+            g.add((route_uri, EX.routeName,    Literal(name, datatype=XSD.string)))
+            g.add((line_uri,  EX.lineHasRoute, route_uri))
+
+            if origin_id:
+                g.add((route_uri, EX.routeServesStop, INST[safe_uri(origin_id)]))
+            if dest_id:
+                g.add((route_uri, EX.routeServesStop, INST[safe_uri(dest_id)]))
+
+            count += 1
+
+    print(f"[RDF] Added {count} UndergroundRoute individuals")
+
+
 # Map planned disruptions to MaintenanceEvent individuals
 def add_maintenance_events(graph: Graph, lines: list) -> None:
     """
@@ -325,8 +366,10 @@ def build_structured_graph(verbose: bool = False) -> Graph:
                 print(f"  {line['name']}: {severity}")
                 if reason:
                     print(f"    Reason: {reason}")
+
     add_disruptions(graph, statuses)
     add_maintenance_events(graph, lines)
+    add_routes(graph, lines)
 
     print(f"[Structured] Total triples: {len(graph)}")
     return graph
@@ -335,7 +378,6 @@ def build_structured_graph(verbose: bool = False) -> Graph:
 if __name__ == "__main__":
     # Run the structured pipeline standalone and serialise output.
     # Set verbose=True to print detailed per-item output.
-
     output_graph = build_structured_graph(verbose=False)
     OUT = "ontologies/instances.ttl"
     output_graph.serialize(destination=OUT, format="turtle")

@@ -1,3 +1,11 @@
+"""
+Enriches an RDF graph with text-derived transport data from Wikipedia and disruption narratives.
+
+Contains routines to fetch line metadata, extract rolling stock and capacity, parse opening years
+and operational lengths, normalise severity labels, infer station and delay details from disruption
+text, identify bus replacement services, and attach accessibility assessments.
+"""
+
 import re
 import requests
 from rdflib import Graph, Namespace, Literal
@@ -57,6 +65,8 @@ _BUS_ROUTE_NUMBER = re.compile(r"\b([A-Z]?\d{1,3}[A-Z]?)\b")
 
 
 def safe_uri(value: str) -> str:
+    """Convert a string into a safe URI fragment by stripping
+       whitespace and replacing spaces with underscores."""
     return value.strip().replace(" ", "_").replace("/", "-")
 
 
@@ -71,13 +81,14 @@ def _fetch_wikitext(title: str) -> str:
         "redirects": 1,
     }
     try:
-        resp = requests.get(_WIKIPEDIA_API, params=params, headers={"User-Agent": _USER_AGENT}, timeout=10)
+        resp = requests.get(_WIKIPEDIA_API, params=params,
+                            headers={"User-Agent": _USER_AGENT}, timeout=10)
         resp.raise_for_status()
         pages = resp.json()["query"]["pages"]
         page  = next(iter(pages.values()))
         revs  = page.get("revisions", [])
         return revs[0].get("slots", {}).get("main", {}).get("*", "") if revs else ""
-    except Exception:
+    except Exception: # pylint: disable=W0718
         return ""
 
 
@@ -88,6 +99,7 @@ def _extract_infobox_field(wikitext: str, field: str) -> str:
 
 
 def build_text_graph(g: Graph) -> Graph:
+    """Enrich the graph with data extracted from textual sources, primarily Wikipedia."""
     _add_rolling_stock(g)
     _add_inauguration_dates(g)
     _add_operational_lengths(g)
@@ -131,7 +143,14 @@ def _add_rolling_stock(g: Graph) -> None:
             if stock_article:
                 stock_wikitext = _fetch_wikitext(stock_article)
                 raw_cap        = _extract_infobox_field(stock_wikitext, "capacity")
-                cap_prefix     = "S8" if "S8" in stock_name else "S7" if "S7" in stock_name else None
+
+                cap_prefix = None
+
+                if "S8" in stock_name:
+                    cap_prefix = "S8"
+                elif "S7" in stock_name:
+                    cap_prefix = "S7"
+
                 if cap_prefix:
                     cap_match = re.search(rf"{cap_prefix}:\s*([\d,]+)", raw_cap, re.IGNORECASE)
                 else:
@@ -143,7 +162,8 @@ def _add_rolling_stock(g: Graph) -> None:
             g.add((stock_uri, RDF.type,            EX.RollingStockType))
             g.add((stock_uri, EX.rollingStockName, Literal(stock_name, datatype=XSD.string)))
             if capacity:
-                g.add((stock_uri, EX.standardPassengerCapacity, Literal(capacity, datatype=XSD.integer)))
+                g.add((stock_uri, EX.standardPassengerCapacity,
+                       Literal(capacity, datatype=XSD.integer)))
             created[stock_name] = stock_uri
             print(f"  [Stock] {stock_name}: capacity={capacity}")
 
@@ -235,8 +255,10 @@ def _add_accessibility_assessments(g: Graph) -> None:
         is_accessible = bool(row.accessible)
         status_label  = "Full wheelchair access" if is_accessible else "No step-free access"
 
-        g.add((assess_uri, RDF.type,                       EX.WheelchairAccessibilityAssessment))
-        g.add((assess_uri, EX.officialAccessibilityStatus, Literal(status_label, datatype=XSD.string)))
+        g.add((assess_uri, RDF.type,
+               EX.WheelchairAccessibilityAssessment))
+        g.add((assess_uri, EX.officialAccessibilityStatus,
+               Literal(status_label, datatype=XSD.string)))
         g.add((row.station, EX.stationHasAccessibilityAssessment, assess_uri))
         count += 1
 
@@ -264,9 +286,15 @@ def _add_bus_replacements(g: Graph) -> None:
         route_match = _BUS_ROUTE_NUMBER.search(reason)
         route_name  = route_match.group(1) if route_match else "via any reasonable route"
 
-        g.add((bus_uri,   RDF.type,                   EX.BusReplacementService))
-        g.add((bus_uri,   EX.replacementRouteName,    Literal(route_name, datatype=XSD.string)))
-        g.add((event_uri, EX.hasReplacementService,   bus_uri))
+        g.add((bus_uri,
+               RDF.type,
+               EX.BusReplacementService))
+        g.add((bus_uri,
+               EX.replacementRouteName,
+               Literal(route_name, datatype=XSD.string)))
+        g.add((event_uri,
+               EX.hasReplacementService,
+               bus_uri))
 
         for route_uri in g.objects(row.line, EX.lineHasRoute):
             g.add((bus_uri, EX.replacementFollowsRoute, route_uri))
@@ -300,7 +328,9 @@ def _extract_from_disruption_text(g: Graph) -> None:
         reason       = str(row.reason)
         reason_lower = reason.lower()
 
-        matched_stations = list(dict.fromkeys(station_lookup[n] for n in sorted_names if n in reason_lower))
+        matched_stations = list(dict.fromkeys(station_lookup[n]
+                                              for n in sorted_names if n in reason_lower))
+
         for station_uri in matched_stations:
             g.add((event_uri, EX.occursAtStation, station_uri))
             station_count += 1
@@ -309,8 +339,12 @@ def _extract_from_disruption_text(g: Graph) -> None:
             m = pattern.search(reason)
             if m:
                 minutes = int(m.group(1))
-                g.add((event_uri, EX.delayMinutes,    Literal(minutes,              datatype=XSD.integer)))
-                g.add((event_uri, EX.hasDelayDuration, Literal(f"PT{minutes}M",     datatype=XSD.duration)))
+                g.add((event_uri, EX.delayMinutes,
+                       Literal(minutes,
+                               datatype=XSD.integer)))
+                g.add((event_uri, EX.hasDelayDuration,
+                       Literal(f"PT{minutes}M",
+                               datatype=XSD.duration)))
                 delay_count += 1
                 break
 

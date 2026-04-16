@@ -1,4 +1,6 @@
 """
+London Underground Knowledge Graph - Text Enrichment Pipeline.
+
 Enriches an RDF graph with text-derived transport data from Wikipedia and disruption narratives.
 
 Contains routines to fetch line metadata, extract rolling stock and capacity, parse opening years
@@ -98,22 +100,22 @@ def _extract_infobox_field(wikitext: str, field: str) -> str:
     return m.group(1).strip() if m else ""
 
 
-def build_text_graph(g: Graph) -> Graph:
+def build_text_graph(graph: Graph) -> Graph:
     """Enrich the graph with data extracted from textual sources, primarily Wikipedia."""
-    _add_rolling_stock(g)
-    _add_inauguration_dates(g)
-    _add_operational_lengths(g)
-    _add_accessibility_assessments(g)
-    _add_severity_levels(g)
-    _extract_from_disruption_text(g)
-    _add_bus_replacements(g)
-    enrich_disruptions_with_llm(g)
+    _add_rolling_stock(graph)
+    _add_inauguration_dates(graph)
+    _add_operational_lengths(graph)
+    _add_accessibility_assessments(graph)
+    _add_severity_levels(graph)
+    _extract_from_disruption_text(graph)
+    _add_bus_replacements(graph)
+    enrich_disruptions_with_llm(graph)
 
-    print(f"[Text] Pipeline complete — graph now contains {len(g)} triples")
-    return g
+    print(f"[Text] Pipeline complete — graph now contains {len(graph)} triples")
+    return graph
 
 
-def _add_rolling_stock(g: Graph) -> None:
+def _add_rolling_stock(graph: Graph) -> None:
     wiki_link   = re.compile(r"\[\[[^\]]*\|([^\]]+)\]\]|\[\[([^\]|]+)\]\]")
     stock_clean = re.compile(r"(\d{4}\s+Stock|S\d\s+Stock)", re.IGNORECASE)
 
@@ -159,20 +161,24 @@ def _add_rolling_stock(g: Graph) -> None:
                     capacity = int(cap_match.group(1).replace(",", ""))
 
             stock_uri = INST[f"Stock_{safe_uri(stock_name)}"]
-            g.add((stock_uri, RDF.type,            EX.RollingStockType))
-            g.add((stock_uri, EX.rollingStockName, Literal(stock_name, datatype=XSD.string)))
+            graph.add((stock_uri,
+                       RDF.type,
+                       EX.RollingStockType))
+            graph.add((stock_uri,
+                       EX.rollingStockName,
+                       Literal(stock_name, datatype=XSD.string)))
             if capacity:
-                g.add((stock_uri, EX.standardPassengerCapacity,
+                graph.add((stock_uri, EX.standardPassengerCapacity,
                        Literal(capacity, datatype=XSD.integer)))
             created[stock_name] = stock_uri
             print(f"  [Stock] {stock_name}: capacity={capacity}")
 
-        g.add((line_uri, EX.usesRollingStockType, created[stock_name]))
+        graph.add((line_uri, EX.usesRollingStockType, created[stock_name]))
 
     print(f"[Text] Added {len(created)} RollingStockType individuals")
 
 
-def _add_inauguration_dates(g: Graph) -> None:
+def _add_inauguration_dates(graph: Graph) -> None:
     open_field       = re.compile(r"\|\s*open\s*=\s*(.+?)(?=\n\s*\|)", re.DOTALL)
     year_in_template = re.compile(r"start date[^|]*\|(?:df=y\|)?(\d{4})", re.IGNORECASE)
 
@@ -192,14 +198,14 @@ def _add_inauguration_dates(g: Graph) -> None:
             continue
 
         year = ym.group(1)
-        g.add((line_uri, EX.inaugurationYear, Literal(year, datatype=XSD.gYear)))
+        graph.add((line_uri, EX.inaugurationYear, Literal(year, datatype=XSD.gYear)))
         print(f"  [Inauguration] {wiki_title}: {year}")
         count += 1
 
     print(f"[Text] Added {count} inaugurationYear triples")
 
 
-def _add_operational_lengths(g: Graph) -> None:
+def _add_operational_lengths(graph: Graph) -> None:
     count = 0
     for line_id, wiki_title in _LINE_WIKI.items():
         line_uri = INST[safe_uri(line_id)]
@@ -212,34 +218,34 @@ def _add_operational_lengths(g: Graph) -> None:
 
         km    = float(m.group(1))
         miles = round(km * _KM_TO_MI, 2)
-        g.add((line_uri, EX.operationalLengthMiles, Literal(miles, datatype=XSD.decimal)))
+        graph.add((line_uri, EX.operationalLengthMiles, Literal(miles, datatype=XSD.decimal)))
         print(f"  [Length] {wiki_title}: {km} km → {miles} mi")
         count += 1
 
     print(f"[Text] Added {count} operationalLengthMiles triples")
 
 
-def _add_severity_levels(g: Graph) -> None:
+def _add_severity_levels(graph: Graph) -> None:
     created = {}
     count   = 0
 
-    for event, _, label in list(g.triples((None, EX.severityLabel, None))):
+    for event, _, label in list(graph.triples((None, EX.severityLabel, None))):
         label_str = str(label).strip()
         key       = safe_uri(label_str)
 
         if key not in created:
             sev_uri = INST[f"Severity_{key}"]
-            g.add((sev_uri, RDF.type,          EX.SeverityLevel))
-            g.add((sev_uri, EX.severityLabel,  Literal(label_str, datatype=XSD.string)))
+            graph.add((sev_uri, RDF.type,          EX.SeverityLevel))
+            graph.add((sev_uri, EX.severityLabel,  Literal(label_str, datatype=XSD.string)))
             created[key] = sev_uri
 
-        g.add((event, EX.hasSeverity, created[key]))
+        graph.add((event, EX.hasSeverity, created[key]))
         count += 1
 
     print(f"[Text] Added {len(created)} SeverityLevel individuals ({count} hasSeverity links)")
 
 
-def _add_accessibility_assessments(g: Graph) -> None:
+def _add_accessibility_assessments(graph: Graph) -> None:
     query = """
         PREFIX ex:   <http://example.org/ontology-express#>
         PREFIX inst: <http://example.org/instances#>
@@ -249,23 +255,23 @@ def _add_accessibility_assessments(g: Graph) -> None:
         }
     """
     count = 0
-    for row in g.query(query):
+    for row in graph.query(query):
         station_frag  = str(row.station).split("#")[-1]
         assess_uri    = INST[f"Accessibility_{station_frag}"]
         is_accessible = bool(row.accessible)
         status_label  = "Full wheelchair access" if is_accessible else "No step-free access"
 
-        g.add((assess_uri, RDF.type,
+        graph.add((assess_uri, RDF.type,
                EX.WheelchairAccessibilityAssessment))
-        g.add((assess_uri, EX.officialAccessibilityStatus,
+        graph.add((assess_uri, EX.officialAccessibilityStatus,
                Literal(status_label, datatype=XSD.string)))
-        g.add((row.station, EX.stationHasAccessibilityAssessment, assess_uri))
+        graph.add((row.station, EX.stationHasAccessibilityAssessment, assess_uri))
         count += 1
 
     print(f"[Text] Added {count} WheelchairAccessibilityAssessment individuals")
 
 
-def _add_bus_replacements(g: Graph) -> None:
+def _add_bus_replacements(graph: Graph) -> None:
     query = """
         PREFIX ex: <http://example.org/ontology-express#>
         SELECT ?event ?reason ?line WHERE {
@@ -274,7 +280,7 @@ def _add_bus_replacements(g: Graph) -> None:
         }
     """
     count = 0
-    for row in g.query(query):
+    for row in graph.query(query):
         event_uri = row.event
         reason    = str(row.reason)
 
@@ -286,29 +292,29 @@ def _add_bus_replacements(g: Graph) -> None:
         route_match = _BUS_ROUTE_NUMBER.search(reason)
         route_name  = route_match.group(1) if route_match else "via any reasonable route"
 
-        g.add((bus_uri,
+        graph.add((bus_uri,
                RDF.type,
                EX.BusReplacementService))
-        g.add((bus_uri,
+        graph.add((bus_uri,
                EX.replacementRouteName,
                Literal(route_name, datatype=XSD.string)))
-        g.add((event_uri,
+        graph.add((event_uri,
                EX.hasReplacementService,
                bus_uri))
 
-        for route_uri in g.objects(row.line, EX.lineHasRoute):
-            g.add((bus_uri, EX.replacementFollowsRoute, route_uri))
+        for route_uri in graph.objects(row.line, EX.lineHasRoute):
+            graph.add((bus_uri, EX.replacementFollowsRoute, route_uri))
 
         count += 1
 
     print(f"[Text] Added {count} BusReplacementService individuals")
 
 
-def _extract_from_disruption_text(g: Graph) -> None:
+def _extract_from_disruption_text(graph: Graph) -> None:
     station_name_clean = re.compile(r"\s*(Underground\s+)?Station$", re.IGNORECASE)
 
     station_lookup = {}
-    for station, _, name in g.triples((None, EX.stationName, None)):
+    for station, _, name in graph.triples((None, EX.stationName, None)):
         clean = station_name_clean.sub("", str(name)).strip().lower()
         station_lookup[clean] = station
     sorted_names = sorted(station_lookup.keys(), key=len, reverse=True)
@@ -323,7 +329,7 @@ def _extract_from_disruption_text(g: Graph) -> None:
     delay_count   = 0
     name_count    = 0
 
-    for row in g.query(query):
+    for row in graph.query(query):
         event_uri    = row.event
         reason       = str(row.reason)
         reason_lower = reason.lower()
@@ -332,24 +338,24 @@ def _extract_from_disruption_text(g: Graph) -> None:
                                               for n in sorted_names if n in reason_lower))
 
         for station_uri in matched_stations:
-            g.add((event_uri, EX.occursAtStation, station_uri))
+            graph.add((event_uri, EX.occursAtStation, station_uri))
             station_count += 1
 
         for pattern in _DELAY_PATTERNS:
             m = pattern.search(reason)
             if m:
                 minutes = int(m.group(1))
-                g.add((event_uri, EX.delayMinutes,
+                graph.add((event_uri, EX.delayMinutes,
                        Literal(minutes,
                                datatype=XSD.integer)))
-                g.add((event_uri, EX.hasDelayDuration,
+                graph.add((event_uri, EX.hasDelayDuration,
                        Literal(f"PT{minutes}M",
                                datatype=XSD.duration)))
                 delay_count += 1
                 break
 
         short_name = reason.split(".")[0].strip()[:80]
-        g.add((event_uri, EX.incidentName, Literal(short_name, datatype=XSD.string)))
+        graph.add((event_uri, EX.incidentName, Literal(short_name, datatype=XSD.string)))
         name_count += 1
 
     print(f"[Text] occursAtStation triples added: {station_count}")

@@ -256,7 +256,7 @@ def _add_accessibility_assessments(graph: Graph) -> None:
     """
     count = 0
     for row in graph.query(query):
-        station_frag  = str(row.station).split("#")[-1]
+        station_frag  = str(row.station).rsplit("#", 1)[-1]
         assess_uri    = INST[f"Accessibility_{station_frag}"]
         is_accessible = bool(row.accessible)
         status_label  = "Full wheelchair access" if is_accessible else "No step-free access"
@@ -287,7 +287,7 @@ def _add_bus_replacements(graph: Graph) -> None:
         if not _BUS_REPLACEMENT_TRIGGERS.search(reason):
             continue
 
-        event_frag  = str(event_uri).split("/")[-1].split("#")[-1]
+        event_frag  = str(event_uri).rsplit("/", 1)[-1].split("#", 1)[-1]
         bus_uri     = INST[f"BusReplacement_{event_frag}"]
         route_match = _BUS_ROUTE_NUMBER.search(reason)
         route_name  = route_match.group(1) if route_match else "via any reasonable route"
@@ -354,7 +354,7 @@ def _extract_from_disruption_text(graph: Graph) -> None:
                 delay_count += 1
                 break
 
-        short_name = reason.split(".")[0].strip()[:80]
+        short_name = reason.split(".", 1)[0].strip()[:80]
         graph.add((event_uri, EX.incidentName, Literal(short_name, datatype=XSD.string)))
         name_count += 1
 

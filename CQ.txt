@@ -1,4 +1,4 @@
-Original Manual CQs:
+Original - Manual CQs (Oze):
 
 1. Which public transport stations are officially designated as fully wheelchair accessible?
 2. What is the total operational length, in miles, of the Circle Line?
@@ -25,6 +25,7 @@ LLM - Generated CQs (Aldrich):
 10. What is the average delay duration for signal-failure incidents affecting Underground stations?
 
 LLM - Generated CQs (Atheer):
+
 1. Which stations are served by more than two Underground lines?
 2. Which Underground lines have no reported disruptions at the current time?
 3. Which stations are affected by both a disruption and a scheduled maintenance event?

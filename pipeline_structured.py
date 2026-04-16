@@ -90,8 +90,16 @@ def fetch_line_status() -> list:
 
 # Helpers
 def safe_uri(value: str) -> str:
-    """Turn a raw string into a safe URI fragment (no spaces or slashes)."""
-    return value.strip().replace(" ", "_").replace("/", "-")
+    """Turn a raw string into a safe URI fragment."""
+    return (
+        value.strip()
+        .replace(" ", "_")
+        .replace("/", "-")
+        .replace("'", "")
+        .replace("&", "and")
+        .replace("(", "")
+        .replace(")", "")
+    )
 
 
 def load_tbox(path: str = "ontologies/base_ontology.ttl") -> Graph:

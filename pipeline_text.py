@@ -246,8 +246,9 @@ def _add_accessibility_assessments(g: Graph) -> None:
 def _add_bus_replacements(g: Graph) -> None:
     query = """
         PREFIX ex: <http://example.org/ontology-express#>
-        SELECT ?event ?reason WHERE {
-            ?event ex:closureReason ?reason .
+        SELECT ?event ?reason ?line WHERE {
+            ?event ex:closureReason ?reason ;
+                   ex:affectsLine   ?line .
         }
     """
     count = 0
@@ -258,14 +259,18 @@ def _add_bus_replacements(g: Graph) -> None:
         if not _BUS_REPLACEMENT_TRIGGERS.search(reason):
             continue
 
-        event_frag   = str(event_uri).split("/")[-1].split("#")[-1]
-        bus_uri      = INST[f"BusReplacement_{event_frag}"]
-        route_match  = _BUS_ROUTE_NUMBER.search(reason)
-        route_name   = route_match.group(1) if route_match else "via any reasonable route"
+        event_frag  = str(event_uri).split("/")[-1].split("#")[-1]
+        bus_uri     = INST[f"BusReplacement_{event_frag}"]
+        route_match = _BUS_ROUTE_NUMBER.search(reason)
+        route_name  = route_match.group(1) if route_match else "via any reasonable route"
 
-        g.add((bus_uri,    RDF.type,                   EX.BusReplacementService))
-        g.add((bus_uri,    EX.replacementRouteName,    Literal(route_name, datatype=XSD.string)))
-        g.add((event_uri,  EX.hasReplacementService,   bus_uri))
+        g.add((bus_uri,   RDF.type,                   EX.BusReplacementService))
+        g.add((bus_uri,   EX.replacementRouteName,    Literal(route_name, datatype=XSD.string)))
+        g.add((event_uri, EX.hasReplacementService,   bus_uri))
+
+        for route_uri in g.objects(row.line, EX.lineHasRoute):
+            g.add((bus_uri, EX.replacementFollowsRoute, route_uri))
+
         count += 1
 
     print(f"[Text] Added {count} BusReplacementService individuals")

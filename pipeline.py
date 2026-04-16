@@ -12,6 +12,9 @@ Each sub-pipeline adds to the same rdflib Graph:
     pipeline_text.py        - Textual sources. (rolling stock, bus replacements, etc.)
 """
 
+from dotenv import load_dotenv
+load_dotenv()
+
 from pipeline_structured import build_structured_graph
 from pipeline_text import build_text_graph
 

@@ -182,6 +182,8 @@ def add_disruptions(graph: Graph, statuses: list) -> None:
                 event_class = EX.DelayEvent
             elif "suspended" in sev_lower or "closure" in sev_lower:
                 event_class = EX.ClosureEvent
+            elif "planned" in sev_lower or "engineering" in sev_lower:
+                event_class = EX.MaintenanceEvent
             else:
                 event_class = EX.DisruptionEvent
 

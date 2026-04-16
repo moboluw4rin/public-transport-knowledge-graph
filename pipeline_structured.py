@@ -31,7 +31,7 @@ def tfl_get(endpoint: str, params: dict = None) -> dict:
     """GET a TfL Unified API endpoint, injecting the API key."""
     all_params = {**(params or {}), "app_key": TFL_API_KEY}
     url = TFL_API_BASE + endpoint
-    resp = requests.get(url, params=all_params, timeout=10)
+    resp = requests.get(url, params=all_params, timeout=30)
     resp.raise_for_status()
 
     return resp.json()

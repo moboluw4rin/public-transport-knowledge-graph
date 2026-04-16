@@ -1,3 +1,12 @@
+"""London Underground Knowledge Graph - LLM Enrichment Pipeline.
+
+LLM enrichment pipeline for London Underground disruption events.
+
+Uses OpenAI to extract incident cause, type, and planned/unplanned
+status from disruption descriptions, then annotates RDF disruption
+events with structured metadata.
+"""
+
 import json
 import os
 
@@ -45,12 +54,13 @@ def _extract_disruption_facts(reason: str) -> dict:
             temperature=0,
         )
         return json.loads(resp.choices[0].message.content)
-    except Exception as e:
+    except Exception as e: # pylint: disable=W0718
         print(f"  [LLM] WARNING: extraction failed — {e}")
         return {}
 
 
-def enrich_disruptions_with_llm(g: Graph) -> None:
+def enrich_disruptions_with_llm(graph: Graph) -> None:
+    """Enrich disruption events in the graph with LLM-extracted facts."""
     query = """
         PREFIX ex: <http://example.org/ontology-express#>
         SELECT ?event ?reason WHERE {
@@ -59,7 +69,7 @@ def enrich_disruptions_with_llm(g: Graph) -> None:
     """
 
     count = 0
-    for row in g.query(query):
+    for row in graph.query(query):
         event_uri = row.event
         reason    = str(row.reason)
 
@@ -72,11 +82,20 @@ def enrich_disruptions_with_llm(g: Graph) -> None:
         planned = facts.get("is_planned")
 
         if cause is not None:
-            g.add((event_uri, EX.incidentCause,        Literal(cause,        datatype=XSD.string)))
+            graph.add((event_uri,
+                       EX.incidentCause,
+                       Literal(cause,
+                               datatype=XSD.string)))
         if itype is not None:
-            g.add((event_uri, EX.incidentType,         Literal(itype,        datatype=XSD.string)))
+            graph.add((event_uri,
+                       EX.incidentType,
+                       Literal(itype,
+                               datatype=XSD.string)))
         if planned is not None:
-            g.add((event_uri, EX.isPlannedMaintenance, Literal(bool(planned), datatype=XSD.boolean)))
+            graph.add((event_uri,
+                       EX.isPlannedMaintenance,
+                       Literal(bool(planned),
+                               datatype=XSD.boolean)))
 
         count += 1
         print(f"  [LLM] cause={cause!r:30} type={itype!r:20} planned={planned}")

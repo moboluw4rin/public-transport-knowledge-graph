@@ -12,6 +12,7 @@ import requests
 from rdflib import Graph, Namespace, Literal
 from rdflib.namespace import RDF, XSD
 
+
 # Config
 TFL_API_BASE = "https://api.tfl.gov.uk"
 TFL_API_KEY  = os.environ.get("TFL_API_KEY")
@@ -230,7 +231,7 @@ def add_served_by_line(graph: Graph, lines: list) -> None:
 
 
 # Map routes to RDF individuals
-def add_routes(g: Graph, lines: list) -> None:
+def add_routes(graph: Graph, lines: list) -> None:
     """
     Calls /Line/{id}/Route for each line.
     Each routeSection becomes an ex:UndergroundRoute individual with:
@@ -251,14 +252,14 @@ def add_routes(g: Graph, lines: list) -> None:
             dest_id   = section.get("destination", "")
 
             route_uri = INST[f"{safe_uri(line['id'])}_route_{direction}"]
-            g.add((route_uri, RDF.type,        EX.UndergroundRoute))
-            g.add((route_uri, EX.routeName,    Literal(name, datatype=XSD.string)))
-            g.add((line_uri,  EX.lineHasRoute, route_uri))
+            graph.add((route_uri, RDF.type,        EX.UndergroundRoute))
+            graph.add((route_uri, EX.routeName,    Literal(name, datatype=XSD.string)))
+            graph.add((line_uri,  EX.lineHasRoute, route_uri))
 
             if origin_id:
-                g.add((route_uri, EX.routeServesStop, INST[safe_uri(origin_id)]))
+                graph.add((route_uri, EX.routeServesStop, INST[safe_uri(origin_id)]))
             if dest_id:
-                g.add((route_uri, EX.routeServesStop, INST[safe_uri(dest_id)]))
+                graph.add((route_uri, EX.routeServesStop, INST[safe_uri(dest_id)]))
 
             count += 1
 

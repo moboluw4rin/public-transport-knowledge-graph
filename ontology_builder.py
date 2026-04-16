@@ -42,7 +42,7 @@ def add_datatype_property(graph: Graph, prop_iri, label: str, comment: str, doma
 
 def main():
     """Construct the ontology graph and serialise it to Turtle."""
-    g = Graph()
+    graph = Graph()
 
     # ------------------------------------------------------------------
     # Namespaces
@@ -52,22 +52,22 @@ def main():
     TMJ = Namespace("https://w3id.org/transmodel/journeys#")
     TIME = Namespace("http://www.w3.org/2006/time#")
 
-    g.bind("ex", EX)
-    g.bind("tmfac", TMFAC)
-    g.bind("tmj", TMJ)
-    g.bind("time", TIME)
-    g.bind("rdf", RDF)
-    g.bind("rdfs", RDFS)
-    g.bind("owl", OWL)
-    g.bind("xsd", XSD)
+    graph.bind("ex", EX)
+    graph.bind("tmfac", TMFAC)
+    graph.bind("tmj", TMJ)
+    graph.bind("time", TIME)
+    graph.bind("rdf", RDF)
+    graph.bind("rdfs", RDFS)
+    graph.bind("owl", OWL)
+    graph.bind("xsd", XSD)
 
     # ------------------------------------------------------------------
     # Ontology declaration
     # ------------------------------------------------------------------
     ontology_iri = URIRef("http://example.org/ontology-express")
-    g.add((ontology_iri, RDF.type, OWL.Ontology))
-    g.add((ontology_iri, RDFS.label, Literal("London Underground Ontology Foundation", lang="en")))
-    g.add((
+    graph.add((ontology_iri, RDF.type, OWL.Ontology))
+    graph.add((ontology_iri, RDFS.label, Literal("London Underground Ontology Foundation", lang="en")))
+    graph.add((
         ontology_iri,
         RDFS.comment,
         Literal(
@@ -77,9 +77,9 @@ def main():
     ))
 
     # Import only reused external ontologies
-    g.add((ontology_iri, OWL.imports, URIRef("https://w3id.org/transmodel/facilities#")))
-    g.add((ontology_iri, OWL.imports, URIRef("https://w3id.org/transmodel/journeys#")))
-    g.add((ontology_iri, OWL.imports, URIRef("http://www.w3.org/2006/time")))
+    graph.add((ontology_iri, OWL.imports, URIRef("https://w3id.org/transmodel/facilities#")))
+    graph.add((ontology_iri, OWL.imports, URIRef("https://w3id.org/transmodel/journeys#")))
+    graph.add((ontology_iri, OWL.imports, URIRef("http://www.w3.org/2006/time")))
 
     # ------------------------------------------------------------------
     # Classes
@@ -136,31 +136,31 @@ def main():
     }
 
     for iri, (label, comment) in classes.items():
-        add_class(g, iri, label, comment)
+        add_class(graph, iri, label, comment)
 
     # ------------------------------------------------------------------
     # Local subclass hierarchy
     # ------------------------------------------------------------------
-    g.add((EX.InterchangeStation, RDFS.subClassOf, EX.UndergroundStation))
-    g.add((EX.DisruptionEvent, RDFS.subClassOf, EX.Incident))
-    g.add((EX.DelayEvent, RDFS.subClassOf, EX.DisruptionEvent))
-    g.add((EX.ClosureEvent, RDFS.subClassOf, EX.DisruptionEvent))
-    g.add((EX.MaintenanceEvent, RDFS.subClassOf, EX.DisruptionEvent))
+    graph.add((EX.InterchangeStation, RDFS.subClassOf, EX.UndergroundStation))
+    graph.add((EX.DisruptionEvent, RDFS.subClassOf, EX.Incident))
+    graph.add((EX.DelayEvent, RDFS.subClassOf, EX.DisruptionEvent))
+    graph.add((EX.ClosureEvent, RDFS.subClassOf, EX.DisruptionEvent))
+    graph.add((EX.MaintenanceEvent, RDFS.subClassOf, EX.DisruptionEvent))
 
     # ------------------------------------------------------------------
     # External subclass mappings
     # ------------------------------------------------------------------
-    g.add((EX.UndergroundStation, RDFS.subClassOf, TMFAC.StopPlace))
-    g.add((EX.UndergroundLine, RDFS.subClassOf, TMJ.Line))
-    g.add((EX.UndergroundRoute, RDFS.subClassOf, TMJ.Route))
-    g.add((EX.RollingStockType, RDFS.subClassOf, TMFAC.VehicleType))
-    g.add((EX.WheelchairAccessibilityAssessment, RDFS.subClassOf, TMFAC.AccessibilityAssessment))
+    graph.add((EX.UndergroundStation, RDFS.subClassOf, TMFAC.StopPlace))
+    graph.add((EX.UndergroundLine, RDFS.subClassOf, TMJ.Line))
+    graph.add((EX.UndergroundRoute, RDFS.subClassOf, TMJ.Route))
+    graph.add((EX.RollingStockType, RDFS.subClassOf, TMFAC.VehicleType))
+    graph.add((EX.WheelchairAccessibilityAssessment, RDFS.subClassOf, TMFAC.AccessibilityAssessment))
 
     # ------------------------------------------------------------------
     # Object properties
     # ------------------------------------------------------------------
     add_object_property(
-        g,
+        graph,
         EX.servedByLine,
         "served by line",
         "Relates a London Underground station to a line that serves it.",
@@ -168,7 +168,7 @@ def main():
         EX.UndergroundLine,
     )
     add_object_property(
-        g,
+        graph,
         EX.interchangesWithLine,
         "interchanges with line",
         "Relates an interchange station to a line available for interchange at that station.",
@@ -176,7 +176,7 @@ def main():
         EX.UndergroundLine,
     )
     add_object_property(
-        g,
+        graph,
         EX.lineHasRoute,
         "line has route",
         "Relates a London Underground line to one of its associated routes.",
@@ -184,7 +184,7 @@ def main():
         EX.UndergroundRoute,
     )
     add_object_property(
-        g,
+        graph,
         EX.routeServesStop,
         "route serves stop",
         "Relates a London Underground route to a station served by that route.",
@@ -192,7 +192,7 @@ def main():
         EX.UndergroundStation,
     )
     add_object_property(
-        g,
+        graph,
         EX.affectsLine,
         "affects line",
         "Relates a disruption event to a London Underground line affected by the disruption.",
@@ -200,7 +200,7 @@ def main():
         EX.UndergroundLine,
     )
     add_object_property(
-        g,
+        graph,
         EX.occursAtStation,
         "occurs at station",
         "Relates an incident to the London Underground station where it occurs or is reported.",
@@ -208,7 +208,7 @@ def main():
         EX.UndergroundStation,
     )
     add_object_property(
-        g,
+        graph,
         EX.stationHasAccessibilityAssessment,
         "station has accessibility assessment",
         "Relates a London Underground station to its wheelchair accessibility assessment.",
@@ -216,7 +216,7 @@ def main():
         EX.WheelchairAccessibilityAssessment,
     )
     add_object_property(
-        g,
+        graph,
         EX.hasReplacementService,
         "has replacement service",
         "Relates a closure event to the bus replacement service provided during the disruption.",
@@ -224,7 +224,7 @@ def main():
         EX.BusReplacementService,
     )
     add_object_property(
-        g,
+        graph,
         EX.replacementFollowsRoute,
         "replacement follows route",
         "Relates a bus replacement service to the route it follows.",
@@ -232,7 +232,7 @@ def main():
         EX.UndergroundRoute,
     )
     add_object_property(
-        g,
+        graph,
         EX.usesRollingStockType,
         "uses rolling stock type",
         "Relates a London Underground line to the rolling stock type used on that line.",
@@ -242,19 +242,19 @@ def main():
 
     # Time-related object properties
     add_object_property(
-        g,
+        graph,
         EX.occursDuring,
         "occurs during",
         "Relates an event in the London Underground network to a temporal entity describing when it occurs.",
     )
     add_object_property(
-        g,
+        graph,
         EX.hasStartTime,
         "has start time",
         "Relates an event or temporal entity to its beginning in time.",
     )
     add_object_property(
-        g,
+        graph,
         EX.hasEndTime,
         "has end time",
         "Relates an event or temporal entity to its end in time.",
@@ -264,7 +264,7 @@ def main():
     # Datatype properties
     # ------------------------------------------------------------------
     add_datatype_property(
-        g,
+        graph,
         EX.stationName,
         "station name",
         "Stores the human-readable name of a London Underground station.",
@@ -272,7 +272,7 @@ def main():
         XSD.string,
     )
     add_datatype_property(
-        g,
+        graph,
         EX.lineName,
         "line name",
         "Stores the human-readable name of a London Underground line.",
@@ -280,7 +280,7 @@ def main():
         XSD.string,
     )
     add_datatype_property(
-        g,
+        graph,
         EX.fareZone,
         "fare zone",
         "Stores the TfL fare zone number of a London Underground station.",
@@ -288,7 +288,7 @@ def main():
         XSD.integer,
     )
     add_datatype_property(
-        g,
+        graph,
         EX.routeName,
         "route name",
         "Stores the human-readable name of a London Underground route.",
@@ -296,7 +296,7 @@ def main():
         XSD.string,
     )
     add_datatype_property(
-        g,
+        graph,
         EX.incidentName,
         "incident name",
         "Stores the reported name or title of an incident in the London Underground network.",
@@ -304,7 +304,7 @@ def main():
         XSD.string,
     )
     add_datatype_property(
-        g,
+        graph,
         EX.disruptionName,
         "disruption name",
         "Stores the reported name or title of a disruption event.",
@@ -313,7 +313,7 @@ def main():
     )
 
     add_datatype_property(
-        g,
+        graph,
         EX.officialAccessibilityStatus,
         "official accessibility status",
         "Stores the official accessibility designation assigned to a London Underground station.",
@@ -321,7 +321,7 @@ def main():
         XSD.string,
     )
     add_datatype_property(
-        g,
+        graph,
         EX.isFullyWheelchairAccessible,
         "is fully wheelchair accessible",
         "Indicates whether a London Underground station is officially designated as fully wheelchair accessible.",
@@ -330,7 +330,7 @@ def main():
     )
 
     add_datatype_property(
-        g,
+        graph,
         EX.operationalLengthMiles,
         "operational length in miles",
         "Stores the operational length of a London Underground line measured in miles.",
@@ -338,7 +338,7 @@ def main():
         XSD.decimal,
     )
     add_datatype_property(
-        g,
+        graph,
         EX.currentStatus,
         "current status",
         "Stores the current operational status of a disruption event affecting the London Underground.",
@@ -346,7 +346,7 @@ def main():
         XSD.string,
     )
     add_datatype_property(
-        g,
+        graph,
         EX.delayMinutes,
         "delay in minutes",
         "Stores the delay caused by a delay event as a number of minutes.",
@@ -354,7 +354,7 @@ def main():
         XSD.integer,
     )
     add_datatype_property(
-        g,
+        graph,
         EX.severityLabel,
         "severity label",
         "Stores the reported severity level of an incident, such as Minor, Severe, or Suspended.",
@@ -362,7 +362,7 @@ def main():
         XSD.string,
     )
     add_datatype_property(
-        g,
+        graph,
         EX.hasDelayDuration,
         "has delay duration",
         "Stores the duration of a delay event using an xsd:duration value.",
@@ -371,7 +371,7 @@ def main():
     )
 
     add_datatype_property(
-        g,
+        graph,
         EX.inaugurationDate,
         "inauguration date",
         "Stores the inauguration date of a London Underground route.",
@@ -379,7 +379,7 @@ def main():
         XSD.date,
     )
     add_datatype_property(
-        g,
+        graph,
         EX.inaugurationYear,
         "inauguration year",
         "Stores the inauguration year of a London Underground route.",
@@ -388,7 +388,7 @@ def main():
     )
 
     add_datatype_property(
-        g,
+        graph,
         EX.replacementRouteName,
         "replacement route name",
         "Stores the name of a replacement route used by a bus replacement service.",
@@ -396,7 +396,7 @@ def main():
         XSD.string,
     )
     add_datatype_property(
-        g,
+        graph,
         EX.closureReason,
         "closure reason",
         "Stores the reported reason for a closure event in the London Underground network.",
@@ -405,7 +405,7 @@ def main():
     )
 
     add_datatype_property(
-        g,
+        graph,
         EX.maintenanceName,
         "maintenance name",
         "Stores the name or description of a maintenance event.",
@@ -413,7 +413,7 @@ def main():
         XSD.string,
     )
     add_datatype_property(
-        g,
+        graph,
         EX.plannedStartDate,
         "planned start date",
         "Stores the planned start date of a maintenance event.",
@@ -421,7 +421,7 @@ def main():
         XSD.date,
     )
     add_datatype_property(
-        g,
+        graph,
         EX.plannedEndDate,
         "planned end date",
         "Stores the planned end date of a maintenance event.",
@@ -430,7 +430,7 @@ def main():
     )
 
     add_datatype_property(
-        g,
+        graph,
         EX.rollingStockName,
         "rolling stock name",
         "Stores the name of a rolling stock type used on the London Underground.",
@@ -438,7 +438,7 @@ def main():
         XSD.string,
     )
     add_datatype_property(
-        g,
+        graph,
         EX.standardPassengerCapacity,
         "standard passenger capacity",
         "Stores the standard passenger capacity of a rolling stock type.",
@@ -447,21 +447,20 @@ def main():
     )
 
     # ------------------------------------------------------------------
-    # Subproperty mappings
-    # Keep only semantically safe mappings
+    # Subproperty mappings. Keep only semantically safe mappings
     # ------------------------------------------------------------------
-    g.add((EX.stationHasAccessibilityAssessment, RDFS.subPropertyOf, TMFAC.accessibilityAssessment))
+    graph.add((EX.stationHasAccessibilityAssessment, RDFS.subPropertyOf, TMFAC.accessibilityAssessment))
 
-    g.add((EX.hasStartTime, RDFS.subPropertyOf, TIME.hasBeginning))
-    g.add((EX.hasEndTime, RDFS.subPropertyOf, TIME.hasEnd))
-    g.add((EX.occursDuring, RDFS.subPropertyOf, TIME.hasTime))
-    g.add((EX.hasDelayDuration, RDFS.subPropertyOf, TIME.hasXSDDuration))
+    graph.add((EX.hasStartTime, RDFS.subPropertyOf, TIME.hasBeginning))
+    graph.add((EX.hasEndTime, RDFS.subPropertyOf, TIME.hasEnd))
+    graph.add((EX.occursDuring, RDFS.subPropertyOf, TIME.hasTime))
+    graph.add((EX.hasDelayDuration, RDFS.subPropertyOf, TIME.hasXSDDuration))
 
     # ------------------------------------------------------------------
     # Serialise
     # ------------------------------------------------------------------
     output_file = "ontologies/base_ontology.ttl"
-    g.serialize(destination=output_file, format="turtle")
+    graph.serialize(destination=output_file, format="turtle")
     print(f"Ontology serialised to {output_file}")
 
 if __name__ == "__main__":

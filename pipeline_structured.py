@@ -20,6 +20,12 @@ TFL_API_KEY  = os.environ.get("TFL_API_KEY")
 EX   = Namespace("http://example.org/ontology-express#")
 INST = Namespace("http://example.org/instances#")
 
+if not TFL_API_KEY:
+    raise EnvironmentError(
+        "TFL_API_KEY is not set. Run: set TFL_API_KEY=your_key_here"
+    )
+
+
 # The base get command
 def tfl_get(endpoint: str, params: dict = None) -> dict:
     """GET a TfL Unified API endpoint, injecting the API key."""

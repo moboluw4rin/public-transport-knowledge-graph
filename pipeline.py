@@ -26,7 +26,11 @@ init_env()
 OUTPUT = "ontologies/instances.ttl"
 
 if __name__ == "__main__":
-    graph = build_structured_graph(verbose=False)
-    build_text_graph(graph)
-    graph.serialize(destination=OUTPUT, format="turtle")
-    print(f"\n[Pipeline] Done - {len(graph)} triples written to {OUTPUT}")
+    try:
+        graph = build_structured_graph(verbose=False)
+        build_text_graph(graph)
+        graph.serialize(destination=OUTPUT, format="turtle")
+        print(f"\n[Pipeline] Done - {len(graph)} triples written to {OUTPUT}")
+    except Exception as exc:
+        print(f"[Pipeline] ERROR: {exc}")
+        raise

@@ -9,6 +9,7 @@ events with structured metadata.
 
 import json
 import os
+from typing import Any
 
 from dotenv import load_dotenv
 from openai import OpenAI
@@ -19,7 +20,14 @@ load_dotenv()
 
 EX = Namespace("http://example.org/ontology-express#")
 
-_CLIENT = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+def _create_openai_client() -> OpenAI:
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        raise EnvironmentError(
+            "OPENAI_API_KEY is not set. Run: export OPENAI_API_KEY=your_key_here"
+        )
+    return OpenAI(api_key=api_key)
 
 _EXTRACTION_PROMPT = """\
 You are an information extraction system for a London Underground knowledge graph.
@@ -43,7 +51,8 @@ Return ONLY a valid JSON object with these three keys. No explanation.\
 
 def _extract_disruption_facts(reason: str) -> dict:
     try:
-        resp = _CLIENT.chat.completions.create(
+        client = _create_openai_client()
+        resp = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": _EXTRACTION_PROMPT},
@@ -53,9 +62,22 @@ def _extract_disruption_facts(reason: str) -> dict:
             max_tokens=100,
             temperature=0,
         )
-        return json.loads(resp.choices[0].message.content)
+        choices = getattr(resp, "choices", [])
+        if not choices:
+            raise ValueError("LLM response missing choices")
+        message = getattr(choices[0], "message", None)
+        content = getattr(message, "content", None)
+        if content is None:
+            raise ValueError("LLM response has no content")
+        return json.loads(content)
+    except json.JSONDecodeError as e:
+        print(f"  [LLM] WARNING: invalid JSON from LLM - {e}")
+        return {}
+    except (IndexError, AttributeError, TypeError, ValueError) as e:
+        print(f"  [LLM] WARNING: malformed LLM response - {e}")
+        return {}
     except Exception as e: # pylint: disable=W0718
-        print(f"  [LLM] WARNING: extraction failed — {e}")
+        print(f"  [LLM] WARNING: extraction failed - {e}")
         return {}
 
 
@@ -70,8 +92,16 @@ def enrich_disruptions_with_llm(graph: Graph) -> None:
 
     count = 0
     for row in graph.query(query):
-        event_uri = row.event
-        reason    = str(row.reason)
+        row_any   = row # type: Any
+        event_uri = row_any[0]
+        reason    = str(row_any[1]) # TODO: Check if this simplification is correct.
+
+        # If not, delete 3 lines above, add in 2 below.
+
+        # event_uri = row.event
+        # reason    = str(row.reason)
+
+        # If yes, delete all these comments and the todo.
 
         facts = _extract_disruption_facts(reason)
         if not facts:

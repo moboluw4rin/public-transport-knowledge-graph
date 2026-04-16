@@ -76,7 +76,7 @@ This project employs a **sequential two-chat orchestration** methodology to exte
 
     You must perform THREE steps:
 
-    ## Step 1 — Extract ontology elements from CQs
+    ## Step 1 - Extract ontology elements from CQs
 
     For each of the 10 competency questions:
 
@@ -88,7 +88,7 @@ This project employs a **sequential two-chat orchestration** methodology to exte
 
     ---
 
-    ## Step 2 — Map to existing ontologies (TBox mapping)
+    ## Step 2 - Map to existing ontologies (TBox mapping)
 
     Using the two provided ontologies:
 
@@ -112,7 +112,7 @@ This project employs a **sequential two-chat orchestration** methodology to exte
 
     ---
 
-    ## Step 3 — Generate 10 additional competency questions
+    ## Step 3 - Generate 10 additional competency questions
 
     Using:
 
@@ -221,7 +221,7 @@ This project employs a **sequential two-chat orchestration** methodology to exte
 <summary>Click to view Prompt</summary>
 
     ```markdown
-    # Continuation Task — Ontology Implementation
+    # Continuation Task - Ontology Implementation
 
     You have already:
 
@@ -401,7 +401,7 @@ This project employs a **sequential two-chat orchestration** methodology to exte
 <summary>Click to view Prompt</summary>
 
     ```markdown
-    # Continuation Task — Fix Ontology Builder (v2)
+    # Continuation Task - Fix Ontology Builder (v2)
 
     You previously generated a Python rdflib script (`ontology_builder_v2.py`) that builds a TBox ontology for the London Underground.
 
@@ -503,7 +503,7 @@ This project employs a **sequential two-chat orchestration** methodology to exte
     * Keep the ontology as a TBox-only generator
     * Keep naming consistent (`EX.*`)
     * Preserve working structure of the script
-    * Only fix errors — do not redesign the ontology
+    * Only fix errors - do not redesign the ontology
 
     ---
 

@@ -7,4 +7,5 @@
 - Validate `add_served_by_line()` and `add_maintenance_events()` for duplicate or incomplete data handling.
 - Keep `pipeline_structured.py` as the canonical structured pipeline implementation.
 
-These are to be checked if they're good additions. Let me know.
+NOTE: These are to be checked if they're good additions. Let me know.
+NOTE: Indeed, these might get out of date as the repo is put together! Let's keep them here until we're stable and smash them out later.

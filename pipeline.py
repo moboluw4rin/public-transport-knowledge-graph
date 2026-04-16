@@ -14,6 +14,7 @@ Each sub-pipeline adds to the same rdflib Graph:
 
 from pipeline_structured import build_structured_graph
 
+
 # Uncomment when Mark's pipeline is ready:
 # from pipeline_text import build_text_graph
 

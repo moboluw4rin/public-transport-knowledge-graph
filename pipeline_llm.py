@@ -101,6 +101,8 @@ def enrich_disruptions_with_llm(graph: Graph) -> None:
         # event_uri = row.event
         # reason    = str(row.reason)
 
+        # If yes, delete all these comments and the todo.
+
         facts = _extract_disruption_facts(reason)
         if not facts:
             continue

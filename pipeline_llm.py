@@ -53,7 +53,10 @@ def _extract_disruption_facts(reason: str) -> dict:
             max_tokens=100,
             temperature=0,
         )
-        return json.loads(resp.choices[0].message.content)
+        content = resp.choices[0].message.content
+        if content is None:
+            raise ValueError("LLM response has no content")
+        return json.loads(content)
     except Exception as e: # pylint: disable=W0718
         print(f"  [LLM] WARNING: extraction failed — {e}")
         return {}

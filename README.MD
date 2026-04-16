@@ -10,6 +10,8 @@ A London Underground knowledge graph project built with Python and RDF. The repo
 
 - `ontology_builder.py`: builds the TBox ontology and serialises it to Turtle
 - `pipeline_structured.py`: fetches TfL data, maps it to the ontology, and writes RDF instances
+- `pipeline_text.py`: enriches the RDF graph with Wikipedia-derived transport metadata and text-based disruption analysis
+- `pipeline_llm.py`: enriches disruption events using OpenAI extraction outputs
 - `pipeline.py`: main entry point that combines structured and textual pipelines
 - `PROMPT.MD`: prompt engineering and modelling workflow used for ontology design
 - `CQ.txt`: original competency questions for the domain
@@ -20,13 +22,15 @@ A London Underground knowledge graph project built with Python and RDF. The repo
 - Python 3.10+ (recommended)
 - `rdflib`
 - `requests`
+- `openai`
+- `python-dotenv`
 
 ## Usage
 
 1. Install dependencies:
 
 ```bash
-python -m pip install rdflib requests
+python -m pip install -r requirements.txt
 ```
 
 1. Generate the ontology:
@@ -55,5 +59,6 @@ python pipeline.py
 ## Notes
 
 - `pipeline_structured.py` expects `TFL_API_KEY` in the environment.
+- `pipeline_llm.py` expects `OPENAI_API_KEY` in the environment when using the LLM enrichment pipeline.
 - The project uses the namespaces `http://example.org/ontology-express#` and `http://example.org/instances#`.
 - The design is intended to automate knowledge graph construction rather than rely on manual graph editing.

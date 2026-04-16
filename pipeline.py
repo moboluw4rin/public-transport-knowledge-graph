@@ -12,14 +12,18 @@ Each sub-pipeline adds to the same rdflib Graph:
     pipeline_text.py        - Textual sources. (rolling stock, bus replacements, etc.)
 """
 
-from dotenv import load_dotenv
-load_dotenv()
-
-from pipeline_structured import build_structured_graph
 from pipeline_text import build_text_graph
+from pipeline_structured import build_structured_graph
+
+from dotenv import load_dotenv # pylint: disable=C0411
+
+def init_env() -> None: # Pin output to None for linter.
+    """Load environment variables from .env file."""
+    load_dotenv()
+
+init_env()
 
 OUTPUT = "ontologies/instances.ttl"
-
 
 if __name__ == "__main__":
     graph = build_structured_graph(verbose=False)

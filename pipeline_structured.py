@@ -45,7 +45,12 @@ def tfl_get(endpoint: str, params: dict | None = None) -> Any:
 # All fetch commands
 def fetch_lines() -> list:
     """Returns a list of all tube lines with id and name."""
-    return tfl_get("/Line/Mode/tube")
+    data = tfl_get("/Line/Mode/tube")
+
+    if not isinstance(data, list):
+        raise RuntimeError("Unexpected response shape for fetch_lines: expected list")
+
+    return data
 
 
 def fetch_stops() -> list:
@@ -57,7 +62,12 @@ def fetch_stops() -> list:
     all_stops = []
     while True:
         data = tfl_get("/StopPoint/Mode/tube", params={"page": page})
+        if not isinstance(data, dict):
+            raise RuntimeError("Unexpected response shape for fetch_stops: expected dict")
         stops = data.get("stopPoints", [])
+        if not isinstance(stops, list):
+            raise RuntimeError("Unexpected response shape for " \
+                                "fetch_stops stopPoints: expected list")
         if not stops:
             break
         all_stops.extend(stops)
@@ -67,12 +77,22 @@ def fetch_stops() -> list:
 
 def fetch_line_route(line_id: str) -> dict:
     """Returns route info for a given line including origin and destination."""
-    return tfl_get(f"/Line/{line_id}/Route")
+    data = tfl_get(f"/Line/{line_id}/Route")
+
+    if not isinstance(data, dict):
+        raise RuntimeError("Unexpected response shape for fetch_line_route: expected dict")
+
+    return data
 
 
 def fetch_line_stops(line_id: str) -> list:
     """Returns the ordered list of stop points for a given line id."""
-    return tfl_get(f"/Line/{line_id}/StopPoints")
+    data = tfl_get(f"/Line/{line_id}/StopPoints")
+
+    if not isinstance(data, list):
+        raise RuntimeError("Unexpected response shape for fetch_line_stops: expected list")
+
+    return data
 
 
 def fetch_line_disruptions(line_id: str) -> list:
@@ -80,7 +100,12 @@ def fetch_line_disruptions(line_id: str) -> list:
     Returns planned and current disruptions for a given line.
     Each entry has: description, fromDate, toDate, isWholeLine.
     """
-    return tfl_get(f"/Line/{line_id}/Disruption")
+    data = tfl_get(f"/Line/{line_id}/Disruption")
+
+    if not isinstance(data, list):
+        raise RuntimeError("Unexpected response shape for fetch_line_disruptions: expected list")
+
+    return data
 
 
 def fetch_line_status() -> list:
@@ -92,7 +117,12 @@ def fetch_line_status() -> list:
       - reason                     human-readable reason (only present if disrupted)
       - disruption.description     longer description (only present if disrupted)
     """
-    return tfl_get("/Line/Mode/tube/Status")
+    data = tfl_get("/Line/Mode/tube/Status")
+
+    if not isinstance(data, list):
+        raise RuntimeError("Unexpected response shape for fetch_line_status: expected list")
+
+    return data
 
 # Helpers
 def safe_uri(value: str) -> str:

@@ -12,22 +12,21 @@ Each sub-pipeline adds to the same rdflib Graph:
     pipeline_text.py        - Textual sources. (rolling stock, bus replacements, etc.)
 """
 
+from pipeline_text import build_text_graph
 from pipeline_structured import build_structured_graph
 
+from dotenv import load_dotenv # pylint: disable=C0411
 
-# Uncomment when Mark's pipeline is ready:
-# from pipeline_text import build_text_graph
+def init_env() -> None: # Pin output to None for linter.
+    """Load environment variables from .env file."""
+    load_dotenv()
+
+init_env()
 
 OUTPUT = "ontologies/instances.ttl"
 
-
 if __name__ == "__main__":
-    # Step 1: build graph from structured TfL data
     graph = build_structured_graph(verbose=False)
-
-    # Step 2: enrich with textual data (uncomment when ready)
-    # build_text_graph(graph)
-
-    # Serialise final merged graph
+    build_text_graph(graph)
     graph.serialize(destination=OUTPUT, format="turtle")
     print(f"\n[Pipeline] Done - {len(graph)} triples written to {OUTPUT}")

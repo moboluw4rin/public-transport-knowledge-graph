@@ -1,4 +1,10 @@
+# Virtual environments
 .venv/
 venv/
 
+# Caches and temporary files
+__pycache__/
 temp/
+
+# Secrets
+.env

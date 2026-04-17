@@ -191,8 +191,9 @@ def add_stops(graph: Graph, stops: list) -> None:
         graph.add((uri, EX.isFullyWheelchairAccessible,
                Literal(lift_access == "Yes", datatype=XSD.boolean)))
 
-        if zone_str.isdigit():
-            graph.add((uri, EX.fareZone, Literal(int(zone_str), datatype=XSD.integer)))
+        for zone in zone_str.split("/"):
+            if zone.strip().isdigit():
+                graph.add((uri, EX.fareZone, Literal(int(zone.strip()), datatype=XSD.integer)))
 
         count += 1
 

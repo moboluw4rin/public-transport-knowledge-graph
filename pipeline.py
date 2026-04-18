@@ -15,15 +15,17 @@ Each sub-pipeline adds to the same rdflib Graph:
 from pipeline_text import build_text_graph
 from pipeline_structured import build_structured_graph
 
-from dotenv import load_dotenv # pylint: disable=C0411
+from pipeline_common import load_env
+
 
 def init_env() -> None: # Pin output to None for linter.
     """Load environment variables from .env file."""
-    load_dotenv()
+    load_env()
 
 init_env()
 
 OUTPUT = "ontologies/instances.ttl"
+
 
 if __name__ == "__main__":
     try:

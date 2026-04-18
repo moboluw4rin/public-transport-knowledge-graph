@@ -8,25 +8,19 @@ events with structured metadata.
 """
 
 import json
-import os
 from typing import Any
 
-from dotenv import load_dotenv
 from openai import OpenAI
-from rdflib import Graph, Literal, Namespace
+from rdflib import Graph, Literal
 from rdflib.namespace import XSD
 
-load_dotenv()
+from pipeline_common import EX, get_env_var, load_env
 
-EX = Namespace("http://example.org/ontology-express#")
+load_env()
 
 
 def _create_openai_client() -> OpenAI:
-    api_key = os.getenv("OPENAI_API_KEY")
-    if not api_key:
-        raise EnvironmentError(
-            "OPENAI_API_KEY is not set. Run: export OPENAI_API_KEY=your_key_here"
-        )
+    api_key = get_env_var("OPENAI_API_KEY", required=True)
     return OpenAI(api_key=api_key)
 
 _EXTRACTION_PROMPT = """\

@@ -5,47 +5,35 @@ Fetches data from the TfL Unified API and TfL GTFS feed, maps it
 to the project ontology, and outputs RDF triples in Turtle format.
 """
 
-import os
 from collections import defaultdict
 from typing import Any
 
-import requests
-from dotenv import load_dotenv
-from rdflib import Graph, Namespace, Literal
+from rdflib import Graph, Literal
 from rdflib.namespace import RDF, XSD
 
-load_dotenv()
+from pipeline_common import (
+    EX,
+    INST,
+    TFL_API_BASE,
+    get_tfl_api_key,
+    load_env,
+    request_json,
+    safe_uri,
+)
+
+load_env()
 
 
-# Config
-TFL_API_BASE = "https://api.tfl.gov.uk"
-TFL_API_KEY  = os.environ.get("TFL_API_KEY")
-
-# Namespaces. Must match ontology_builder.py exactly
-EX   = Namespace("http://example.org/ontology-express#")
-INST = Namespace("http://example.org/instances#")
-
-if not TFL_API_KEY:
-    raise EnvironmentError(
-        "TFL_API_KEY is not set. Run: set TFL_API_KEY=your_key_here"
-    )
+TFL_API_KEY = get_tfl_api_key()
 
 
-# The base get command
 def tfl_get(endpoint: str, params: dict | None = None) -> Any:
     """GET a TfL Unified API endpoint, injecting the API key."""
     all_params = {**(params or {}), "app_key": TFL_API_KEY}
     url = TFL_API_BASE + endpoint
-    try:
-        resp = requests.get(url, params=all_params, timeout=30)
-        resp.raise_for_status()
-        return resp.json()
-    except requests.RequestException as exc:
-        raise RuntimeError(f"TfL request failed for {url}: {exc}") from exc
-    except ValueError as exc:
-        raise RuntimeError(f"TfL response JSON invalid for {url}: {exc}") from exc
+    return request_json(url, params=all_params, timeout=30)
 
-# All fetch commands
+
 def fetch_lines() -> list:
     """Returns a list of all tube lines with id and name."""
     data = tfl_get("/Line/Mode/tube")
@@ -59,6 +47,7 @@ def fetch_lines() -> list:
 def fetch_stops() -> list:
     """
     Returns all tube stop points with accessibility and zone info.
+
     Uses pagination. TfL returns max 1000 per page.
     """
     page = 1
@@ -101,6 +90,7 @@ def fetch_line_stops(line_id: str) -> list:
 def fetch_line_disruptions(line_id: str) -> list:
     """
     Returns planned and current disruptions for a given line.
+
     Each entry has: description, fromDate, toDate, isWholeLine.
     """
     data = tfl_get(f"/Line/{line_id}/Disruption")
@@ -113,8 +103,9 @@ def fetch_line_disruptions(line_id: str) -> list:
 
 def fetch_line_status() -> list:
     """
-    Returns live status for every tube line.
-    Each entry contains the line id, name, and a list of lineStatuses.
+    Returns live status for every tube line. Each entry contains the
+    line id, name, and a list of lineStatuses.
+
     Each lineStatus has:
       - statusSeverityDescription  e.g. "Severe Delays", "Good Service"
       - reason                     human-readable reason (only present if disrupted)
@@ -126,19 +117,6 @@ def fetch_line_status() -> list:
         raise RuntimeError("Unexpected response shape for fetch_line_status: expected list")
 
     return data
-
-# Helpers
-def safe_uri(value: str) -> str:
-    """Turn a raw string into a safe URI fragment."""
-    return (
-        value.strip()
-        .replace(" ", "_")
-        .replace("/", "-")
-        .replace("'", "")
-        .replace("&", "and")
-        .replace("(", "")
-        .replace(")", "")
-    )
 
 
 def load_tbox(path: str = "ontologies/base_ontology.ttl") -> Graph:
@@ -152,7 +130,6 @@ def load_tbox(path: str = "ontologies/base_ontology.ttl") -> Graph:
     return graph
 
 
-# Map stops to RDF individuals
 def add_stops(graph: Graph, stops: list) -> None:
     """
     Each unique station (identified by stationNaptan) becomes an
@@ -203,15 +180,17 @@ def add_stops(graph: Graph, stops: list) -> None:
     print(f"[RDF] Added {count} UndergroundStation individuals")
 
 
-# Map disruption statuses to RDF individuals
 def add_disruptions(graph: Graph, statuses: list) -> None:
     """
     Each lineStatus with a reason becomes a disruption individual.
+
     Picks the most specific subclass based on severity:
       - 'delay'                -> ex:DelayEvent
       - 'suspended'/'closure'  -> ex:ClosureEvent
       - anything else          -> ex:DisruptionEvent
+
     Good Service entries (no reason) are skipped.
+
     Multiple statuses on the same line get separate URIs:
       inst:district_status_0, inst:district_status_1, etc.
     """
@@ -251,6 +230,7 @@ def add_served_by_line(graph: Graph, lines: list) -> None:
     """
     For each line, fetches its stop points and adds:
       inst:<stationNaptan> ex:servedByLine inst:<lineId>
+
     This links the UndergroundStation individuals we already created
     to the UndergroundLine individuals.
     """
@@ -269,14 +249,15 @@ def add_served_by_line(graph: Graph, lines: list) -> None:
     print(f"[RDF] Added {total_links} servedByLine triples")
 
 
-# Map routes to RDF individuals
 def add_routes(graph: Graph, lines: list) -> None:
     """
     Calls /Line/{id}/Route for each line.
+
     Each routeSection becomes an ex:UndergroundRoute individual with:
       - ex:routeName        <- section name (e.g. "Walthamstow Central - Brixton")
       - ex:lineHasRoute     <- links the line to this route
       - ex:routeServesStop  <- links route to origin and destination stations
+
     One route per direction (inbound/outbound) per line.
     """
     count = 0
@@ -309,6 +290,7 @@ def add_routes(graph: Graph, lines: list) -> None:
 def add_maintenance_events(graph: Graph, lines: list) -> None:
     """
     Calls /Line/{id}/Disruption for each line.
+
     Each disruption with a fromDate/toDate is treated as a planned
     maintenance event and mapped to ex:MaintenanceEvent with:
       - ex:maintenanceName  <- description
@@ -347,7 +329,6 @@ def add_maintenance_events(graph: Graph, lines: list) -> None:
     print(f"[RDF] Added {count} MaintenanceEvent individuals")
 
 
-# Identify interchange stations
 def add_interchange_stations(graph: Graph) -> None:
     """
     A station served by 2+ lines is an interchange station.
@@ -375,11 +356,10 @@ def add_interchange_stations(graph: Graph) -> None:
     print(f"[RDF] Identified {count} interchange stations")
 
 
-# Map lines to RDF individuals
 def add_lines(graph: Graph, lines: list) -> None:
     """
-    Each TfL line becomes an inst:<line-id> individual of type ex:UndergroundLine.
-    We also attach ex:lineName as a datatype property.
+    Each TfL line becomes an inst:<line-id> individual of type
+    ex:UndergroundLine. We also attach ex:lineName as a datatype property.
     """
     for line in lines:
         uri = INST[safe_uri(line["id"])]           # e.g. inst:victoria
@@ -391,6 +371,7 @@ def add_lines(graph: Graph, lines: list) -> None:
 def build_structured_graph(verbose: bool = False) -> Graph:
     """
     Fetches all structured TfL data and populates an rdflib Graph.
+
     Returns the graph so pipeline.py can merge it with other sources.
     """
     graph = load_tbox()

@@ -94,7 +94,7 @@ def _fetch_wikitext(title: str) -> str:
         page  = next(iter(pages.values()))
         revs  = page.get("revisions", [])
         return revs[0].get("slots", {}).get("main", {}).get("*", "") if revs else ""
-    except Exception: # pylint: disable=W0718
+    except (requests.RequestException, ValueError):
         return ""
 
 

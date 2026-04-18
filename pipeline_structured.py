@@ -10,8 +10,11 @@ from collections import defaultdict
 from typing import Any
 
 import requests
+from dotenv import load_dotenv
 from rdflib import Graph, Namespace, Literal
 from rdflib.namespace import RDF, XSD
+
+load_dotenv()
 
 
 # Config

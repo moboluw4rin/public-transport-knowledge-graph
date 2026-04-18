@@ -8,8 +8,6 @@ events with structured metadata.
 """
 
 import json
-from typing import Any
-
 from openai import OpenAI
 from rdflib import Graph, Literal
 from rdflib.namespace import XSD
@@ -18,10 +16,7 @@ from pipeline_common import EX, get_env_var, load_env
 
 load_env()
 
-
-def _create_openai_client() -> OpenAI:
-    api_key = get_env_var("OPENAI_API_KEY", required=True)
-    return OpenAI(api_key=api_key)
+_CLIENT = OpenAI(api_key=get_env_var("OPENAI_API_KEY", required=True))
 
 _EXTRACTION_PROMPT = """\
 You are an information extraction system for a London Underground knowledge graph.
@@ -45,8 +40,7 @@ Return ONLY a valid JSON object with these three keys. No explanation.\
 
 def _extract_disruption_facts(reason: str) -> dict:
     try:
-        client = _create_openai_client()
-        resp = client.chat.completions.create(
+        resp = _CLIENT.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": _EXTRACTION_PROMPT},

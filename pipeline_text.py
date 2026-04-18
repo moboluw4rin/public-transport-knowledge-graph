@@ -9,14 +9,11 @@ text, identify bus replacement services, and attach accessibility assessments.
 """
 
 import re
-import requests
-from rdflib import Graph, Namespace, Literal
+from rdflib import Graph, Literal
 from rdflib.namespace import RDF, XSD
 
+from pipeline_common import EX, INST, request_json, safe_uri
 from pipeline_llm import enrich_disruptions_with_llm
-
-EX   = Namespace("http://example.org/ontology-express#")
-INST = Namespace("http://example.org/instances#")
 
 _WIKIPEDIA_API = "https://en.wikipedia.org/w/api.php"
 _USER_AGENT    = "public-transport-kg/1.0 (coursework)"
@@ -66,12 +63,6 @@ _BUS_REPLACEMENT_TRIGGERS = re.compile(
 _BUS_ROUTE_NUMBER = re.compile(r"\b([A-Z]?\d{1,3}[A-Z]?)\b")
 
 
-def safe_uri(value: str) -> str:
-    """Convert a string into a safe URI fragment by stripping
-       whitespace and replacing spaces with underscores."""
-    return value.strip().replace(" ", "_").replace("/", "-")
-
-
 def _fetch_wikitext(title: str) -> str:
     params = {
         "action":    "query",
@@ -83,10 +74,13 @@ def _fetch_wikitext(title: str) -> str:
         "redirects": 1,
     }
     try:
-        resp = requests.get(_WIKIPEDIA_API, params=params,
-                            headers={"User-Agent": _USER_AGENT}, timeout=10)
-        resp.raise_for_status()
-        pages = resp.json().get("query", {}).get("pages", {})
+        data = request_json(
+            _WIKIPEDIA_API,
+            params=params,
+            headers={"User-Agent": _USER_AGENT},
+            timeout=10,
+        )
+        pages = data.get("query", {}).get("pages", {})
 
         if not pages:
             return ""
@@ -94,7 +88,7 @@ def _fetch_wikitext(title: str) -> str:
         page  = next(iter(pages.values()))
         revs  = page.get("revisions", [])
         return revs[0].get("slots", {}).get("main", {}).get("*", "") if revs else ""
-    except Exception: # pylint: disable=W0718
+    except RuntimeError:
         return ""
 
 

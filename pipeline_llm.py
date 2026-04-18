@@ -80,16 +80,8 @@ def enrich_disruptions_with_llm(graph: Graph) -> None:
 
     count = 0
     for row in graph.query(query):
-        row_any   = row # type: Any
-        event_uri = row_any[0]
-        reason    = str(row_any[1]) # TODO: Check if this simplification is correct.
-
-        # If not, delete 3 lines above, add in 2 below.
-
-        # event_uri = row.event
-        # reason    = str(row.reason)
-
-        # If yes, delete all these comments and the todo.
+        event_uri = row.event
+        reason    = str(row.reason)
 
         facts = _extract_disruption_facts(reason)
         if not facts:

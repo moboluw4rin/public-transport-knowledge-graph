@@ -62,6 +62,12 @@ _BUS_REPLACEMENT_TRIGGERS = re.compile(
 )
 _BUS_ROUTE_NUMBER = re.compile(r"\b([A-Z]?\d{1,3}[A-Z]?)\b")
 
+_WIKI_LINK        = re.compile(r"\[\[[^\]]*\|([^\]]+)\]\]|\[\[([^\]|]+)\]\]")
+_STOCK_NAME       = re.compile(r"(\d{4}\s+Stock|S\d\s+Stock)", re.IGNORECASE)
+_OPEN_FIELD       = re.compile(r"\|\s*open\s*=\s*(.+?)(?=\n\s*\|)", re.DOTALL)
+_YEAR_IN_TEMPLATE = re.compile(r"start date[^|]*\|(?:df=y\|)?(\d{4})", re.IGNORECASE)
+_STATION_NAME_CLEAN = re.compile(r"\s*(Underground\s+)?Station$", re.IGNORECASE)
+
 
 def _fetch_wikitext(title: str) -> str:
     params = {
@@ -114,9 +120,6 @@ def build_text_graph(graph: Graph) -> Graph:
 
 
 def _add_rolling_stock(graph: Graph) -> None:
-    wiki_link   = re.compile(r"\[\[[^\]]*\|([^\]]+)\]\]|\[\[([^\]|]+)\]\]")
-    stock_clean = re.compile(r"(\d{4}\s+Stock|S\d\s+Stock)", re.IGNORECASE)
-
     created = {}
 
     for line_id, wiki_title in _LINE_WIKI.items():
@@ -128,9 +131,9 @@ def _add_rolling_stock(graph: Graph) -> None:
             print(f"  [Stock] WARNING: no stock field for {wiki_title}")
             continue
 
-        lm = wiki_link.search(raw_stock)
+        lm = _WIKI_LINK.search(raw_stock)
         display = (lm.group(1) or lm.group(2)) if lm else raw_stock
-        cm = stock_clean.search(display)
+        cm = _STOCK_NAME.search(display)
         if not cm:
             print(f"  [Stock] WARNING: could not parse stock name from '{display}' ({wiki_title})")
             continue
@@ -177,20 +180,17 @@ def _add_rolling_stock(graph: Graph) -> None:
 
 
 def _add_inauguration_dates(graph: Graph) -> None:
-    open_field       = re.compile(r"\|\s*open\s*=\s*(.+?)(?=\n\s*\|)", re.DOTALL)
-    year_in_template = re.compile(r"start date[^|]*\|(?:df=y\|)?(\d{4})", re.IGNORECASE)
-
     count = 0
     for line_id, wiki_title in _LINE_WIKI.items():
         line_uri = INST[safe_uri(line_id)]
 
         wikitext = _fetch_wikitext(wiki_title)
-        m        = open_field.search(wikitext)
+        m        = _OPEN_FIELD.search(wikitext)
         if not m:
             print(f"  [Inauguration] WARNING: no open field for {wiki_title}")
             continue
 
-        ym = year_in_template.search(m.group(1))
+        ym = _YEAR_IN_TEMPLATE.search(m.group(1))
         if not ym:
             print(f"  [Inauguration] WARNING: could not parse year for {wiki_title}")
             continue
@@ -309,11 +309,9 @@ def _add_bus_replacements(graph: Graph) -> None:
 
 
 def _extract_from_disruption_text(graph: Graph) -> None:
-    station_name_clean = re.compile(r"\s*(Underground\s+)?Station$", re.IGNORECASE)
-
     station_lookup = {}
     for station, _, name in graph.triples((None, EX.stationName, None)):
-        clean = station_name_clean.sub("", str(name)).strip().lower()
+        clean = _STATION_NAME_CLEAN.sub("", str(name)).strip().lower()
         station_lookup[clean] = station
     sorted_names = sorted(station_lookup.keys(), key=len, reverse=True)
 

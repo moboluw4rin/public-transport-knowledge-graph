@@ -4,7 +4,6 @@
 
 
 PREFIX ex:   <http://example.org/ontology-express#>
-PREFIX inst: <http://example.org/instances#>   CAN BE REMOVED
 PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
@@ -44,9 +43,8 @@ WHERE {
                 ex:disruptionName ?disruptionName ;
                 ex:currentStatus ?status .
     ?line ex:lineName "Piccadilly"^^xsd:string .
+    FILTER(LCASE(STR(?status)) = "active")
 }
-
-# TODO: Maybe needs a current-status restriction? Not sure.
 
 
 # CQ-OZE-4: What is the exact delay duration (in minutes) caused by the signal failure at Victoria Station?
@@ -253,12 +251,12 @@ WHERE {
     ?route a ex:UndergroundRoute ;
            ex:routeName ?routeName ;
            ex:inaugurationYear ?inaugYear .
-    ?line ex:lineHasRoute ?route .
+    ?line ex:lineHasRoute ?route ;
+          ex:currentStatus ?lineStatus .
     FILTER (?inaugYear < "1989"^^xsd:gYear)
+    FILTER(LCASE(STR(?lineStatus)) = "active")
 }
 ORDER BY ?inaugYear ?routeName
-
-# TODO: No verification if still operational?
 
 
 # CQ-ALD-9: Which incidents at stations were classified with severity level "Severe"?
@@ -311,11 +309,11 @@ WHERE {
           ex:lineName ?lineName .
     FILTER NOT EXISTS {
         ?disruption a ex:DisruptionEvent ;
-                    ex:affectsLine ?line .
+                    ex:affectsLine ?line ;
+                    ex:currentStatus ?status .
+        FILTER(LCASE(STR(?status)) = "active")
     }
 }
-
-# TODO: Does not check for current time disruptions, only distruptions at all (general).
 
 
 # CQ-ATH-3: Which stations are affected by both a disruption and a scheduled maintenance event?
@@ -354,20 +352,18 @@ ORDER BY DESC(?stationCount)
 SELECT ?event1 ?name1 ?start1 ?end1 ?event2 ?name2 ?start2 ?end2
 WHERE {
     ?event1 a ex:MaintenanceEvent ;
-            ex:maintenanceName ?name1 ;
-            ex:plannedStartDate ?start1 ;
-            ex:plannedEndDate ?end1 .
+        ex:maintenanceName ?name1 ;
+        ex:plannedStartDate ?start1 ;
+        ex:plannedEndDate ?end1 .
     ?event2 a ex:MaintenanceEvent ;
-            ex:maintenanceName ?name2 ;
-            ex:plannedStartDate ?start2 ;
-            ex:plannedEndDate ?end2 .
+        ex:maintenanceName ?name2 ;
+        ex:plannedStartDate ?start2 ;
+        ex:plannedEndDate ?end2 .
     FILTER (?event1 != ?event2)
     FILTER (?start1 <= ?end2 && ?start2 <= ?end1)
     FILTER (STR(?event1) < STR(?event2))
 }
-ORDER BY ?start1 ?start2
-
-# TODO: Seems redundant > overfiltering.
+ORDER BY ?name1 ?name2
 
 
 # CQ-ATH-6: Which stations have accessibility limitations and are also affected by current disruptions?
@@ -375,16 +371,20 @@ ORDER BY ?start1 ?start2
 
 SELECT DISTINCT ?station ?stationName ?disruptionName
 WHERE {
-    ?station a ex:UndergroundStation ;
-             ex:stationName ?stationName ;
-             ex:isFullyWheelchairAccessible false .
-    ?disruption a ex:DisruptionEvent ;
-                ex:occursAtStation ?station ;
-                ex:disruptionName ?disruptionName ;
-                ex:currentStatus "Active"^^xsd:string .
+        ?station a ex:UndergroundStation ;
+                         ex:stationName ?stationName .
+        OPTIONAL { ?station ex:isFullyWheelchairAccessible ?wheelchair . }
+        OPTIONAL { ?station ex:officialAccessibilityStatus ?accessStatus . }
+        FILTER(
+            (BOUND(?wheelchair) && ?wheelchair = false)
+            || (BOUND(?accessStatus) && CONTAINS(LCASE(STR(?accessStatus)), "step-free"))
+            || (BOUND(?accessStatus) && CONTAINS(LCASE(STR(?accessStatus)), "limited"))
+        )
+        ?disruption a ex:DisruptionEvent ;
+                                ex:occursAtStation ?station ;
+                                ex:disruptionName ?disruptionName ;
+                                ex:currentStatus "Active"^^xsd:string .
 }
-
-# TODO: Could use official accessibility status for more broad access.
 
 
 # CQ-ATH-7: Which rolling stock types are used exclusively by a single Underground line?

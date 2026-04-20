@@ -28,6 +28,11 @@ import json
 import time
 import logging
 import requests
+from dotenv import load_dotenv
+
+# Load .env file from the script's directory
+script_dir = os.path.dirname(os.path.abspath(__file__))
+load_dotenv(os.path.join(script_dir, ".env"))
 from rdflib import Graph, Namespace, RDF, Literal, URIRef
 from rdflib.namespace import XSD
 from openai import OpenAI

@@ -1,8 +1,6 @@
 # SPARQL Queries for Ontology Express Team 
-# 30 Queries mapped to 30 Competency Questions
-# Prefixes used in all queries:
 
-
+# Common Prefixes
 
 
 PREFIX ex:   <http://example.org/ontology-express#>
@@ -11,13 +9,6 @@ PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
 PREFIX time: <http://www.w3.org/2006/time#>
-
-
-
-
-================================================================================
-ORIGINAL MANUAL CQs (Oze) - 10 Queries
-================================================================================
 
 
 # CQ-OZE-1: Which public transport stations are officially designated as fully wheelchair accessible?
@@ -32,9 +23,6 @@ WHERE {
 ORDER BY ?stationName
 
 
---------------------------------------------------------------------------------
-
-
 # CQ-OZE-2: What is the total operational length, in miles, of the Circle Line?
 
 
@@ -46,8 +34,6 @@ WHERE {
 }
 
 
---------------------------------------------------------------------------------
-need a current-status restriction
 # CQ-OZE-3: Which transport disruptions are currently affecting the Piccadilly Line?
 
 
@@ -60,8 +46,7 @@ WHERE {
     ?line ex:lineName "Piccadilly"^^xsd:string .
 }
 
-
---------------------------------------------------------------------------------
+# TODO: Maybe needs a current-status restriction? Not sure.
 
 
 # CQ-OZE-4: What is the exact delay duration (in minutes) caused by the signal failure at Victoria Station?
@@ -78,11 +63,6 @@ WHERE {
 }
 
 
-
-
---------------------------------------------------------------------------------
-
-
 # CQ-OZE-5: Which stations serve as interchange points between the District Line and Bakerloo Line?
 
 
@@ -95,9 +75,6 @@ WHERE {
   ?line2 ex:lineName "Bakerloo"^^xsd:string .
 }
 ORDER BY ?stationName
-
-
---------------------------------------------------------------------------------
 
 
 # CQ-OZE-6: What is the reported severity level of the incident at King's Cross St. Pancras?
@@ -113,9 +90,6 @@ WHERE {
 }
 
 
---------------------------------------------------------------------------------
-
-
 # CQ-OZE-7: Which transport routes were inaugurated before the year 1989?
 
 
@@ -129,9 +103,6 @@ WHERE {
 ORDER BY ?inaugYear
 
 
---------------------------------------------------------------------------------
-
-
 # CQ-OZE-8: What is the alternative bus replacement route provided for Caledonian Road Station during its closure?
 
 
@@ -143,9 +114,6 @@ WHERE {
     ?station ex:stationName "Caledonian Road Station"^^xsd:string .
     ?replacementService ex:replacementRouteName ?replacementRouteName .
 }
-
-
---------------------------------------------------------------------------------
 
 
 # CQ-OZE-9: Which maintenance events are scheduled to occur between September and December?
@@ -162,9 +130,6 @@ WHERE {
 ORDER BY ?startDate
 
 
---------------------------------------------------------------------------------
-
-
 # CQ-OZE-10: What is the standard passenger capacity of the rolling stock used on the Victoria Line?
 
 
@@ -177,13 +142,6 @@ WHERE {
            ex:standardPassengerCapacity ?capacity .
     FILTER (?lineName = "Victoria"^^xsd:string)
 }
-
-
-
-
-================================================================================
-LLM-GENERATED CQs (Aldrich) - 10 Queries
-================================================================================
 
 
 # CQ-ALD-1: Which Underground stations have an accessibility assessment indicating step-free access but not full wheelchair access?
@@ -200,9 +158,6 @@ WHERE {
 ORDER BY ?stationName
 
 
---------------------------------------------------------------------------------
-
-
 # CQ-ALD-2: Which lines share at least one interchange station with the Victoria Line?
 
 
@@ -217,9 +172,6 @@ WHERE {
 }
 
 
---------------------------------------------------------------------------------
-
-
 # CQ-ALD-3: Which disruption events affected more than one Underground line at the same time?
 
 
@@ -231,11 +183,6 @@ WHERE {
 }
 GROUP BY ?disruption ?disruptionName
 HAVING (COUNT(DISTINCT ?line) > 1)
-
-
-
-
---------------------------------------------------------------------------------
 
 
 # CQ-ALD-4: What stations are affected by the current closure event on the Piccadilly Line?
@@ -254,9 +201,6 @@ WHERE {
 }
 
 
---------------------------------------------------------------------------------
-
-
 # CQ-ALD-5: Which replacement bus services are associated with station closure events this month?
 
 
@@ -269,9 +213,6 @@ WHERE {
     ?replacementService ex:replacementRouteName ?replacementRouteName .
     FILTER (MONTH(?startDate) = MONTH(NOW()) && YEAR(?startDate) = YEAR(NOW()))
 }
-
-
---------------------------------------------------------------------------------
 
 
 # CQ-ALD-6: Which Underground lines use the same rolling stock type as the Victoria Line?
@@ -290,9 +231,6 @@ WHERE {
 }
 
 
---------------------------------------------------------------------------------
-
-
 # CQ-ALD-7: What is the start and end time of each maintenance event scheduled in October?
 
 
@@ -307,8 +245,6 @@ WHERE {
 ORDER BY ?startDate ?maintenanceName
 
 
---------------------------------------------------------------------------------
-No verification if still operational
 # CQ-ALD-8: Which routes inaugurated before 1989 are still currently operational?
 
 
@@ -322,8 +258,7 @@ WHERE {
 }
 ORDER BY ?inaugYear ?routeName
 
-
---------------------------------------------------------------------------------
+# TODO: No verification if still operational?
 
 
 # CQ-ALD-9: Which incidents at stations were classified with severity level "Severe"?
@@ -338,9 +273,6 @@ WHERE {
 }
 
 
---------------------------------------------------------------------------------
-
-
 # CQ-ALD-10: What is the average delay duration for signal-failure incidents affecting Underground stations?
 
 
@@ -353,13 +285,6 @@ WHERE {
     ?station a ex:UndergroundStation .
     FILTER(CONTAINS(LCASE(STR(?name)), "signal failure"))
 }
-
-
-
-
-================================================================================
-LLM-GENERATED CQs (Atheer) - 10 Queries
-================================================================================
 
 
 # CQ-ATH-1: Which stations are served by more than two Underground lines?
@@ -377,10 +302,6 @@ HAVING (COUNT(DISTINCT ?line) > 2)
 ORDER BY DESC(?lineCount) ?stationName
 
 
-
-
---------------------------------------------------------------------------------
-Does not check for current time disruptions, only distruptions at all (general)
 # CQ-ATH-2: Which Underground lines have no reported disruptions at the current time?
 
 
@@ -394,8 +315,7 @@ WHERE {
     }
 }
 
-
---------------------------------------------------------------------------------
+# TODO: Does not check for current time disruptions, only distruptions at all (general).
 
 
 # CQ-ATH-3: Which stations are affected by both a disruption and a scheduled maintenance event?
@@ -414,9 +334,6 @@ WHERE {
 ORDER BY ?stationName
 
 
---------------------------------------------------------------------------------
-
-
 # CQ-ATH-4: What is the total number of stations affected by each disruption event?
 
 
@@ -429,12 +346,6 @@ WHERE {
 }
 GROUP BY ?disruption ?disruptionName
 ORDER BY DESC(?stationCount)
-
-
---------------------------------------------------------------------------------
-
-
-Seems redundant > overfiltering
 
 
 # CQ-ATH-5: Which maintenance events overlap in their scheduled dates?
@@ -456,9 +367,9 @@ WHERE {
 }
 ORDER BY ?start1 ?start2
 
+# TODO: Seems redundant > overfiltering.
 
---------------------------------------------------------------------------------
-Could use official accessibility status for more broad access
+
 # CQ-ATH-6: Which stations have accessibility limitations and are also affected by current disruptions?
 
 
@@ -473,8 +384,7 @@ WHERE {
                 ex:currentStatus "Active"^^xsd:string .
 }
 
-
---------------------------------------------------------------------------------
+# TODO: Could use official accessibility status for more broad access.
 
 
 # CQ-ATH-7: Which rolling stock types are used exclusively by a single Underground line?
@@ -491,9 +401,6 @@ GROUP BY ?stock ?stockName
 HAVING (COUNT(DISTINCT ?line) = 1)
 
 
---------------------------------------------------------------------------------
-
-
 # CQ-ATH-8: Which stations are endpoints (i.e., served by only one line and not interchange stations)?
 
 
@@ -507,9 +414,6 @@ WHERE {
 GROUP BY ?station ?stationName
 HAVING (COUNT(DISTINCT ?line) = 1)
 ORDER BY ?stationName
-
-
---------------------------------------------------------------------------------
 
 
 # CQ-ATH-9: Which lines have experienced closures with the same closure reason?
@@ -530,9 +434,6 @@ WHERE {
 }
 
 
---------------------------------------------------------------------------------
-
-
 # CQ-ATH-10: Which stations are in Zone 1?
 
 
@@ -545,6 +446,4 @@ WHERE {
 ORDER BY ?stationName
 
 
-================================================================================
-END OF QUERIES
-================================================================================
+# EOF

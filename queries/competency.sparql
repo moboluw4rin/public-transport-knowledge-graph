@@ -1,0 +1,449 @@
+# SPARQL Queries for Ontology Express Team 
+
+# Common Prefixes
+
+
+PREFIX ex:   <http://example.org/ontology-express#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+PREFIX time: <http://www.w3.org/2006/time#>
+
+
+# CQ-OZE-1: Which public transport stations are officially designated as fully wheelchair accessible?
+
+
+SELECT ?station ?stationName
+WHERE {
+    ?station a ex:UndergroundStation ;
+             ex:stationName ?stationName ;
+             ex:isFullyWheelchairAccessible true .
+}
+ORDER BY ?stationName
+
+
+# CQ-OZE-2: What is the total operational length, in miles, of the Circle Line?
+
+
+SELECT ?lengthMiles
+WHERE {
+  ?line a ex:UndergroundLine ;
+         ex:lineName "Circle"^^xsd:string ;
+         ex:operationalLengthMiles ?lengthMiles .
+}
+
+
+# CQ-OZE-3: Which transport disruptions are currently affecting the Piccadilly Line?
+
+
+SELECT ?disruption ?disruptionName ?status
+WHERE {
+    ?disruption a ex:DisruptionEvent ;
+                ex:affectsLine ?line ;
+                ex:disruptionName ?disruptionName ;
+                ex:currentStatus ?status .
+    ?line ex:lineName "Piccadilly"^^xsd:string .
+    FILTER(LCASE(STR(?status)) = "active")
+}
+
+
+# CQ-OZE-4: What is the exact delay duration (in minutes) caused by the signal failure at Victoria Station?
+
+
+SELECT DISTINCT ?delayEvent ?minutes
+WHERE {
+  ?delayEvent a ex:DelayEvent ;
+              ex:occursAtStation ?station ;
+              ex:delayMinutes ?minutes ;
+              ex:disruptionName ?name .
+  ?station ex:stationName "Victoria Station"^^xsd:string .   
+  FILTER(CONTAINS(LCASE(STR(?name)), "signal failure"))
+}
+
+
+# CQ-OZE-5: Which stations serve as interchange points between the District Line and Bakerloo Line?
+
+
+SELECT ?station ?stationName
+WHERE {
+  ?station a ex:InterchangeStation ;
+           ex:stationName ?stationName ;
+           ex:servedByLine ?line1, ?line2 .
+  ?line1 ex:lineName "District"^^xsd:string .
+  ?line2 ex:lineName "Bakerloo"^^xsd:string .
+}
+ORDER BY ?stationName
+
+
+# CQ-OZE-6: What is the reported severity level of the incident at King's Cross St. Pancras?
+
+
+SELECT ?incident ?severity
+WHERE {
+    ?incident a ex:Incident ;
+              ex:incidentName ?incidentName ;
+              ex:severityLabel ?severity ;
+              ex:occursAtStation ?station .
+    ?station ex:stationName "King's Cross St. Pancras"^^xsd:string .
+}
+
+
+# CQ-OZE-7: Which transport routes were inaugurated before the year 1989?
+
+
+SELECT ?route ?routeName ?inaugYear
+WHERE {
+    ?route a ex:UndergroundRoute ;
+           ex:routeName ?routeName ;
+           ex:inaugurationYear ?inaugYear .
+    FILTER (?inaugYear < "1989"^^xsd:gYear)
+}
+ORDER BY ?inaugYear
+
+
+# CQ-OZE-8: What is the alternative bus replacement route provided for Caledonian Road Station during its closure?
+
+
+SELECT ?replacementService ?replacementRouteName
+WHERE {
+    ?closure a ex:ClosureEvent ;
+             ex:occursAtStation ?station ;
+             ex:hasReplacementService ?replacementService .
+    ?station ex:stationName "Caledonian Road Station"^^xsd:string .
+    ?replacementService ex:replacementRouteName ?replacementRouteName .
+}
+
+
+# CQ-OZE-9: Which maintenance events are scheduled to occur between September and December?
+
+
+SELECT ?maintenance ?maintenanceName ?startDate ?endDate
+WHERE {
+    ?maintenance a ex:MaintenanceEvent ;
+                 ex:maintenanceName ?maintenanceName ;
+                 ex:plannedStartDate ?startDate ;
+                 ex:plannedEndDate ?endDate .
+    FILTER(MONTH(?startDate) >= 9 && MONTH(?startDate) <= 12)
+}
+ORDER BY ?startDate
+
+
+# CQ-OZE-10: What is the standard passenger capacity of the rolling stock used on the Victoria Line?
+
+
+SELECT ?lineName ?stockName ?capacity
+WHERE {
+    ?line a ex:UndergroundLine ;
+          ex:lineName ?lineName ;
+          ex:usesRollingStockType ?stock .
+    ?stock ex:rollingStockName ?stockName ;
+           ex:standardPassengerCapacity ?capacity .
+    FILTER (?lineName = "Victoria"^^xsd:string)
+}
+
+
+# CQ-ALD-1: Which Underground stations have an accessibility assessment indicating step-free access but not full wheelchair access?
+
+
+SELECT ?station ?stationName ?accessibilityStatus
+WHERE {
+    ?station a ex:UndergroundStation ;
+             ex:stationName ?stationName ;
+             ex:isFullyWheelchairAccessible false ;
+             ex:officialAccessibilityStatus ?accessibilityStatus .
+    FILTER (CONTAINS(LCASE(STR(?accessibilityStatus)), "step-free"))
+}
+ORDER BY ?stationName
+
+
+# CQ-ALD-2: Which lines share at least one interchange station with the Victoria Line?
+
+
+SELECT DISTINCT ?otherLineName
+WHERE {
+    ?station a ex:InterchangeStation ;
+             ex:interchangesWithLine ?victoriaLine ;
+             ex:interchangesWithLine ?otherLine .
+    ?victoriaLine ex:lineName "Victoria"^^xsd:string .
+    ?otherLine ex:lineName ?otherLineName .
+    FILTER (?otherLineName != "Victoria"^^xsd:string)
+}
+
+
+# CQ-ALD-3: Which disruption events affected more than one Underground line at the same time?
+
+
+SELECT ?disruption ?disruptionName (COUNT(DISTINCT ?line) AS ?lineCount)
+WHERE {
+    ?disruption a ex:DisruptionEvent ;
+                ex:disruptionName ?disruptionName ;
+                ex:affectsLine ?line .
+}
+GROUP BY ?disruption ?disruptionName
+HAVING (COUNT(DISTINCT ?line) > 1)
+
+
+# CQ-ALD-4: What stations are affected by the current closure event on the Piccadilly Line?
+
+
+SELECT DISTINCT ?station ?stationName ?closureName
+WHERE {
+    ?closure a ex:ClosureEvent ;
+             ex:disruptionName ?closureName ;
+             ex:affectsLine ?line ;
+             ex:occursAtStation ?station ;
+             ex:currentStatus "Active"^^xsd:string .
+    ?line ex:lineName "Piccadilly"^^xsd:string .
+    ?station a ex:UndergroundStation ;
+             ex:stationName ?stationName .
+}
+
+
+# CQ-ALD-5: Which replacement bus services are associated with station closure events this month?
+
+
+SELECT ?closure ?closureName ?replacementService ?replacementRouteName ?startDate
+WHERE {
+    ?closure a ex:ClosureEvent ;
+             ex:disruptionName ?closureName ;
+             ex:hasReplacementService ?replacementService ;
+             ex:plannedStartDate ?startDate .
+    ?replacementService ex:replacementRouteName ?replacementRouteName .
+    FILTER (MONTH(?startDate) = MONTH(NOW()) && YEAR(?startDate) = YEAR(NOW()))
+}
+
+
+# CQ-ALD-6: Which Underground lines use the same rolling stock type as the Victoria Line?
+
+
+SELECT DISTINCT ?otherLineName ?stockName
+WHERE {
+    ?victoriaLine a ex:UndergroundLine ;
+                  ex:lineName "Victoria"^^xsd:string ;
+                  ex:usesRollingStockType ?stock .
+    ?otherLine a ex:UndergroundLine ;
+               ex:lineName ?otherLineName ;
+               ex:usesRollingStockType ?stock .
+    ?stock ex:rollingStockName ?stockName .
+    FILTER (?otherLineName != "Victoria"^^xsd:string)
+}
+
+
+# CQ-ALD-7: What is the start and end time of each maintenance event scheduled in October?
+
+
+SELECT ?maintenance ?maintenanceName ?startDate ?endDate
+WHERE {
+    ?maintenance a ex:MaintenanceEvent ;
+                 ex:maintenanceName ?maintenanceName ;
+                 ex:plannedStartDate ?startDate ;
+                 ex:plannedEndDate ?endDate .
+    FILTER (MONTH(?startDate) = 10)
+}
+ORDER BY ?startDate ?maintenanceName
+
+
+# CQ-ALD-8: Which routes inaugurated before 1989 are still currently operational?
+
+
+SELECT ?route ?routeName ?inaugYear
+WHERE {
+    ?route a ex:UndergroundRoute ;
+           ex:routeName ?routeName ;
+           ex:inaugurationYear ?inaugYear .
+    ?line ex:lineHasRoute ?route ;
+          ex:currentStatus ?lineStatus .
+    FILTER (?inaugYear < "1989"^^xsd:gYear)
+    FILTER(LCASE(STR(?lineStatus)) = "active")
+}
+ORDER BY ?inaugYear ?routeName
+
+
+# CQ-ALD-9: Which incidents at stations were classified with severity level "Severe"?
+
+
+SELECT ?incident ?station ?stationName
+WHERE {
+    ?incident a ex:Incident ;
+              ex:severityLabel "Severe"^^xsd:string ;
+              ex:occursAtStation ?station .
+    ?station ex:stationName ?stationName .
+}
+
+
+# CQ-ALD-10: What is the average delay duration for signal-failure incidents affecting Underground stations?
+
+
+SELECT (AVG(?minutes) AS ?averageDelay)
+WHERE {
+    ?delay a ex:DelayEvent ;
+           ex:occursAtStation ?station ;
+           ex:delayMinutes ?minutes ;
+           ex:disruptionName ?name .
+    ?station a ex:UndergroundStation .
+    FILTER(CONTAINS(LCASE(STR(?name)), "signal failure"))
+}
+
+
+# CQ-ATH-1: Which stations are served by more than two Underground lines?
+
+
+SELECT ?station ?stationName (COUNT(DISTINCT ?line) AS ?lineCount)
+WHERE {
+    ?station a ex:UndergroundStation ;
+             ex:stationName ?stationName ;
+             ex:servedByLine ?line .
+    ?line a ex:UndergroundLine .
+}
+GROUP BY ?station ?stationName
+HAVING (COUNT(DISTINCT ?line) > 2)
+ORDER BY DESC(?lineCount) ?stationName
+
+
+# CQ-ATH-2: Which Underground lines have no reported disruptions at the current time?
+
+
+SELECT DISTINCT ?line ?lineName
+WHERE {
+    ?line a ex:UndergroundLine ;
+          ex:lineName ?lineName .
+    FILTER NOT EXISTS {
+        ?disruption a ex:DisruptionEvent ;
+                    ex:affectsLine ?line ;
+                    ex:currentStatus ?status .
+        FILTER(LCASE(STR(?status)) = "active")
+    }
+}
+
+
+# CQ-ATH-3: Which stations are affected by both a disruption and a scheduled maintenance event?
+
+
+SELECT DISTINCT ?station ?stationName
+WHERE {
+    ?station a ex:UndergroundStation ;
+             ex:stationName ?stationName .
+    ?disruption a ex:DisruptionEvent ;
+                ex:occursAtStation ?station .
+    ?maintenance a ex:MaintenanceEvent ;
+                 ex:occursAtStation ?station .
+    FILTER (?disruption != ?maintenance)
+}
+ORDER BY ?stationName
+
+
+# CQ-ATH-4: What is the total number of stations affected by each disruption event?
+
+
+SELECT ?disruption ?disruptionName (COUNT(DISTINCT ?station) AS ?stationCount)
+WHERE {
+    ?disruption a ex:DisruptionEvent ;
+                ex:disruptionName ?disruptionName ;
+                ex:occursAtStation ?station .
+    ?station a ex:UndergroundStation .
+}
+GROUP BY ?disruption ?disruptionName
+ORDER BY DESC(?stationCount)
+
+
+# CQ-ATH-5: Which maintenance events overlap in their scheduled dates?
+
+
+SELECT ?event1 ?name1 ?start1 ?end1 ?event2 ?name2 ?start2 ?end2
+WHERE {
+    ?event1 a ex:MaintenanceEvent ;
+        ex:maintenanceName ?name1 ;
+        ex:plannedStartDate ?start1 ;
+        ex:plannedEndDate ?end1 .
+    ?event2 a ex:MaintenanceEvent ;
+        ex:maintenanceName ?name2 ;
+        ex:plannedStartDate ?start2 ;
+        ex:plannedEndDate ?end2 .
+    FILTER (?event1 != ?event2)
+    FILTER (?start1 <= ?end2 && ?start2 <= ?end1)
+    FILTER (STR(?event1) < STR(?event2))
+}
+ORDER BY ?name1 ?name2
+
+
+# CQ-ATH-6: Which stations have accessibility limitations and are also affected by current disruptions?
+
+
+SELECT DISTINCT ?station ?stationName ?disruptionName
+WHERE {
+        ?station a ex:UndergroundStation ;
+                         ex:stationName ?stationName .
+        OPTIONAL { ?station ex:isFullyWheelchairAccessible ?wheelchair . }
+        OPTIONAL { ?station ex:officialAccessibilityStatus ?accessStatus . }
+        FILTER(
+            (BOUND(?wheelchair) && ?wheelchair = false)
+            || (BOUND(?accessStatus) && CONTAINS(LCASE(STR(?accessStatus)), "step-free"))
+            || (BOUND(?accessStatus) && CONTAINS(LCASE(STR(?accessStatus)), "limited"))
+        )
+        ?disruption a ex:DisruptionEvent ;
+                                ex:occursAtStation ?station ;
+                                ex:disruptionName ?disruptionName ;
+                                ex:currentStatus "Active"^^xsd:string .
+}
+
+
+# CQ-ATH-7: Which rolling stock types are used exclusively by a single Underground line?
+
+
+SELECT ?stock ?stockName (COUNT(DISTINCT ?line) AS ?lineCount)
+WHERE {
+    ?stock a ex:RollingStockType ;
+           ex:rollingStockName ?stockName .
+    ?line a ex:UndergroundLine ;
+          ex:usesRollingStockType ?stock .
+}
+GROUP BY ?stock ?stockName
+HAVING (COUNT(DISTINCT ?line) = 1)
+
+
+# CQ-ATH-8: Which stations are endpoints (i.e., served by only one line and not interchange stations)?
+
+
+SELECT DISTINCT ?station ?stationName
+WHERE {
+    ?station a ex:UndergroundStation ;
+             ex:stationName ?stationName ;
+             ex:servedByLine ?line .
+    FILTER NOT EXISTS { ?station a ex:InterchangeStation }
+}
+GROUP BY ?station ?stationName
+HAVING (COUNT(DISTINCT ?line) = 1)
+ORDER BY ?stationName
+
+
+# CQ-ATH-9: Which lines have experienced closures with the same closure reason?
+
+
+SELECT ?reason ?line1Name ?line2Name
+WHERE {
+    ?closure1 a ex:ClosureEvent ;
+              ex:closureReason ?reason ;
+              ex:affectsLine ?line1 .
+    ?closure2 a ex:ClosureEvent ;
+              ex:closureReason ?reason ;
+              ex:affectsLine ?line2 .
+    ?line1 ex:lineName ?line1Name .
+    ?line2 ex:lineName ?line2Name .
+    FILTER (?closure1 != ?closure2)
+    FILTER (STR(?line1) < STR(?line2))
+}
+
+
+# CQ-ATH-10: Which stations are in Zone 1?
+
+
+SELECT DISTINCT ?station ?stationName
+WHERE {
+    ?station a ex:UndergroundStation ;
+             ex:stationName ?stationName ;
+             ex:fareZone 1 .
+}
+ORDER BY ?stationName
+
+
+# EOF

@@ -96,7 +96,7 @@ WHERE {
     ?route a ex:UndergroundRoute ;
            ex:routeName ?routeName ;
            ex:inaugurationYear ?inaugYear .
-    FILTER (?inaugYear < "1989"^^xsd:gYear)
+    FILTER (STR(?inaugYear) < "1989")
 }
 ORDER BY ?inaugYear
 
@@ -253,7 +253,7 @@ WHERE {
            ex:inaugurationYear ?inaugYear .
     ?line ex:lineHasRoute ?route ;
           ex:currentStatus ?lineStatus .
-    FILTER (?inaugYear < "1989"^^xsd:gYear)
+    FILTER (STR(?inaugYear) < "1989")
     FILTER(LCASE(STR(?lineStatus)) = "active")
 }
 ORDER BY ?inaugYear ?routeName

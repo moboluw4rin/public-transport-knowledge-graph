@@ -196,7 +196,10 @@ def _add_inauguration_dates(graph: Graph) -> None:
             continue
 
         year = ym.group(1)
-        graph.add((line_uri, EX.inaugurationYear, Literal(year, datatype=XSD.gYear)))
+        year_literal = Literal(year, datatype=XSD.gYear)
+        graph.add((line_uri, EX.inaugurationYear, year_literal))
+        for route_uri in graph.objects(line_uri, EX.lineHasRoute):
+            graph.add((route_uri, EX.inaugurationYear, year_literal))
         print(f"  [Inauguration] {wiki_title}: {year}")
         count += 1
 

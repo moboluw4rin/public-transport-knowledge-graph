@@ -221,6 +221,7 @@ def add_disruptions(graph: Graph, statuses: list) -> None:
             graph.add((event_uri, EX.closureReason,  Literal(reason,   datatype=XSD.string)))
             graph.add((event_uri, EX.currentStatus,  Literal(severity, datatype=XSD.string)))
             graph.add((event_uri, EX.affectsLine,    line_uri))
+            graph.add((event_uri, EX.primaryLine,    line_uri))
             count += 1
 
     print(f"[RDF] Added {count} disruption event individuals")

@@ -195,9 +195,10 @@ SELECT DISTINCT ?station ?stationName ?closureName
 WHERE {
     ?closure a ex:ClosureEvent ;
              ex:disruptionName ?closureName ;
-             ex:affectsLine ?line ;
+             ex:primaryLine ?line ;
              ex:occursAtStation ?station ;
-             ex:currentStatus "Active"^^xsd:string .
+             ex:currentStatus ?status .
+    FILTER(CONTAINS(LCASE(STR(?status)), "suspended") || CONTAINS(LCASE(STR(?status)), "closure"))
     ?line ex:lineName "Piccadilly"^^xsd:string .
     ?station a ex:UndergroundStation ;
              ex:stationName ?stationName .

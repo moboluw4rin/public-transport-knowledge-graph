@@ -364,8 +364,9 @@ def add_lines(graph: Graph, lines: list) -> None:
     """
     for line in lines:
         uri = INST[safe_uri(line["id"])]           # e.g. inst:victoria
-        graph.add((uri, RDF.type,    EX.UndergroundLine))
-        graph.add((uri, EX.lineName, Literal(line["name"], datatype=XSD.string)))
+        graph.add((uri, RDF.type,          EX.UndergroundLine))
+        graph.add((uri, EX.lineName,       Literal(line["name"], datatype=XSD.string)))
+        graph.add((uri, EX.currentStatus,  Literal("Active",     datatype=XSD.string)))
     print(f"[RDF] Added {len(lines)} UndergroundLine individuals")
 
 

@@ -267,6 +267,8 @@ def _add_accessibility_assessments(graph: Graph) -> None:
         graph.add((assess_uri, EX.officialAccessibilityStatus,
                Literal(status_label, datatype=XSD.string)))
         graph.add((row.station, EX.stationHasAccessibilityAssessment, assess_uri))
+        graph.add((row.station, EX.officialAccessibilityStatus,
+               Literal(status_label, datatype=XSD.string)))
         count += 1
 
     print(f"[Text] Added {count} WheelchairAccessibilityAssessment individuals")

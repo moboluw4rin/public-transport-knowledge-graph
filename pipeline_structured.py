@@ -219,6 +219,7 @@ def add_disruptions(graph: Graph, statuses: list) -> None:
             graph.add((event_uri, EX.severityLabel,  Literal(severity, datatype=XSD.string)))
             graph.add((event_uri, EX.disruptionName, Literal(severity, datatype=XSD.string)))
             graph.add((event_uri, EX.closureReason,  Literal(reason,   datatype=XSD.string)))
+            graph.add((event_uri, EX.currentStatus,  Literal(severity, datatype=XSD.string)))
             graph.add((event_uri, EX.affectsLine,    line_uri))
             count += 1
 

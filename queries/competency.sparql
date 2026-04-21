@@ -272,9 +272,10 @@ WHERE {
     { ?incident a ex:DisruptionEvent }
     UNION { ?incident a ex:ClosureEvent }
     UNION { ?incident a ex:DelayEvent }
-    ?incident ex:severityLabel "Severe"^^xsd:string ;
+    ?incident ex:severityLabel ?severity ;
               ex:occursAtStation ?station .
     ?station ex:stationName ?stationName .
+    FILTER(CONTAINS(LCASE(STR(?severity)), "severe"))
 }
 
 

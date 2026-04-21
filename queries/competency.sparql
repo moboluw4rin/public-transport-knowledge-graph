@@ -38,12 +38,13 @@ WHERE {
 
 SELECT ?disruption ?disruptionName ?status
 WHERE {
-    ?disruption a ex:DisruptionEvent ;
-                ex:affectsLine ?line ;
+    { ?disruption a ex:DisruptionEvent }
+    UNION { ?disruption a ex:ClosureEvent }
+    UNION { ?disruption a ex:DelayEvent }
+    ?disruption ex:affectsLine ?line ;
                 ex:disruptionName ?disruptionName ;
                 ex:currentStatus ?status .
     ?line ex:lineName "Piccadilly"^^xsd:string .
-    FILTER(LCASE(STR(?status)) = "active")
 }
 
 
@@ -80,8 +81,10 @@ ORDER BY ?stationName
 
 SELECT ?incident ?severity
 WHERE {
-    ?incident a ex:Incident ;
-              ex:incidentName ?incidentName ;
+    { ?incident a ex:DisruptionEvent }
+    UNION { ?incident a ex:ClosureEvent }
+    UNION { ?incident a ex:DelayEvent }
+    ?incident ex:incidentName ?incidentName ;
               ex:severityLabel ?severity ;
               ex:occursAtStation ?station .
     ?station ex:stationName "King's Cross St. Pancras"^^xsd:string .
@@ -96,7 +99,7 @@ WHERE {
     ?route a ex:UndergroundRoute ;
            ex:routeName ?routeName ;
            ex:inaugurationYear ?inaugYear .
-    FILTER (?inaugYear < "1989"^^xsd:gYear)
+    FILTER (STR(?inaugYear) < "1989")
 }
 ORDER BY ?inaugYear
 
@@ -175,8 +178,10 @@ WHERE {
 
 SELECT ?disruption ?disruptionName (COUNT(DISTINCT ?line) AS ?lineCount)
 WHERE {
-    ?disruption a ex:DisruptionEvent ;
-                ex:disruptionName ?disruptionName ;
+    { ?disruption a ex:DisruptionEvent }
+    UNION { ?disruption a ex:ClosureEvent }
+    UNION { ?disruption a ex:DelayEvent }
+    ?disruption ex:disruptionName ?disruptionName ;
                 ex:affectsLine ?line .
 }
 GROUP BY ?disruption ?disruptionName
@@ -190,9 +195,10 @@ SELECT DISTINCT ?station ?stationName ?closureName
 WHERE {
     ?closure a ex:ClosureEvent ;
              ex:disruptionName ?closureName ;
-             ex:affectsLine ?line ;
+             ex:primaryLine ?line ;
              ex:occursAtStation ?station ;
-             ex:currentStatus "Active"^^xsd:string .
+             ex:currentStatus ?status .
+    FILTER(CONTAINS(LCASE(STR(?status)), "suspended") || CONTAINS(LCASE(STR(?status)), "closure"))
     ?line ex:lineName "Piccadilly"^^xsd:string .
     ?station a ex:UndergroundStation ;
              ex:stationName ?stationName .
@@ -253,7 +259,7 @@ WHERE {
            ex:inaugurationYear ?inaugYear .
     ?line ex:lineHasRoute ?route ;
           ex:currentStatus ?lineStatus .
-    FILTER (?inaugYear < "1989"^^xsd:gYear)
+    FILTER (STR(?inaugYear) < "1989")
     FILTER(LCASE(STR(?lineStatus)) = "active")
 }
 ORDER BY ?inaugYear ?routeName
@@ -264,10 +270,13 @@ ORDER BY ?inaugYear ?routeName
 
 SELECT ?incident ?station ?stationName
 WHERE {
-    ?incident a ex:Incident ;
-              ex:severityLabel "Severe"^^xsd:string ;
+    { ?incident a ex:DisruptionEvent }
+    UNION { ?incident a ex:ClosureEvent }
+    UNION { ?incident a ex:DelayEvent }
+    ?incident ex:severityLabel ?severity ;
               ex:occursAtStation ?station .
     ?station ex:stationName ?stationName .
+    FILTER(CONTAINS(LCASE(STR(?severity)), "severe"))
 }
 
 
@@ -323,8 +332,10 @@ SELECT DISTINCT ?station ?stationName
 WHERE {
     ?station a ex:UndergroundStation ;
              ex:stationName ?stationName .
-    ?disruption a ex:DisruptionEvent ;
-                ex:occursAtStation ?station .
+    { ?disruption a ex:DisruptionEvent }
+    UNION { ?disruption a ex:ClosureEvent }
+    UNION { ?disruption a ex:DelayEvent }
+    ?disruption ex:occursAtStation ?station .
     ?maintenance a ex:MaintenanceEvent ;
                  ex:occursAtStation ?station .
     FILTER (?disruption != ?maintenance)
@@ -337,8 +348,10 @@ ORDER BY ?stationName
 
 SELECT ?disruption ?disruptionName (COUNT(DISTINCT ?station) AS ?stationCount)
 WHERE {
-    ?disruption a ex:DisruptionEvent ;
-                ex:disruptionName ?disruptionName ;
+    { ?disruption a ex:DisruptionEvent }
+    UNION { ?disruption a ex:ClosureEvent }
+    UNION { ?disruption a ex:DelayEvent }
+    ?disruption ex:disruptionName ?disruptionName ;
                 ex:occursAtStation ?station .
     ?station a ex:UndergroundStation .
 }
@@ -380,10 +393,11 @@ WHERE {
             || (BOUND(?accessStatus) && CONTAINS(LCASE(STR(?accessStatus)), "step-free"))
             || (BOUND(?accessStatus) && CONTAINS(LCASE(STR(?accessStatus)), "limited"))
         )
-        ?disruption a ex:DisruptionEvent ;
-                                ex:occursAtStation ?station ;
-                                ex:disruptionName ?disruptionName ;
-                                ex:currentStatus "Active"^^xsd:string .
+        { ?disruption a ex:DisruptionEvent }
+        UNION { ?disruption a ex:ClosureEvent }
+        UNION { ?disruption a ex:DelayEvent }
+        ?disruption ex:occursAtStation ?station ;
+                    ex:disruptionName ?disruptionName .
 }
 
 

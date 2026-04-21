@@ -112,6 +112,7 @@ def build_text_graph(graph: Graph) -> Graph:
     _add_accessibility_assessments(graph)
     _add_severity_levels(graph)
     _extract_from_disruption_text(graph)
+    _propagate_affects_line_from_stations(graph)
     _add_bus_replacements(graph)
     enrich_disruptions_with_llm(graph)
 
@@ -196,7 +197,10 @@ def _add_inauguration_dates(graph: Graph) -> None:
             continue
 
         year = ym.group(1)
-        graph.add((line_uri, EX.inaugurationYear, Literal(year, datatype=XSD.gYear)))
+        year_literal = Literal(year, datatype=XSD.gYear)
+        graph.add((line_uri, EX.inaugurationYear, year_literal))
+        for route_uri in graph.objects(line_uri, EX.lineHasRoute):
+            graph.add((route_uri, EX.inaugurationYear, year_literal))
         print(f"  [Inauguration] {wiki_title}: {year}")
         count += 1
 
@@ -264,6 +268,8 @@ def _add_accessibility_assessments(graph: Graph) -> None:
         graph.add((assess_uri, EX.officialAccessibilityStatus,
                Literal(status_label, datatype=XSD.string)))
         graph.add((row.station, EX.stationHasAccessibilityAssessment, assess_uri))
+        graph.add((row.station, EX.officialAccessibilityStatus,
+               Literal(status_label, datatype=XSD.string)))
         count += 1
 
     print(f"[Text] Added {count} WheelchairAccessibilityAssessment individuals")
@@ -354,6 +360,53 @@ def _extract_from_disruption_text(graph: Graph) -> None:
         graph.add((event_uri, EX.incidentName, Literal(short_name, datatype=XSD.string)))
         name_count += 1
 
+    maintenance_query = """
+        PREFIX ex: <http://example.org/ontology-express#>
+        SELECT ?event ?name WHERE {
+            ?event a ex:MaintenanceEvent ;
+                   ex:maintenanceName ?name .
+        }
+    """
+    maintenance_count = 0
+    for row in graph.query(maintenance_query):
+        name_lower = str(row.name).lower()
+        matched = list(dict.fromkeys(station_lookup[n]
+                                     for n in sorted_names if n in name_lower))
+        for station_uri in matched:
+            graph.add((row.event, EX.occursAtStation, station_uri))
+            maintenance_count += 1
+
     print(f"[Text] occursAtStation triples added: {station_count}")
     print(f"[Text] delayMinutes triples added:    {delay_count}")
     print(f"[Text] incidentName triples added:    {name_count}")
+    print(f"[Text] maintenance occursAtStation triples added: {maintenance_count}")
+
+
+def _propagate_affects_line_from_stations(graph: Graph) -> None:
+    """
+    For each disruption event, infer additional affectsLine triples by
+    inspecting the lines that serve the event's occursAtStation stations.
+
+    This correctly handles interchange stations: if a ClosureEvent at
+    Sloane Square is already linked to the Circle Line, this function
+    also adds ex:affectsLine for the District Line — because Sloane Square
+    is served by both.
+    """
+    query = """
+        PREFIX ex: <http://example.org/ontology-express#>
+        SELECT DISTINCT ?event ?line WHERE {
+            { ?event a ex:DisruptionEvent }
+            UNION { ?event a ex:ClosureEvent }
+            UNION { ?event a ex:DelayEvent }
+            UNION { ?event a ex:MaintenanceEvent }
+            ?event ex:occursAtStation ?station .
+            ?station ex:servedByLine ?line .
+        }
+    """
+    count = 0
+    for row in graph.query(query):
+        if (row.event, EX.affectsLine, row.line) not in graph:
+            graph.add((row.event, EX.affectsLine, row.line))
+            count += 1
+
+    print(f"[Text] affectsLine triples inferred from interchange stations: {count}")

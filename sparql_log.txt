@@ -1,0 +1,593 @@
+================================================================================
+Executing: CQ-OZE-1: Fully wheelchair accessible stations
+--------------------------------------------------------------------------------
+station                        | stationName                   
+---------------------------------------------------------------
+940GZZLUACT                    | Acton Town Station            
+940GZZLUBMY                    | Bermondsey Station            
+940GZZLUBOR                    | Borough Station               
+940GZZLUBXN                    | Brixton Station               
+940GZZLUCAR                    | Caledonian Road Station       
+940GZZLUCYF                    | Canary Wharf Station          
+940GZZLUECT                    | Earl's Court Station          
+940GZZLUEHM                    | East Ham Station              
+940GZZLUEGW                    | Edgware Bus Station           
+940GZZLUEAC                    | Elephant & Castle Station     
+940GZZLUESQ                    | Euston Square Station         
+940GZZLUFCN                    | Farringdon Station            
+940GZZLUFYC                    | Finchley Central              
+940GZZLUFBY                    | Fulham Broadway Station       
+940GZZLUGGN                    | Golders Green Station         
+940GZZLUGPK                    | Green Park Station            
+940GZZLUHCL                    | Hendon Central Station        
+940GZZLUHGD                    | Hillingdon Station            
+940GZZLUHWE                    | Hounslow East Station         
+940GZZLUKBN                    | Kilburn Station               
+940GZZLUKBY                    | Kingsbury Station             
+940GZZLULVT                    | Liverpool Street Station      
+940GZZLUMDN                    | Morden Station                
+940GZZLUNGW                    | North Greenwich               
+940GZZLUOAK                    | Oakwood Station               
+940GZZLUPNR                    | Pinner Station                
+940GZZLUSFS                    | Southfields Station           
+940GZZLUSWK                    | Southwark Station             
+940GZZLUWYP                    | Wembley Park Station          
+940GZZLUWSM                    | Westminster Station           
+940GZZLUWLA                    | Wood Lane                     
+
+Total Results: 31
+
+================================================================================
+Executing: CQ-OZE-2: Total operational length of Circle Line
+--------------------------------------------------------------------------------
+lengthMiles                   
+------------------------------
+
+Total Results: 0
+
+================================================================================
+Executing: CQ-OZE-3: Current disruptions on Piccadilly Line
+--------------------------------------------------------------------------------
+disruption                     | disruptionName                 | status                        
+------------------------------------------------------------------------------------------------
+
+Total Results: 0
+
+================================================================================
+Executing: CQ-OZE-4: Delay duration of signal failure at Victoria
+--------------------------------------------------------------------------------
+delayEvent                     | minutes                       
+---------------------------------------------------------------
+
+Total Results: 0
+
+================================================================================
+Executing: CQ-OZE-5: Interchange points between District and Bakerloo
+--------------------------------------------------------------------------------
+station                        | stationName                   
+---------------------------------------------------------------
+940GZZLUEMB                    | Embankment Station            
+940GZZLUPAC                    | Paddington Underground Station
+
+Total Results: 2
+
+================================================================================
+Executing: CQ-OZE-6: Severity level at King's Cross St. Pancras
+--------------------------------------------------------------------------------
+incident                       | severity                      
+---------------------------------------------------------------
+
+Total Results: 0
+
+================================================================================
+Executing: CQ-OZE-7: Routes inaugurated before 1989
+--------------------------------------------------------------------------------
+route                          | routeName                      | inaugYear                     
+------------------------------------------------------------------------------------------------
+
+Total Results: 0
+
+================================================================================
+Executing: CQ-OZE-8: Replacement bus for Caledonian Road Station
+--------------------------------------------------------------------------------
+replacementService             | replacementRouteName          
+---------------------------------------------------------------
+
+Total Results: 0
+
+================================================================================
+Executing: CQ-OZE-9: Maintenance between September and December
+--------------------------------------------------------------------------------
+maintenance                    | maintenanceName                | startDate                      | endDate                       
+---------------------------------------------------------------------------------------------------------------------------------
+
+Total Results: 0
+
+================================================================================
+Executing: CQ-OZE-10: Passenger capacity of Victoria Line stock
+--------------------------------------------------------------------------------
+lineName                       | stockName                      | capacity                      
+------------------------------------------------------------------------------------------------
+
+Total Results: 0
+
+================================================================================
+Executing: CQ-ALD-1: Step-free access but not full wheelchair access
+--------------------------------------------------------------------------------
+station                        | stationName                    | accessibilityStatus           
+------------------------------------------------------------------------------------------------
+
+Total Results: 0
+
+================================================================================
+Executing: CQ-ALD-2: Interchanges shared with Victoria Line
+--------------------------------------------------------------------------------
+otherLineName                 
+------------------------------
+Northern                      
+Piccadilly                    
+Jubilee                       
+Circle                        
+Hammersmith & City            
+Metropolitan                  
+Bakerloo                      
+Central                       
+District                      
+
+Total Results: 9
+
+================================================================================
+Executing: CQ-ALD-3: Disruptions affecting multiple lines
+--------------------------------------------------------------------------------
+disruption                     | disruptionName                 | lineCount                     
+------------------------------------------------------------------------------------------------
+
+Total Results: 0
+
+================================================================================
+Executing: CQ-ALD-4: Stations affected by current Piccadilly closure
+--------------------------------------------------------------------------------
+station                        | stationName                    | closureName                   
+------------------------------------------------------------------------------------------------
+
+Total Results: 0
+
+================================================================================
+Executing: CQ-ALD-5: Replacement buses for this month's closures
+--------------------------------------------------------------------------------
+closure                        | closureName                    | replacementService             | replacementRouteName           | startDate                     
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Total Results: 0
+
+================================================================================
+Executing: CQ-ALD-6: Lines using Victoria Line's rolling stock
+--------------------------------------------------------------------------------
+otherLineName                  | stockName                     
+---------------------------------------------------------------
+
+Total Results: 0
+
+================================================================================
+Executing: CQ-ALD-7: October maintenance schedules
+--------------------------------------------------------------------------------
+maintenance                    | maintenanceName                | startDate                      | endDate                       
+---------------------------------------------------------------------------------------------------------------------------------
+
+Total Results: 0
+
+================================================================================
+Executing: CQ-ALD-8: Pre-1989 operational routes
+--------------------------------------------------------------------------------
+route                          | routeName                      | inaugYear                     
+------------------------------------------------------------------------------------------------
+
+Total Results: 0
+
+================================================================================
+Executing: CQ-ALD-9: Severe incidents at stations
+--------------------------------------------------------------------------------
+incident                       | station                        | stationName                   
+------------------------------------------------------------------------------------------------
+
+Total Results: 0
+
+================================================================================
+Executing: CQ-ALD-10: Avg delay for signal failures
+--------------------------------------------------------------------------------
+averageDelay                  
+------------------------------
+0                             
+
+Total Results: 1
+
+================================================================================
+Executing: CQ-ATH-1: Stations served by >2 lines
+--------------------------------------------------------------------------------
+station                        | stationName                    | lineCount                     
+------------------------------------------------------------------------------------------------
+940GZZLUKSX                    | King's Cross St. Pancras Underground Station | 6                             
+940GZZLUBST                    | Baker Street Station           | 5                             
+940GZZLUEMB                    | Embankment Station             | 4                             
+940GZZLULVT                    | Liverpool Street Station       | 4                             
+940GZZLUMGT                    | Moorgate Underground Station   | 4                             
+940GZZLUWLO                    | Waterloo Station               | 4                             
+940GZZLUBNK                    | Bank Underground Station       | 3                             
+940GZZLUBBN                    | Barbican Station               | 3                             
+940GZZLUERC                    | Edgware Road (Circle Line) Underground Station | 3                             
+940GZZLUESQ                    | Euston Square Station          | 3                             
+940GZZLUFCN                    | Farringdon Station             | 3                             
+940GZZLUGTR                    | Gloucester Road Station        | 3                             
+940GZZLUGPS                    | Great Portland St Stn  / Euston Rd | 3                             
+940GZZLUGPK                    | Green Park Station             | 3                             
+940GZZLUMED                    | Mile End Station               | 3                             
+940GZZLUNHG                    | Notting Hill Gate Station      | 3                             
+940GZZLUOXC                    | Oxford Circus Station          | 3                             
+940GZZLUPAC                    | Paddington Underground Station | 3                             
+940GZZLUSKS                    | South Kensington Station       | 3                             
+940GZZLUVIC                    | Victoria Station               | 3                             
+940GZZLUWHM                    | West Ham Underground Station   | 3                             
+940GZZLUWSM                    | Westminster Station            | 3                             
+
+Total Results: 22
+
+================================================================================
+Executing: CQ-ATH-2: Lines with no active disruptions
+--------------------------------------------------------------------------------
+line                           | lineName                      
+---------------------------------------------------------------
+waterloo-city                  | Waterloo & City               
+victoria                       | Victoria                      
+bakerloo                       | Bakerloo                      
+jubilee                        | Jubilee                       
+metropolitan                   | Metropolitan                  
+hammersmith-city               | Hammersmith & City            
+central                        | Central                       
+northern                       | Northern                      
+circle                         | Circle                        
+piccadilly                     | Piccadilly                    
+district                       | District                      
+
+Total Results: 11
+
+================================================================================
+Executing: CQ-ATH-3: Stations with disruption and maintenance
+--------------------------------------------------------------------------------
+station                        | stationName                   
+---------------------------------------------------------------
+
+Total Results: 0
+
+================================================================================
+Executing: CQ-ATH-4: Total stations affected by each disruption
+--------------------------------------------------------------------------------
+disruption                     | disruptionName                 | stationCount                  
+------------------------------------------------------------------------------------------------
+
+Total Results: 0
+
+================================================================================
+Executing: CQ-ATH-5: Overlapping maintenance events
+--------------------------------------------------------------------------------
+event1                         | name1                          | start1                         | end1                           | event2                         | name2                          | start2                         | end2                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Total Results: 0
+
+================================================================================
+Executing: CQ-ATH-6: Stations with access limits & disruptions
+--------------------------------------------------------------------------------
+station                        | stationName                    | disruptionName                
+------------------------------------------------------------------------------------------------
+
+Total Results: 0
+
+================================================================================
+Executing: CQ-ATH-7: Rolling stock exclusive to one line
+--------------------------------------------------------------------------------
+stock                          | stockName                      | lineCount                     
+------------------------------------------------------------------------------------------------
+
+Total Results: 0
+
+================================================================================
+Executing: CQ-ATH-8: Endpoints (served by one line, not interchanges)
+--------------------------------------------------------------------------------
+station                        | stationName                   
+---------------------------------------------------------------
+940GZZLUALP                    | Alperton Station              
+940GZZLUAMS                    | Amersham Underground Station  
+940GZZLUAGL                    | Angel Station                 
+940GZZLUACY                    | Archway Station               
+940GZZLUASG                    | Arnos Grove Station           
+940GZZLUASL                    | Arsenal                       
+940GZZLUBLM                    | Balham Station                
+940GZZLUBKE                    | Barkingside Station           
+940GZZBPSUST                   | Battersea Power Station Underground Station
+940GZZLUBEC                    | Becontree Station             
+940GZZLUBZP                    | Belsize Park Station          
+940GZZLUBMY                    | Bermondsey Station            
+940GZZLUBLG                    | Bethnal Green                 
+940GZZLUBLR                    | Blackhorse Road Station       
+940GZZLUBOR                    | Borough Station               
+940GZZLUBOS                    | Boston Manor Station          
+940GZZLUBDS                    | Bounds Green                  
+940GZZLUBTX                    | Brent Cross Station           
+940GZZLUBXN                    | Brixton Station               
+940GZZLUBKH                    | Buckhurst Hill Underground Station
+940GZZLUBTK                    | Burnt Oak Station             
+940GZZLUCAR                    | Caledonian Road Station       
+940GZZLUCTN                    | Camden Town Station           
+940GZZLUCWR                    | Canada Water Underground Station
+940GZZLUCYF                    | Canary Wharf Station          
+940GZZLUCGT                    | Canning Town Underground Station
+940GZZLUCPK                    | Canons Park Station           
+940GZZLUCAL                    | Chalfont & Latimer Underground Station
+940GZZLUCFM                    | Chalk Farm Station            
+940GZZLUCHL                    | Chancery Lane Station         
+940GZZLUCSM                    | Chesham Underground Station   
+940GZZLUCWL                    | Chigwell Underground Station  
+940GZZLUCWP                    | Chiswick Park                 
+940GZZLUCYD                    | Chorleywood Underground Station
+940GZZLUCPC                    | Clapham Common                
+940GZZLUCPN                    | Clapham North                 
+940GZZLUCPS                    | Clapham South                 
+940GZZLUCKS                    | Cockfosters Station           
+940GZZLUCND                    | Colindale Station             
+940GZZLUCSD                    | Colliers Wood Station         
+940GZZLUCGN                    | Covent Garden Station         
+940GZZLUCXY                    | Croxley Underground Station   
+940GZZLUDGE                    | Dagenham East Station         
+940GZZLUDGY                    | Dagenham Heathway Station     
+940GZZLUDBN                    | Debden Underground Station    
+940GZZLUDOH                    | Dollis Hill Station           
+940GZZLUEAN                    | East Acton Station            
+940GZZLUEFY                    | East Finchley Station         
+940GZZLUEPY                    | East Putney Station           
+940GZZLUEGW                    | Edgware Bus Station           
+940GZZLUERB                    | Edgware Road (Bakerloo) Underground Station
+940GZZLUEPK                    | Elm Park Station              
+940GZZLUEPG                    | Epping Underground Station    
+940GZZLUFLP                    | Fairlop Station               
+940GZZLUFYC                    | Finchley Central              
+940GZZLUFBY                    | Fulham Broadway Station       
+940GZZLUGTH                    | Gants Hill Station            
+940GZZLUGGN                    | Golders Green Station         
+940GZZLUGDG                    | Goodge Street Station         
+940GZZLUGGH                    | Grange Hill Underground Station
+940GZZLUGFD                    | Greenford Underground Station 
+940GZZLUGBY                    | Gunnersbury Station           
+940GZZLUHLT                    | Hainault Underground Station  
+940GZZLUHTD                    | Hampstead Station             
+940GZZLUHGR                    | Hanger Lane Station           
+940GZZLUHSN                    | Harlesden Underground Station 
+940GZZLUHAW                    | Harrow & Wealdstone Underground Station
+940GZZLUHOH                    | Harrow-on-the-Hill Underground Station
+940GZZLUHNX                    | Hatton Cross Station          
+940GZZLUHR4                    | Heathrow Terminal 4 Underground Station
+940GZZLUHR5                    | Heathrow Terminal 5 Underground Station
+940GZZLUHRC                    | Heathrow Terminals 1-2-3 Underground Station
+940GZZLUHCL                    | Hendon Central Station        
+940GZZLUHBT                    | High Barnet Station           
+940GZZLUHAI                    | Highbury & Islington Underground Station
+940GZZLUHGT                    | Highgate                      
+940GZZLUHPK                    | Holland Park                  
+940GZZLUHWY                    | Holloway Road Station         
+940GZZLUHCH                    | Hornchurch Station            
+940GZZLUHWC                    | Hounslow Central Station      
+940GZZLUHWE                    | Hounslow East Station         
+940GZZLUHWT                    | Hounslow West Station         
+940GZZLUHPC                    | Hyde Park Corner              
+940GZZLUKNG                    | Kennington Station            
+940GZZLUKSL                    | Kensal Green Underground Station
+940GZZLUKOY                    | Kensington (Olympia) Underground Station
+940GZZLUKSH                    | Kentish Town Underground Station
+940GZZLUKEN                    | Kenton Underground Station    
+940GZZLUKWG                    | Kew Gardens Underground Station
+940GZZLUKPK                    | Kilburn Park Station          
+940GZZLUKBN                    | Kilburn Station               
+940GZZLUKBY                    | Kingsbury Station             
+940GZZLUKNB                    | Knightsbridge Station         
+940GZZLULBN                    | Lambeth North                 
+940GZZLULGT                    | Lancaster Gate Station        
+940GZZLULYN                    | Leyton Station                
+940GZZLULYS                    | Leytonstone Station           
+940GZZLULGN                    | Loughton Underground Station  
+940GZZLUMVL                    | Maida Vale Station            
+940GZZLUMRH                    | Manor House                   
+940GZZLUMBA                    | Marble Arch                   
+940GZZLUMYB                    | Marylebone Underground Station
+940GZZLUMHL                    | Mill Hill East Station        
+940GZZLUMPK                    | Moor Park Underground Station 
+940GZZLUMDN                    | Morden Station                
+940GZZLUMTC                    | Mornington Crescent           
+940GZZLUNDN                    | Neasden Station               
+940GZZLUNBP                    | Newbury Park Station          
+940GZZNEUGST                   | Nine Elms Underground Station 
+940GZZLUNAN                    | North Acton Station           
+940GZZLUNEN                    | North Ealing Station          
+940GZZLUNGW                    | North Greenwich               
+940GZZLUNHA                    | North Harrow Station          
+940GZZLUNWY                    | North Wembley Underground Station
+940GZZLUNFD                    | Northfields Station           
+940GZZLUNHT                    | Northolt Station              
+940GZZLUNKP                    | Northwick Park Station        
+940GZZLUNWH                    | Northwood Hills Station       
+940GZZLUNOW                    | Northwood Station             
+940GZZLUOAK                    | Oakwood Station               
+940GZZLUODS                    | Old Street Station            
+940GZZLUOSY                    | Osterley Station              
+940GZZLUOVL                    | Oval Station                  
+940GZZLUPKR                    | Park Royal Station            
+940GZZLUPSG                    | Parsons Green                 
+940GZZLUPVL                    | Perivale                      
+940GZZLUPCO                    | Pimlico Station               
+940GZZLUPNR                    | Pinner Station                
+940GZZLUPRD                    | Preston Road Station          
+940GZZLUPYB                    | Putney Bridge Station         
+940GZZLUQPS                    | Queen's Park Underground Station
+940GZZLUQBY                    | Queensbury Station            
+940GZZLUQWY                    | Queensway Station             
+940GZZLURVP                    | Ravenscourt Park Station      
+940GZZLURBG                    | Redbridge Station             
+940GZZLURGP                    | Regent's Park Station         
+940GZZLURMD                    | Richmond Underground Station  
+940GZZLURKW                    | Rickmansworth Underground Station
+940GZZLURVY                    | Roding Valley                 
+940GZZLURSG                    | Ruislip Gardens               
+940GZZLURSQ                    | Russell Square Station        
+940GZZLUSVS                    | Seven Sisters Underground Station
+940GZZLUSBC                    | Shepherd's Bush (Central Line)
+940GZZLUSNB                    | Snaresbrook Station           
+940GZZLUSEA                    | South Ealing Station          
+940GZZLUSHH                    | South Harrow Station          
+940GZZLUSKT                    | South Kenton Station          
+940GZZLUSRP                    | South Ruislip Station         
+940GZZLUSWN                    | South Wimbledon Station       
+940GZZLUSWF                    | South Woodford Station        
+940GZZLUSFS                    | Southfields Station           
+940GZZLUSGT                    | Southgate                     
+940GZZLUSWK                    | Southwark Station             
+940GZZLUSJW                    | St John's Wood Station        
+940GZZLUSPU                    | St Paul's Station             
+940GZZLUSFB                    | Stamford Brook Station        
+940GZZLUSTM                    | Stanmore Station              
+940GZZLUSGP                    | Stonebridge Park Underground Station
+940GZZLUSUH                    | Sudbury Hill                  
+940GZZLUSUT                    | Sudbury Town Station          
+940GZZLUSWC                    | Swiss Cottage Station         
+940GZZLUTHB                    | Theydon Bois Underground Station
+940GZZLUTBC                    | Tooting Bec Station           
+940GZZLUTBY                    | Tooting Broadway Station      
+940GZZLUTMH                    | Tottenham Hale                
+940GZZLUTAW                    | Totteridge & Whetstone Station
+940GZZLUTFP                    | Tufnell Park Station          
+940GZZLUTPN                    | Turnpike Lane Station         
+940GZZLUUPB                    | Upminster Bridge              
+940GZZLUUPM                    | Upminster Underground Station 
+940GZZLUUPY                    | Upney Station                 
+940GZZLUVXL                    | Vauxhall                      
+940GZZLUWWL                    | Walthamstow Central Underground Station
+940GZZLUWSD                    | Wanstead Station              
+940GZZLUWKA                    | Warwick Avenue                
+940GZZLUWAF                    | Watford Underground Station   
+940GZZLUWYC                    | Wembley Central Underground Station
+940GZZLUWTA                    | West Acton Station            
+940GZZLUWBN                    | West Brompton Underground Station
+940GZZLUWFN                    | West Finchley Station         
+940GZZLUWHP                    | West Hampstead Station        
+940GZZLUWHW                    | West Harrow Station           
+940GZZLUWKN                    | West Kensington Station       
+940GZZLUWRP                    | West Ruislip Underground Station
+940GZZLUWCY                    | White City Station            
+940GZZLUWJN                    | Willesden Junction Underground Station
+940GZZLUWIP                    | Wimbledon Park                
+940GZZLUWIM                    | Wimbledon Underground Station 
+940GZZLUWOG                    | Wood Green Station            
+940GZZLUWOF                    | Woodford Station              
+940GZZLUWOP                    | Woodside Park Station         
+
+Total Results: 191
+
+================================================================================
+Executing: CQ-ATH-9: Lines sharing closure reasons
+--------------------------------------------------------------------------------
+reason                         | line1Name                      | line2Name                     
+------------------------------------------------------------------------------------------------
+
+Total Results: 0
+
+================================================================================
+Executing: CQ-ATH-10: Stations in Zone 1
+--------------------------------------------------------------------------------
+station                        | stationName                   
+---------------------------------------------------------------
+940GZZLUADE                    | Aldgate East Station          
+940GZZLUALD                    | Aldgate Station               
+940GZZLUAGL                    | Angel Station                 
+940GZZLUBST                    | Baker Street Station          
+HUBBAN                         | Bank                          
+940GZZLUBNK                    | Bank Underground Station      
+940GZZLUBBN                    | Barbican Station              
+940GZZBPSUST                   | Battersea Power Station Underground Station
+940GZZLUBWT                    | Bayswater Station             
+HUBBFR                         | Blackfriars                   
+940GZZLUBKF                    | Blackfriars Underground Station
+HUBBDS                         | Bond Street                   
+940GZZLUBND                    | Bond Street Station           
+940GZZLUBOR                    | Borough Station               
+HUBCST                         | Cannon Street                 
+940GZZLUCST                    | Cannon Street Station         
+940GZZLUCHL                    | Chancery Lane Station         
+HUBCHX                         | Charing Cross                 
+940GZZLUCHX                    | Charing Cross Station         
+940GZZLUCGN                    | Covent Garden Station         
+940GZZLUECT                    | Earl's Court Station          
+940GZZLUERB                    | Edgware Road (Bakerloo) Underground Station
+940GZZLUERC                    | Edgware Road (Circle Line) Underground Station
+HUBEPH                         | Elephant & Castle             
+940GZZLUEAC                    | Elephant & Castle Station     
+940GZZLUEMB                    | Embankment Station            
+HUBEUS                         | Euston                        
+940GZZLUESQ                    | Euston Square Station         
+940GZZLUEUS                    | Euston Underground Station    
+HUBZFD                         | Farringdon                    
+940GZZLUFCN                    | Farringdon Station            
+940GZZLUGTR                    | Gloucester Road Station       
+940GZZLUGDG                    | Goodge Street Station         
+940GZZLUGPS                    | Great Portland St Stn  / Euston Rd
+940GZZLUGPK                    | Green Park Station            
+940GZZLUHSK                    | High Street Kensington Station
+940GZZLUHBN                    | Holborn Station               
+940GZZLUHPC                    | Hyde Park Corner              
+940GZZLUKNG                    | Kennington Station            
+HUBKGX                         | King's Cross & St Pancras International
+940GZZLUKSX                    | King's Cross St. Pancras Underground Station
+940GZZLUKNB                    | Knightsbridge Station         
+940GZZLULBN                    | Lambeth North                 
+940GZZLULGT                    | Lancaster Gate Station        
+940GZZLULSQ                    | Leicester Square Station      
+HUBLST                         | Liverpool Street              
+940GZZLULVT                    | Liverpool Street Station      
+HUBLBG                         | London Bridge                 
+940GZZLULNB                    | London Bridge Station         
+940GZZLUMSH                    | Mansion House Station         
+940GZZLUMBA                    | Marble Arch                   
+HUBMYB                         | Marylebone                    
+940GZZLUMYB                    | Marylebone Underground Station
+940GZZLUMMT                    | Monument Station              
+HUBZMG                         | Moorgate                      
+940GZZLUMGT                    | Moorgate Underground Station  
+940GZZLUNHG                    | Notting Hill Gate Station     
+HUBOLD                         | Old Street                    
+940GZZLUODS                    | Old Street Station            
+940GZZLUOXC                    | Oxford Circus Station         
+HUBPAD                         | Paddington                    
+940GZZLUPAH                    | Paddington (H&C Line)         
+940GZZLUPAC                    | Paddington Underground Station
+940GZZLUPCC                    | Piccadilly Circus             
+940GZZLUPCO                    | Pimlico Station               
+940GZZLUQWY                    | Queensway Station             
+940GZZLURGP                    | Regent's Park Station         
+940GZZLURSQ                    | Russell Square Station        
+940GZZLUSSQ                    | Sloane Square                 
+940GZZLUSKS                    | South Kensington Station      
+940GZZLUSWK                    | Southwark Station             
+940GZZLUSJP                    | St James's Park Station       
+940GZZLUSPU                    | St Paul's Station             
+940GZZLUTMP                    | Temple Station                
+HUBTCR                         | Tottenham Court Road          
+940GZZLUTCR                    | Tottenham Court Road Station  
+940GZZLUTWH                    | Tower Hill                    
+940GZZLUVXL                    | Vauxhall                      
+HUBVXH                         | Vauxhall                      
+HUBVIC                         | Victoria                      
+940GZZLUVIC                    | Victoria Station              
+940GZZLUWRR                    | Warren Street Station         
+HUBWAT                         | Waterloo                      
+940GZZLUWLO                    | Waterloo Station              
+HUBWSM                         | Westminster                   
+940GZZLUWSM                    | Westminster Station           
+
+Total Results: 86
+

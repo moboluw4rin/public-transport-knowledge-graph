@@ -4,7 +4,7 @@ from pathlib import Path
 def merge_ontologies():
     basePath = Path(__file__).parent
     tboxPath = basePath / "ontologies" / "tbox_ontology.ttl"
-    instancesPath = basePath / "ontologies" / "instances.ttl"
+    instancesPath = basePath / "ontologies" / "instances_completed.ttl"
     outputPath = basePath / "ontologies" / "full_knowledge_graph.ttl"
 
     g = Graph()

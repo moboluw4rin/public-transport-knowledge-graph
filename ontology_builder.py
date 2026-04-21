@@ -459,7 +459,7 @@ def main():
     # ------------------------------------------------------------------
     # Serialise
     # ------------------------------------------------------------------
-    output_file = "ontologies/base_ontology.ttl"
+    output_file = "ontologies/tbox_ontology.ttl"
     graph.serialize(destination=output_file, format="turtle")
     print(f"Ontology serialised to {output_file}")
 

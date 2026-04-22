@@ -1,38 +1,38 @@
-Original - Manual CQs (Oze):
+Original - Manual:
 
 1. Which public transport stations are officially designated as fully wheelchair accessible?
 2. What is the total operational length, in miles, of the Circle Line?
 3. Which transport disruptions are currently affecting the Piccadilly Line?
-4. What is the exact delay duration (in minutes) caused by the signal failure at Victoria Station?
+4. What is the total number of stations affected by each disruption event?
 5. Which stations serve as interchange points between the District Line and Bakerloo Line?
-6. What is the reported severity level (e.g., Minor, Severe, Suspended) of the incident at King's Cross St. Pancras?
+6. Which stations are in Zone 1?
 7. Which transport routes were inaugurated before the year 1989?
-8. What is the alternative bus replacement route provided for Caledonian Road Station during its closure?
-9. Which maintenance events are scheduled to occur between September and December?
+8. Which stations are served by more than two Underground lines?
+9. Which stations are affected by both a disruption and a scheduled maintenance event?
 10. What is the standard passenger capacity of the rolling stock used on the Victoria Line?
 
-LLM - Generated CQs (Aldrich):
+LLM - Generated CQs:
 
-1. Which Underground stations have an accessibility assessment indicating step-free access but not full wheelchair access?
-2. Which lines share at least one interchange station with the Victoria Line?
-3. Which disruption events affected more than one Underground line at the same time?
-4. What stations are affected by the current closure event on the Piccadilly Line?
-5. Which replacement bus services are associated with station closure events this month?
-6. Which Underground lines use the same rolling stock type as the Victoria Line?
-7. What is the start and end time of each maintenance event scheduled in October?
-8. Which routes inaugurated before 1989 are still currently operational?
-9. Which incidents at stations were classified with severity level “Severe”?
-10. What is the average delay duration for signal-failure incidents affecting Underground stations?
+11. Which Underground stations have an accessibility assessment indicating step-free access but not full wheelchair access?
+12. Which lines share at least one interchange station with the Victoria Line?
+13. Which disruption events affected more than one Underground line at the same time?
+14. What stations are affected by the current closure event on the Piccadilly Line?
+15. Which Underground lines have no reported disruptions at the current time?
+16. Which rolling stock types are used exclusively by a single Underground line?
+17. Which stations are endpoints (i.e., served by only one line and not interchange stations)?
+18. Which routes inaugurated before 1989 are still currently operational?
+19. Which incidents at stations were classified with severity level “Severe”?
+20. Which stations have accessibility limitations and are also affected by current disruptions?
 
-LLM - Generated CQs (Atheer):
+LLM - Generated CQs (Validation):
 
-1. Which stations are served by more than two Underground lines?
-2. Which Underground lines have no reported disruptions at the current time?
-3. Which stations are affected by both a disruption and a scheduled maintenance event?
-4. What is the total number of stations affected by each disruption event?
-5. Which maintenance events overlap in their scheduled dates? 
-6. Which stations have accessibility limitations and are also affected by current disruptions?
-7. Which rolling stock types are used exclusively by a single Underground line?
-8. Which stations are endpoints (i.e., served by only one line and not interchange stations)?
-9. Which lines have experienced closures with the same closure reason?
-10. Which stations are in Zone 1?
+21. What is the average delay duration for signal-failure incidents affecting Underground stations?
+22. What is the alternative bus replacement route provided for Caledonian Road Station during its closure?
+23. Which replacement bus services are associated with station closure events this month?
+24. Which maintenance events are scheduled to occur between September and December?
+25. What is the exact delay duration (in minutes) caused by the signal failure at Victoria Station?
+26. Which maintenance events overlap in their scheduled dates? 
+27. Which Underground lines use the same rolling stock type as the Victoria Line?
+28. What is the start and end time of each maintenance event scheduled in October?
+29. Which lines have experienced closures with the same closure reason?
+30. What is the reported severity level (e.g., Minor, Severe, Suspended) of the incident at King's Cross St. Pancras?

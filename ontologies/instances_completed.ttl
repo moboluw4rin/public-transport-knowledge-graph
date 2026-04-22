@@ -8,30 +8,35 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 inst:9400ZZLUCWR1 a ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_9400ZZLUCWR1 ;
     ex:stationName "Canada Water Underground Station"^^xsd:string .
 
 inst:9400ZZLUWPL3 a ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_9400ZZLUWPL3 ;
     ex:stationName "Whitechapel Underground Station"^^xsd:string .
 
 inst:9400ZZLUWPL4 a ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_9400ZZLUWPL4 ;
     ex:stationName "Whitechapel Underground Station"^^xsd:string .
 
 inst:9400ZZLUWR1 a ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_9400ZZLUWR1 ;
     ex:stationName "Bow Road Underground Station"^^xsd:string .
 
 inst:940GZZLUACY a ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:northern ;
@@ -102,6 +107,7 @@ inst:940GZZLUBBN a ex:InterchangeStation,
     ex:stationName "Barbican Station"^^xsd:string .
 
 inst:940GZZLUBDS a ex:UndergroundStation ;
+    ex:fareZone 3 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:piccadilly ;
@@ -358,6 +364,7 @@ inst:940GZZLUCPN a ex:UndergroundStation ;
     ex:stationName "Clapham North"^^xsd:string .
 
 inst:940GZZLUCPS a ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:northern ;
@@ -506,6 +513,7 @@ inst:940GZZLUECM a ex:InterchangeStation,
 
 inst:940GZZLUECT a ex:InterchangeStation,
         ex:UndergroundStation ;
+    ex:fareZone 1 ;
     ex:interchangesWithLine inst:district,
         inst:piccadilly ;
     ex:isFullyWheelchairAccessible true ;
@@ -525,6 +533,7 @@ inst:940GZZLUEFY a ex:UndergroundStation ;
 
 inst:940GZZLUEHM a ex:InterchangeStation,
         ex:UndergroundStation ;
+    ex:fareZone 3 ;
     ex:interchangesWithLine inst:district,
         inst:hammersmith-city ;
     ex:isFullyWheelchairAccessible true ;
@@ -559,6 +568,7 @@ inst:940GZZLUEPK a ex:UndergroundStation ;
     ex:stationName "Elm Park Station"^^xsd:string .
 
 inst:940GZZLUEPY a ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:district ;
@@ -792,6 +802,7 @@ inst:940GZZLUHCH a ex:UndergroundStation ;
     ex:stationName "Hornchurch Station"^^xsd:string .
 
 inst:940GZZLUHCL a ex:UndergroundStation ;
+    ex:fareZone 3 ;
     ex:isFullyWheelchairAccessible true ;
     ex:officialAccessibilityStatus "Full wheelchair access"^^xsd:string ;
     ex:servedByLine inst:northern ;
@@ -827,6 +838,7 @@ inst:940GZZLUHGT a ex:UndergroundStation ;
     ex:stationName "Highgate"^^xsd:string .
 
 inst:940GZZLUHNX a ex:UndergroundStation ;
+    ex:fareZone 5 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:piccadilly ;
@@ -890,6 +902,7 @@ inst:940GZZLUHSN a ex:UndergroundStation ;
     ex:stationName "Harlesden Underground Station"^^xsd:string .
 
 inst:940GZZLUHTD a ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:northern ;
@@ -973,6 +986,7 @@ inst:940GZZLUKNB a ex:UndergroundStation ;
     ex:stationName "Knightsbridge Station"^^xsd:string .
 
 inst:940GZZLUKNG a ex:UndergroundStation ;
+    ex:fareZone 1 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:northern ;
@@ -1024,6 +1038,7 @@ inst:940GZZLUKSX a ex:InterchangeStation,
     ex:stationName "King's Cross St. Pancras Underground Station"^^xsd:string .
 
 inst:940GZZLUKWG a ex:UndergroundStation ;
+    ex:fareZone 3 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:district ;
@@ -1153,6 +1168,7 @@ inst:940GZZLUMMT a ex:InterchangeStation,
     ex:stationName "Monument Station"^^xsd:string .
 
 inst:940GZZLUMPK a ex:UndergroundStation ;
+    ex:fareZone 6 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:metropolitan ;
@@ -1160,6 +1176,7 @@ inst:940GZZLUMPK a ex:UndergroundStation ;
     ex:stationName "Moor Park Underground Station"^^xsd:string .
 
 inst:940GZZLUMRH a ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:piccadilly ;
@@ -1203,6 +1220,7 @@ inst:940GZZLUMYB a ex:UndergroundStation ;
     ex:stationName "Marylebone Underground Station"^^xsd:string .
 
 inst:940GZZLUNAN a ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:central ;
@@ -1260,6 +1278,7 @@ inst:940GZZLUNHA a ex:UndergroundStation ;
 
 inst:940GZZLUNHG a ex:InterchangeStation,
         ex:UndergroundStation ;
+    ex:fareZone 1 ;
     ex:interchangesWithLine inst:central,
         inst:circle,
         inst:district ;
@@ -1373,6 +1392,7 @@ inst:940GZZLUPAC a ex:InterchangeStation,
 
 inst:940GZZLUPAH a ex:InterchangeStation,
         ex:UndergroundStation ;
+    ex:fareZone 1 ;
     ex:interchangesWithLine inst:circle,
         inst:hammersmith-city ;
     ex:isFullyWheelchairAccessible false ;
@@ -1789,6 +1809,7 @@ inst:940GZZLUSWK a ex:UndergroundStation ;
     ex:stationName "Southwark Station"^^xsd:string .
 
 inst:940GZZLUSWN a ex:UndergroundStation ;
+    ex:fareZone 3 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:northern ;
@@ -1869,6 +1890,7 @@ inst:940GZZLUTMP a ex:InterchangeStation,
 
 inst:940GZZLUTNG a ex:InterchangeStation,
         ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:interchangesWithLine inst:district,
         inst:piccadilly ;
     ex:isFullyWheelchairAccessible false ;
@@ -1927,6 +1949,7 @@ inst:940GZZLUUPY a ex:UndergroundStation ;
     ex:stationName "Upney Station"^^xsd:string .
 
 inst:940GZZLUVXL a ex:UndergroundStation ;
+    ex:fareZone 1 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:victoria ;
@@ -1982,6 +2005,7 @@ inst:940GZZLUWHW a ex:UndergroundStation ;
 
 inst:940GZZLUWIG a ex:InterchangeStation,
         ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:interchangesWithLine inst:jubilee,
         inst:metropolitan ;
     ex:isFullyWheelchairAccessible false ;
@@ -2000,6 +2024,7 @@ inst:940GZZLUWIP a ex:UndergroundStation ;
     ex:stationName "Wimbledon Park"^^xsd:string .
 
 inst:940GZZLUWJN a ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:bakerloo ;
@@ -2259,6 +2284,7 @@ inst:HUBEAL a ex:UndergroundStation ;
     ex:stationName "Ealing Broadway"^^xsd:string .
 
 inst:HUBEPH a ex:UndergroundStation ;
+    ex:fareZone 1 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_HUBEPH ;
@@ -2370,6 +2396,7 @@ inst:HUBKTN a ex:UndergroundStation ;
     ex:stationName "Kentish Town"^^xsd:string .
 
 inst:HUBKWG a ex:UndergroundStation ;
+    ex:fareZone 3 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_HUBKWG ;
@@ -2518,6 +2545,7 @@ inst:HUBVIC a ex:UndergroundStation ;
     ex:stationName "Victoria"^^xsd:string .
 
 inst:HUBVXH a ex:UndergroundStation ;
+    ex:fareZone 1 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_HUBVXH ;
@@ -2560,6 +2588,7 @@ inst:HUBWHD a ex:UndergroundStation ;
     ex:stationName "West Hampstead"^^xsd:string .
 
 inst:HUBWIJ a ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_HUBWIJ ;
@@ -4528,6 +4557,7 @@ inst:waterloo-city_route_outbound a ex:UndergroundRoute ;
         inst:940GZZLUWLO .
 
 inst:940GZZBPSUST a ex:UndergroundStation ;
+    ex:fareZone 1 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:northern ;
@@ -4788,6 +4818,7 @@ inst:940GZZLULYN a ex:UndergroundStation ;
     ex:stationName "Leyton Station"^^xsd:string .
 
 inst:940GZZLULYS a ex:UndergroundStation ;
+    ex:fareZone 3 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:central ;
@@ -4892,6 +4923,7 @@ inst:940GZZLUCSM a ex:UndergroundStation ;
 
 inst:940GZZLUEAC a ex:InterchangeStation,
         ex:UndergroundStation ;
+    ex:fareZone 1 ;
     ex:interchangesWithLine inst:bakerloo,
         inst:northern ;
     ex:isFullyWheelchairAccessible true ;

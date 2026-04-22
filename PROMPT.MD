@@ -58,21 +58,23 @@ This project employs a **sequential two-chat orchestration** methodology to exte
 
     # Inputs 
 
-    ##Two existing ontologies (with prefixes and key classes)
+    ## Two existing ontologies (with prefixes and key classes)
     - (Transmodel):  https://oeg-upm.github.io/snap-docs/
     -  (Owl-Time): https://www.w3.org/TR/owl-time/
 
-    ##A list of 10 competency questions (CQs)
+    ## A list of 10 competency questions (CQs)
     1. Which public transport stations are officially designated as fully wheelchair accessible?
     2. What is the total operational length, in miles, of the Circle Line?
     3. Which transport disruptions are currently affecting the Piccadilly Line?
-    4. What is the exact delay duration (in minutes) caused by the signal failure at Victoria Station?
+    4. What is the total number of stations affected by each disruption event?
     5. Which stations serve as interchange points between the District Line and Bakerloo Line?
-    6. What is the reported severity level (e.g., Minor, Severe, Suspended) of the incident at King's Cross St. Pancras?
+    6. Which stations are in Zone 1?
     7. Which transport routes were inaugurated before the year 1989?
-    8. What is the alternative bus replacement route provided for Caledonian Road Station during its closure?
-    9. Which maintenance events are scheduled to occur between September and December?
-    10. What is the standard passenger capacity of the rolling stock used on the Victoria Line?# Task
+    8. Which stations are served by more than two Underground lines?
+    9. Which stations are affected by both a disruption and a scheduled maintenance event?
+    10. What is the standard passenger capacity of the rolling stock used on the Victoria Line?
+    
+    # Task
 
     You must perform THREE steps:
 
@@ -336,11 +338,11 @@ This project employs a **sequential two-chat orchestration** methodology to exte
 <summary>Click to view Prompt</summary>
 
     ```markdown
-    I have attached the generated script and the .ttl which it generated. Evaluate it and give another prompt if there is correct required.
+    I have attached the generated script and the .ttl which it generated. Evaluate it against the existing 20 competency questions and give another prompt to generate 10 additional validation competency questions for real-world application and corrections if required.
 
     ```
     ontology_builder_initial.py (Script provided by builder chat)
-    ontology_initial .ttl file from that script. (file produced by ontology_builder)
+    tbox_ontology.ttl file from that script. (file produced by ontology_builder)
     ```
     ```
 
@@ -358,8 +360,8 @@ This project employs a **sequential two-chat orchestration** methodology to exte
 
     1. Validate and correct all namespace IRIs and ontology imports for Transmodel and OWL-Time.
     2. Check whether each subclass mapping and subproperty mapping is semantically valid.
-    3. Add missing `rdfs:subClassOf` mappings for local classes that should extend existing transport classes, especially `UndergroundLine` and `UndergroundRoute`.
-    4. Remove or simplify any classes or properties that are not necessary for answering the 20 competency questions.
+    3. Generate 10 additional validation competency questions for real-world application using the existing ontology and CQ structure, and extend the ontology only where necessary to support them.
+    4. Remove or simplify any classes or properties that are not necessary for answering the first 20 competency questions and the 10 additional validation competency questions.
     5. Keep this as a TBox-only ontology generator in rdflib.
     6. Output:
 
@@ -387,7 +389,7 @@ This project employs a **sequential two-chat orchestration** methodology to exte
     Verify the fixed ontology_builder.py and its declared classes, properties and relationships are valid. 
     ```
     ontology_builder.py (updated version)
-    base_ontology.ttl (produced by updated script)
+    tbox_ontology.ttl (produced by updated script)
     ```
 
     Then provide me with a prompt, which identifies the issues and how to fix them.
@@ -513,17 +515,6 @@ This project employs a **sequential two-chat orchestration** methodology to exte
 
     1. The corrected full Python rdflib script
     2. A short bullet list of what was fixed and why
-    ```
-
-</details>
-
-### 4c. Additional 10 CQs
-
-<details>
-<summary>Click to view Prompt</summary>
-
-    ```markdown
-    You are an expert in machine learning. Given this London Underground ontology and the existing set of competency questions, generate 10 additional competency questions that complement and help validate the existing ones. Where possible, the questions should be answerable using the current ontology structure. If a question reveals a gap or requires extending the ontology, note what additions would be needed.
     ```
 
 </details>

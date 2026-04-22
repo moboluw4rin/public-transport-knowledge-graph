@@ -1,0 +1,68 @@
+@prefix ex: <http://example.org/ontology-express#> .
+@prefix inst: <http://example.org/instances#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+inst:9400ZZLUCWR1 ex:fareZone 2 .
+
+inst:9400ZZLUWPL3 ex:fareZone 2 .
+
+inst:9400ZZLUWPL4 ex:fareZone 2 .
+
+inst:9400ZZLUWR1 ex:fareZone 2 .
+
+inst:940GZZBPSUST ex:fareZone 1 .
+
+inst:940GZZLUACY ex:fareZone 2 .
+
+inst:940GZZLUBDS ex:fareZone 3 .
+
+inst:940GZZLUCPS ex:fareZone 2 .
+
+inst:940GZZLUEAC ex:fareZone 1 .
+
+inst:940GZZLUECT ex:fareZone 1 .
+
+inst:940GZZLUEHM ex:fareZone 3 .
+
+inst:940GZZLUEPY ex:fareZone 2 .
+
+inst:940GZZLUHCL ex:fareZone 3 .
+
+inst:940GZZLUHNX ex:fareZone 5 .
+
+inst:940GZZLUHTD ex:fareZone 2 .
+
+inst:940GZZLUKNG ex:fareZone 1 .
+
+inst:940GZZLUKWG ex:fareZone 3 .
+
+inst:940GZZLULYS ex:fareZone 3 .
+
+inst:940GZZLUMPK ex:fareZone 6 .
+
+inst:940GZZLUMRH ex:fareZone 2 .
+
+inst:940GZZLUNAN ex:fareZone 2 .
+
+inst:940GZZLUNHG ex:fareZone 1 .
+
+inst:940GZZLUPAH ex:fareZone 1 .
+
+inst:940GZZLUSWN ex:fareZone 3 .
+
+inst:940GZZLUTNG ex:fareZone 2 .
+
+inst:940GZZLUVXL ex:fareZone 1 .
+
+inst:940GZZLUWIG ex:fareZone 2 .
+
+inst:940GZZLUWJN ex:fareZone 2 .
+
+inst:HUBEPH ex:fareZone 1 .
+
+inst:HUBKWG ex:fareZone 3 .
+
+inst:HUBVXH ex:fareZone 1 .
+
+inst:HUBWIJ ex:fareZone 2 .
+

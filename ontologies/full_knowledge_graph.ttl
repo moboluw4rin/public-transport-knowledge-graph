@@ -9,6 +9,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 inst:9400ZZLUCWR1
     a ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_9400ZZLUCWR1 ;
@@ -17,6 +18,7 @@ inst:9400ZZLUCWR1
 
 inst:9400ZZLUWPL3
     a ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_9400ZZLUWPL3 ;
@@ -25,6 +27,7 @@ inst:9400ZZLUWPL3
 
 inst:9400ZZLUWPL4
     a ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_9400ZZLUWPL4 ;
@@ -33,6 +36,7 @@ inst:9400ZZLUWPL4
 
 inst:9400ZZLUWR1
     a ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_9400ZZLUWR1 ;
@@ -41,6 +45,7 @@ inst:9400ZZLUWR1
 
 inst:940GZZLUACY
     a ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:northern ;
@@ -83,6 +88,16 @@ inst:940GZZLUALP
     ex:servedByLine inst:piccadilly ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUALP ;
     ex:stationName "Alperton Station"^^xsd:string ;
+.
+
+inst:940GZZLUASG
+    a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUASG ;
+    ex:stationName "Arnos Grove Station"^^xsd:string ;
 .
 
 inst:940GZZLUASL
@@ -135,6 +150,7 @@ inst:940GZZLUBBN
 
 inst:940GZZLUBDS
     a ex:UndergroundStation ;
+    ex:fareZone 3 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:piccadilly ;
@@ -283,6 +299,29 @@ inst:940GZZLUBSC
     ex:stationName "Barons Court"^^xsd:string ;
 .
 
+inst:940GZZLUBST
+    a
+        ex:InterchangeStation ,
+        ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:interchangesWithLine
+        inst:bakerloo ,
+        inst:circle ,
+        inst:hammersmith-city ,
+        inst:jubilee ,
+        inst:metropolitan ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
+    ex:servedByLine
+        inst:bakerloo ,
+        inst:circle ,
+        inst:hammersmith-city ,
+        inst:jubilee ,
+        inst:metropolitan ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUBST ;
+    ex:stationName "Baker Street Station"^^xsd:string ;
+.
+
 inst:940GZZLUBTK
     a ex:UndergroundStation ;
     ex:fareZone 4 ;
@@ -409,23 +448,6 @@ inst:940GZZLUCHL
     ex:stationName "Chancery Lane Station"^^xsd:string ;
 .
 
-inst:940GZZLUCHX
-    a
-        ex:InterchangeStation ,
-        ex:UndergroundStation ;
-    ex:fareZone 1 ;
-    ex:interchangesWithLine
-        inst:bakerloo ,
-        inst:northern ;
-    ex:isFullyWheelchairAccessible false ;
-    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine
-        inst:bakerloo ,
-        inst:northern ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUCHX ;
-    ex:stationName "Charing Cross Station"^^xsd:string ;
-.
-
 inst:940GZZLUCND
     a ex:UndergroundStation ;
     ex:fareZone 4 ;
@@ -468,6 +490,7 @@ inst:940GZZLUCPN
 
 inst:940GZZLUCPS
     a ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:northern ;
@@ -500,16 +523,6 @@ inst:940GZZLUCST
         inst:district ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUCST ;
     ex:stationName "Cannon Street Station"^^xsd:string ;
-.
-
-inst:940GZZLUCTN
-    a ex:UndergroundStation ;
-    ex:fareZone 2 ;
-    ex:isFullyWheelchairAccessible false ;
-    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine inst:northern ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUCTN ;
-    ex:stationName "Camden Town Station"^^xsd:string ;
 .
 
 inst:940GZZLUCWL
@@ -660,6 +673,7 @@ inst:940GZZLUECT
     a
         ex:InterchangeStation ,
         ex:UndergroundStation ;
+    ex:fareZone 1 ;
     ex:interchangesWithLine
         inst:district ,
         inst:piccadilly ;
@@ -686,6 +700,7 @@ inst:940GZZLUEHM
     a
         ex:InterchangeStation ,
         ex:UndergroundStation ;
+    ex:fareZone 3 ;
     ex:interchangesWithLine
         inst:district ,
         inst:hammersmith-city ;
@@ -731,6 +746,7 @@ inst:940GZZLUEPK
 
 inst:940GZZLUEPY
     a ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:district ;
@@ -838,16 +854,6 @@ inst:940GZZLUFPK
         inst:victoria ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUFPK ;
     ex:stationName "Finsbury Park Station"^^xsd:string ;
-.
-
-inst:940GZZLUFYC
-    a ex:UndergroundStation ;
-    ex:fareZone 4 ;
-    ex:isFullyWheelchairAccessible true ;
-    ex:officialAccessibilityStatus "Full wheelchair access"^^xsd:string ;
-    ex:servedByLine inst:northern ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUFYC ;
-    ex:stationName "Finchley Central"^^xsd:string ;
 .
 
 inst:940GZZLUFYR
@@ -1040,6 +1046,7 @@ inst:940GZZLUHCH
 
 inst:940GZZLUHCL
     a ex:UndergroundStation ;
+    ex:fareZone 3 ;
     ex:isFullyWheelchairAccessible true ;
     ex:officialAccessibilityStatus "Full wheelchair access"^^xsd:string ;
     ex:servedByLine inst:northern ;
@@ -1086,11 +1093,22 @@ inst:940GZZLUHGT
 
 inst:940GZZLUHNX
     a ex:UndergroundStation ;
+    ex:fareZone 5 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:piccadilly ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUHNX ;
     ex:stationName "Hatton Cross Station"^^xsd:string ;
+.
+
+inst:940GZZLUHOH
+    a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
+    ex:servedByLine inst:metropolitan ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUHOH ;
+    ex:stationName "Harrow-on-the-Hill Underground Station"^^xsd:string ;
 .
 
 inst:940GZZLUHPC
@@ -1169,6 +1187,7 @@ inst:940GZZLUHSN
 
 inst:940GZZLUHTD
     a ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:northern ;
@@ -1273,15 +1292,6 @@ inst:940GZZLUKNB
     ex:stationName "Knightsbridge Station"^^xsd:string ;
 .
 
-inst:940GZZLUKNG
-    a ex:UndergroundStation ;
-    ex:isFullyWheelchairAccessible false ;
-    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine inst:northern ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUKNG ;
-    ex:stationName "Kennington Station"^^xsd:string ;
-.
-
 inst:940GZZLUKPK
     a ex:UndergroundStation ;
     ex:fareZone 2 ;
@@ -1339,6 +1349,7 @@ inst:940GZZLUKSX
 
 inst:940GZZLUKWG
     a ex:UndergroundStation ;
+    ex:fareZone 3 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:district ;
@@ -1444,6 +1455,47 @@ inst:940GZZLULSQ
     ex:stationName "Leicester Square Station"^^xsd:string ;
 .
 
+inst:940GZZLULVT
+    a
+        ex:InterchangeStation ,
+        ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:interchangesWithLine
+        inst:central ,
+        inst:circle ,
+        inst:hammersmith-city ,
+        inst:metropolitan ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:officialAccessibilityStatus "Full wheelchair access"^^xsd:string ;
+    ex:servedByLine
+        inst:central ,
+        inst:circle ,
+        inst:hammersmith-city ,
+        inst:metropolitan ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLULVT ;
+    ex:stationName "Liverpool Street Station"^^xsd:string ;
+.
+
+inst:940GZZLULYN
+    a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
+    ex:servedByLine inst:central ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLULYN ;
+    ex:stationName "Leyton Station"^^xsd:string ;
+.
+
+inst:940GZZLULYS
+    a ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
+    ex:servedByLine inst:central ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLULYS ;
+    ex:stationName "Leytonstone Station"^^xsd:string ;
+.
+
 inst:940GZZLUMBA
     a ex:UndergroundStation ;
     ex:fareZone 1 ;
@@ -1513,6 +1565,7 @@ inst:940GZZLUMMT
 
 inst:940GZZLUMPK
     a ex:UndergroundStation ;
+    ex:fareZone 6 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:metropolitan ;
@@ -1522,6 +1575,7 @@ inst:940GZZLUMPK
 
 inst:940GZZLUMRH
     a ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:piccadilly ;
@@ -1578,6 +1632,7 @@ inst:940GZZLUMYB
 
 inst:940GZZLUNAN
     a ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:central ;
@@ -1651,6 +1706,7 @@ inst:940GZZLUNHG
     a
         ex:InterchangeStation ,
         ex:UndergroundStation ;
+    ex:fareZone 1 ;
     ex:interchangesWithLine
         inst:central ,
         inst:circle ,
@@ -1797,6 +1853,7 @@ inst:940GZZLUPAH
     a
         ex:InterchangeStation ,
         ex:UndergroundStation ;
+    ex:fareZone 1 ;
     ex:interchangesWithLine
         inst:circle ,
         inst:hammersmith-city ;
@@ -1923,6 +1980,16 @@ inst:940GZZLUQBY
     ex:stationName "Queensbury Station"^^xsd:string ;
 .
 
+inst:940GZZLUQPS
+    a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
+    ex:servedByLine inst:bakerloo ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUQPS ;
+    ex:stationName "Queen's Park Underground Station"^^xsd:string ;
+.
+
 inst:940GZZLUQWY
     a ex:UndergroundStation ;
     ex:fareZone 1 ;
@@ -1990,6 +2057,23 @@ inst:940GZZLURSM
     ex:stationName "Ruislip Manor Station"^^xsd:string ;
 .
 
+inst:940GZZLURSP
+    a
+        ex:InterchangeStation ,
+        ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:interchangesWithLine
+        inst:metropolitan ,
+        inst:piccadilly ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
+    ex:servedByLine
+        inst:metropolitan ,
+        inst:piccadilly ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLURSP ;
+    ex:stationName "Ruislip Station"^^xsd:string ;
+.
+
 inst:940GZZLURSQ
     a ex:UndergroundStation ;
     ex:fareZone 1 ;
@@ -2018,23 +2102,6 @@ inst:940GZZLURVY
     ex:servedByLine inst:central ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLURVY ;
     ex:stationName "Roding Valley"^^xsd:string ;
-.
-
-inst:940GZZLURYL
-    a
-        ex:InterchangeStation ,
-        ex:UndergroundStation ;
-    ex:fareZone 5 ;
-    ex:interchangesWithLine
-        inst:metropolitan ,
-        inst:piccadilly ;
-    ex:isFullyWheelchairAccessible false ;
-    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine
-        inst:metropolitan ,
-        inst:piccadilly ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLURYL ;
-    ex:stationName "Rayners Lane Station"^^xsd:string ;
 .
 
 inst:940GZZLURYO
@@ -2340,6 +2407,7 @@ inst:940GZZLUSWK
 
 inst:940GZZLUSWN
     a ex:UndergroundStation ;
+    ex:fareZone 3 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:northern ;
@@ -2445,6 +2513,7 @@ inst:940GZZLUTNG
     a
         ex:InterchangeStation ,
         ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:interchangesWithLine
         inst:district ,
         inst:piccadilly ;
@@ -2521,8 +2590,28 @@ inst:940GZZLUUPY
     ex:stationName "Upney Station"^^xsd:string ;
 .
 
+inst:940GZZLUVIC
+    a
+        ex:InterchangeStation ,
+        ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:interchangesWithLine
+        inst:circle ,
+        inst:district ,
+        inst:victoria ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
+    ex:servedByLine
+        inst:circle ,
+        inst:district ,
+        inst:victoria ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUVIC ;
+    ex:stationName "Victoria Station"^^xsd:string ;
+.
+
 inst:940GZZLUVXL
     a ex:UndergroundStation ;
+    ex:fareZone 1 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:victoria ;
@@ -2538,6 +2627,16 @@ inst:940GZZLUWBN
     ex:servedByLine inst:district ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUWBN ;
     ex:stationName "West Brompton Underground Station"^^xsd:string ;
+.
+
+inst:940GZZLUWCY
+    a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
+    ex:servedByLine inst:central ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUWCY ;
+    ex:stationName "White City Station"^^xsd:string ;
 .
 
 inst:940GZZLUWFN
@@ -2595,6 +2694,7 @@ inst:940GZZLUWIG
     a
         ex:InterchangeStation ,
         ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:interchangesWithLine
         inst:jubilee ,
         inst:metropolitan ;
@@ -2619,6 +2719,7 @@ inst:940GZZLUWIP
 
 inst:940GZZLUWJN
     a ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:bakerloo ;
@@ -2959,6 +3060,7 @@ inst:HUBEAL
 
 inst:HUBEPH
     a ex:UndergroundStation ;
+    ex:fareZone 1 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_HUBEPH ;
@@ -2999,6 +3101,15 @@ inst:HUBGUN
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_HUBGUN ;
     ex:stationName "Gunnersbury"^^xsd:string ;
+.
+
+inst:HUBH13
+    a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_HUBH13 ;
+    ex:stationName "Heathrow Terminals 2 & 3"^^xsd:string ;
 .
 
 inst:HUBHDN
@@ -3102,6 +3213,7 @@ inst:HUBKTN
 
 inst:HUBKWG
     a ex:UndergroundStation ;
+    ex:fareZone 3 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_HUBKWG ;
@@ -3294,6 +3406,7 @@ inst:HUBVIC
 
 inst:HUBVXH
     a ex:UndergroundStation ;
+    ex:fareZone 1 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_HUBVXH ;
@@ -3349,6 +3462,7 @@ inst:HUBWHD
 
 inst:HUBWIJ
     a ex:UndergroundStation ;
+    ex:fareZone 2 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_HUBWIJ ;
@@ -3427,543 +3541,225 @@ inst:HUBZWL
     ex:stationName "Whitechapel"^^xsd:string ;
 .
 
-inst:bakerloo_maintenance_0
-    a ex:MaintenanceEvent ;
-    ex:affectsLine
-        inst:bakerloo ,
-        inst:northern ;
-    ex:maintenanceName "Bakerloo Line: Service is operating at a reduced frequency between Elephant & Castle and Queen's Park every 8 minutes, and between Queen's Park and Harrow & Wealdstone every 15 minutes due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
-    ex:occursAtStation
-        inst:940GZZLUEAC ,
-        inst:940GZZLUHAW ,
-        inst:940GZZLUQPS ;
-.
-
-inst:bakerloo_maintenance_1
-    a ex:MaintenanceEvent ;
-    ex:affectsLine
-        inst:bakerloo ,
-        inst:northern ;
-    ex:maintenanceName "Bakerloo Line: Service is operating at a reduced frequency between Elephant & Castle and Queen's Park every 8 minutes, and between Queen's Park and Harrow & Wealdstone every 15 minutes due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
-    ex:occursAtStation
-        inst:940GZZLUEAC ,
-        inst:940GZZLUHAW ,
-        inst:940GZZLUQPS ;
-.
-
-inst:bakerloo_status_0
-    a ex:DelayEvent ;
-    ex:affectsLine
-        inst:bakerloo ,
-        inst:northern ;
-    ex:closureReason "Bakerloo Line: Service is operating at a reduced frequency between Elephant & Castle and Queen's Park every 8 minutes, and between Queen's Park and Harrow & Wealdstone every 15 minutes due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
-    ex:currentStatus "Minor Delays"^^xsd:string ;
-    ex:disruptionName "Minor Delays"^^xsd:string ;
-    ex:hasSeverity inst:Severity_Minor_Delays ;
-    ex:incidentCause "strike action"^^xsd:string ;
-    ex:incidentName "Bakerloo Line: Service is operating at a reduced frequency between Elephant & Ca"^^xsd:string ;
-    ex:incidentType "other_unplanned"^^xsd:string ;
-    ex:isPlannedMaintenance false ;
-    ex:occursAtStation
-        inst:940GZZLUEAC ,
-        inst:940GZZLUHAW ,
-        inst:940GZZLUQPS ;
-    ex:primaryLine inst:bakerloo ;
-    ex:severityLabel "Minor Delays"^^xsd:string ;
-.
-
-inst:bakerloo_status_1
-    a ex:DelayEvent ;
-    ex:affectsLine
-        inst:bakerloo ,
-        inst:northern ;
-    ex:closureReason "Bakerloo Line: Service is operating at a reduced frequency between Elephant & Castle and Queen's Park every 8 minutes, and between Queen's Park and Harrow & Wealdstone every 15 minutes due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
-    ex:currentStatus "Severe Delays"^^xsd:string ;
-    ex:disruptionName "Severe Delays"^^xsd:string ;
-    ex:hasSeverity inst:Severity_Severe_Delays ;
-    ex:incidentCause "strike action"^^xsd:string ;
-    ex:incidentName "Bakerloo Line: Service is operating at a reduced frequency between Elephant & Ca"^^xsd:string ;
-    ex:incidentType "other_unplanned"^^xsd:string ;
-    ex:isPlannedMaintenance false ;
-    ex:occursAtStation
-        inst:940GZZLUEAC ,
-        inst:940GZZLUHAW ,
-        inst:940GZZLUQPS ;
-    ex:primaryLine inst:bakerloo ;
-    ex:severityLabel "Severe Delays"^^xsd:string ;
-.
-
 inst:central_maintenance_0
     a ex:MaintenanceEvent ;
-    ex:affectsLine
-        inst:central ,
-        inst:circle ,
-        inst:district ,
-        inst:hammersmith-city ,
-        inst:metropolitan ,
-        inst:piccadilly ;
-    ex:maintenanceName "Central Line: Service is operating at a reduced frequency between White City and Ealing Broadway / West Ruislip every 10 minutes, between Liverpool Street and Leytonstone every 5 minutes and between Leytonstone and Hainault / Epping every 10 minutes.  No service on the rest of the line due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
-    ex:occursAtStation
-        inst:940GZZLUEBY ,
-        inst:940GZZLUEPG ,
-        inst:940GZZLUHLT ,
-        inst:940GZZLULVT ,
-        inst:940GZZLULYN ,
-        inst:940GZZLULYS ,
-        inst:940GZZLURSP ,
-        inst:940GZZLUWCY ,
-        inst:940GZZLUWRP ;
-.
-
-inst:central_maintenance_1
-    a ex:MaintenanceEvent ;
-    ex:affectsLine
-        inst:central ,
-        inst:circle ,
-        inst:district ,
-        inst:hammersmith-city ,
-        inst:metropolitan ,
-        inst:piccadilly ;
-    ex:maintenanceName "Central Line: Service is operating at a reduced frequency between White City and Ealing Broadway / West Ruislip every 10 minutes, between Liverpool Street and Leytonstone every 5 minutes and between Leytonstone and Hainault / Epping every 10 minutes.  No service on the rest of the line due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
-    ex:occursAtStation
-        inst:940GZZLUEBY ,
-        inst:940GZZLUEPG ,
-        inst:940GZZLUHLT ,
-        inst:940GZZLULVT ,
-        inst:940GZZLULYN ,
-        inst:940GZZLULYS ,
-        inst:940GZZLURSP ,
-        inst:940GZZLUWCY ,
-        inst:940GZZLUWRP ;
+    ex:affectsLine inst:central ;
+    ex:maintenanceName "Central Line: Minor delays due to earlier strike action. "^^xsd:string ;
 .
 
 inst:central_status_0
     a ex:DelayEvent ;
-    ex:affectsLine
-        inst:central ,
-        inst:circle ,
-        inst:district ,
-        inst:hammersmith-city ,
-        inst:metropolitan ,
-        inst:piccadilly ;
-    ex:closureReason "Central Line: Service is operating at a reduced frequency between White City and Ealing Broadway / West Ruislip every 10 minutes, between Liverpool Street and Leytonstone every 5 minutes and between Leytonstone and Hainault / Epping every 10 minutes.  No service on the rest of the line due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
-    ex:currentStatus "Severe Delays"^^xsd:string ;
-    ex:disruptionName "Severe Delays"^^xsd:string ;
-    ex:hasSeverity inst:Severity_Severe_Delays ;
+    ex:affectsLine inst:central ;
+    ex:closureReason "Central Line: Minor delays due to earlier strike action. "^^xsd:string ;
+    ex:currentStatus "Minor Delays"^^xsd:string ;
+    ex:disruptionName "Minor Delays"^^xsd:string ;
+    ex:hasSeverity inst:Severity_Minor_Delays ;
     ex:incidentCause "strike action"^^xsd:string ;
-    ex:incidentName "Central Line: Service is operating at a reduced frequency between White City and"^^xsd:string ;
+    ex:incidentName "Central Line: Minor delays due to earlier strike action"^^xsd:string ;
     ex:incidentType "other_unplanned"^^xsd:string ;
     ex:isPlannedMaintenance false ;
-    ex:occursAtStation
-        inst:940GZZLUEBY ,
-        inst:940GZZLUEPG ,
-        inst:940GZZLUHLT ,
-        inst:940GZZLULVT ,
-        inst:940GZZLULYN ,
-        inst:940GZZLULYS ,
-        inst:940GZZLURSP ,
-        inst:940GZZLUWCY ,
-        inst:940GZZLUWRP ;
     ex:primaryLine inst:central ;
-    ex:severityLabel "Severe Delays"^^xsd:string ;
-.
-
-inst:central_status_1
-    a ex:ClosureEvent ;
-    ex:affectsLine
-        inst:central ,
-        inst:circle ,
-        inst:district ,
-        inst:hammersmith-city ,
-        inst:metropolitan ,
-        inst:piccadilly ;
-    ex:closureReason "Central Line: Service is operating at a reduced frequency between White City and Ealing Broadway / West Ruislip every 10 minutes, between Liverpool Street and Leytonstone every 5 minutes and between Leytonstone and Hainault / Epping every 10 minutes.  No service on the rest of the line due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
-    ex:currentStatus "Part Suspended"^^xsd:string ;
-    ex:disruptionName "Part Suspended"^^xsd:string ;
-    ex:hasSeverity inst:Severity_Part_Suspended ;
-    ex:incidentCause "strike action"^^xsd:string ;
-    ex:incidentName "Central Line: Service is operating at a reduced frequency between White City and"^^xsd:string ;
-    ex:incidentType "other_unplanned"^^xsd:string ;
-    ex:isPlannedMaintenance false ;
-    ex:occursAtStation
-        inst:940GZZLUEBY ,
-        inst:940GZZLUEPG ,
-        inst:940GZZLUHLT ,
-        inst:940GZZLULVT ,
-        inst:940GZZLULYN ,
-        inst:940GZZLULYS ,
-        inst:940GZZLURSP ,
-        inst:940GZZLUWCY ,
-        inst:940GZZLUWRP ;
-    ex:primaryLine inst:central ;
-    ex:severityLabel "Part Suspended"^^xsd:string ;
+    ex:severityLabel "Minor Delays"^^xsd:string ;
 .
 
 inst:circle_maintenance_0
     a ex:MaintenanceEvent ;
     ex:affectsLine inst:circle ;
-    ex:maintenanceName "Circle Line: No service on the entire line due to strike action. Services on other London Underground lines will finish early tonight please complete your journey by 20:00 "^^xsd:string ;
+    ex:maintenanceName "Circle Line: Severe delays between Edgware Road and Hammersmith and MINOR DELAYS on the rest of the line due to train cancellations. Tickets are being accepted on London Buses. "^^xsd:string ;
+    ex:occursAtStation inst:HUBHMS ;
+.
+
+inst:circle_maintenance_1
+    a ex:MaintenanceEvent ;
+    ex:affectsLine inst:circle ;
+    ex:maintenanceName "Circle Line: Severe delays between Edgware Road and Hammersmith and MINOR DELAYS on the rest of the line due to train cancellations. Tickets are being accepted on London Buses. "^^xsd:string ;
+    ex:occursAtStation inst:HUBHMS ;
 .
 
 inst:circle_status_0
-    a ex:ClosureEvent ;
+    a ex:DelayEvent ;
     ex:affectsLine inst:circle ;
-    ex:closureReason "Circle Line: No service on the entire line due to strike action. Services on other London Underground lines will finish early tonight please complete your journey by 20:00 "^^xsd:string ;
-    ex:currentStatus "Suspended"^^xsd:string ;
-    ex:disruptionName "Suspended"^^xsd:string ;
-    ex:hasSeverity inst:Severity_Suspended ;
-    ex:incidentCause "strike action"^^xsd:string ;
-    ex:incidentName "Circle Line: No service on the entire line due to strike action"^^xsd:string ;
-    ex:incidentType "other_unplanned"^^xsd:string ;
+    ex:closureReason "Circle Line: Severe delays between Edgware Road and Hammersmith and MINOR DELAYS on the rest of the line due to train cancellations. Tickets are being accepted on London Buses. "^^xsd:string ;
+    ex:currentStatus "Severe Delays"^^xsd:string ;
+    ex:disruptionName "Severe Delays"^^xsd:string ;
+    ex:hasReplacementService inst:BusReplacement_circle_status_0 ;
+    ex:hasSeverity inst:Severity_Severe_Delays ;
+    ex:incidentCause "train cancellations"^^xsd:string ;
+    ex:incidentName "Circle Line: Severe delays between Edgware Road and Hammersmith and MINOR DELAYS"^^xsd:string ;
+    ex:incidentType "train_fault"^^xsd:string ;
     ex:isPlannedMaintenance false ;
+    ex:occursAtStation inst:HUBHMS ;
     ex:primaryLine inst:circle ;
-    ex:severityLabel "Suspended"^^xsd:string ;
-.
-
-inst:district_maintenance_0
-    a ex:MaintenanceEvent ;
-    ex:affectsLine inst:district ;
-    ex:maintenanceName "District Line: Severe delays due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
-.
-
-inst:district_status_0
-    a ex:DelayEvent ;
-    ex:affectsLine inst:district ;
-    ex:closureReason "District Line: Severe delays due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
-    ex:currentStatus "Severe Delays"^^xsd:string ;
-    ex:disruptionName "Severe Delays"^^xsd:string ;
-    ex:hasSeverity inst:Severity_Severe_Delays ;
-    ex:incidentCause "strike action"^^xsd:string ;
-    ex:incidentName "District Line: Severe delays due to strike action"^^xsd:string ;
-    ex:incidentType "other_unplanned"^^xsd:string ;
-    ex:isPlannedMaintenance false ;
-    ex:primaryLine inst:district ;
     ex:severityLabel "Severe Delays"^^xsd:string ;
 .
 
-inst:hammersmith-city_maintenance_0
-    a ex:MaintenanceEvent ;
-    ex:affectsLine inst:hammersmith-city ;
-    ex:maintenanceName "Hammersmith and City Line: Service is operating at a reduced frequency every 30 minutes on the entire line due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
-    ex:occursAtStation inst:HUBHMS ;
-.
-
-inst:hammersmith-city_status_0
+inst:circle_status_1
     a ex:DelayEvent ;
-    ex:affectsLine inst:hammersmith-city ;
-    ex:closureReason "Hammersmith and City Line: Service is operating at a reduced frequency every 30 minutes on the entire line due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
-    ex:currentStatus "Severe Delays"^^xsd:string ;
-    ex:disruptionName "Severe Delays"^^xsd:string ;
-    ex:hasSeverity inst:Severity_Severe_Delays ;
-    ex:incidentCause "strike action"^^xsd:string ;
-    ex:incidentName "Hammersmith and City Line: Service is operating at a reduced frequency every 30 "^^xsd:string ;
-    ex:incidentType "other_unplanned"^^xsd:string ;
+    ex:affectsLine inst:circle ;
+    ex:closureReason "Circle Line: Severe delays between Edgware Road and Hammersmith and MINOR DELAYS on the rest of the line due to train cancellations. Tickets are being accepted on London Buses. "^^xsd:string ;
+    ex:currentStatus "Minor Delays"^^xsd:string ;
+    ex:disruptionName "Minor Delays"^^xsd:string ;
+    ex:hasReplacementService inst:BusReplacement_circle_status_1 ;
+    ex:hasSeverity inst:Severity_Minor_Delays ;
+    ex:incidentCause "train cancellations"^^xsd:string ;
+    ex:incidentName "Circle Line: Severe delays between Edgware Road and Hammersmith and MINOR DELAYS"^^xsd:string ;
+    ex:incidentType "train_fault"^^xsd:string ;
     ex:isPlannedMaintenance false ;
     ex:occursAtStation inst:HUBHMS ;
-    ex:primaryLine inst:hammersmith-city ;
-    ex:severityLabel "Severe Delays"^^xsd:string ;
-.
-
-inst:jubilee_maintenance_0
-    a ex:MaintenanceEvent ;
-    ex:affectsLine inst:jubilee ;
-    ex:maintenanceName "Jubilee Line: Service is operating at a reduced frequency on the entire line every 6 minutes due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
-.
-
-inst:jubilee_status_0
-    a ex:DelayEvent ;
-    ex:affectsLine inst:jubilee ;
-    ex:closureReason "Jubilee Line: Service is operating at a reduced frequency on the entire line every 6 minutes due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
-    ex:currentStatus "Severe Delays"^^xsd:string ;
-    ex:disruptionName "Severe Delays"^^xsd:string ;
-    ex:hasSeverity inst:Severity_Severe_Delays ;
-    ex:incidentCause "strike action"^^xsd:string ;
-    ex:incidentName "Jubilee Line: Service is operating at a reduced frequency on the entire line eve"^^xsd:string ;
-    ex:incidentType "other_unplanned"^^xsd:string ;
-    ex:isPlannedMaintenance false ;
-    ex:primaryLine inst:jubilee ;
-    ex:severityLabel "Severe Delays"^^xsd:string ;
+    ex:primaryLine inst:circle ;
+    ex:severityLabel "Minor Delays"^^xsd:string ;
 .
 
 inst:metropolitan_maintenance_0
     a ex:MaintenanceEvent ;
-    ex:affectsLine
-        inst:bakerloo ,
-        inst:circle ,
-        inst:hammersmith-city ,
-        inst:jubilee ,
-        inst:metropolitan ,
-        inst:piccadilly ;
-    ex:maintenanceName "Metropolitan Line: Service is operating at a reduced frequency due to strike action. Trains are running between Baker Street and Harrow-on-the-Hill, approximately every 10 minutes, between Harrow-on-the-Hill and Uxbridge every 15 minutes, between Harrow-on-the-Hill and Watford every 40 minutes and between Harrow-on-the-Hill and Amersham/Chesham every 30 minutes. No service between Baker Street and Aldgate due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
-    ex:occursAtStation
-        inst:940GZZLUALD ,
-        inst:940GZZLUAMS ,
-        inst:940GZZLUBST ,
-        inst:940GZZLUCSM ,
-        inst:940GZZLUHOH ,
-        inst:940GZZLUUXB ,
-        inst:940GZZLUWAF ;
-.
-
-inst:metropolitan_maintenance_1
-    a ex:MaintenanceEvent ;
-    ex:affectsLine
-        inst:bakerloo ,
-        inst:circle ,
-        inst:hammersmith-city ,
-        inst:jubilee ,
-        inst:metropolitan ,
-        inst:piccadilly ;
-    ex:maintenanceName "Metropolitan Line: Service is operating at a reduced frequency due to strike action. Trains are running between Baker Street and Harrow-on-the-Hill, approximately every 10 minutes, between Harrow-on-the-Hill and Uxbridge every 15 minutes, between Harrow-on-the-Hill and Watford every 40 minutes and between Harrow-on-the-Hill and Amersham/Chesham every 30 minutes. No service between Baker Street and Aldgate due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
-    ex:occursAtStation
-        inst:940GZZLUALD ,
-        inst:940GZZLUAMS ,
-        inst:940GZZLUBST ,
-        inst:940GZZLUCSM ,
-        inst:940GZZLUHOH ,
-        inst:940GZZLUUXB ,
-        inst:940GZZLUWAF ;
+    ex:affectsLine inst:metropolitan ;
+    ex:maintenanceName "Metropolitan Line: Minor delays due to train cancellations. "^^xsd:string ;
 .
 
 inst:metropolitan_status_0
     a ex:DelayEvent ;
-    ex:affectsLine
-        inst:bakerloo ,
-        inst:circle ,
-        inst:hammersmith-city ,
-        inst:jubilee ,
-        inst:metropolitan ,
-        inst:piccadilly ;
-    ex:closureReason "Metropolitan Line: Service is operating at a reduced frequency due to strike action. Trains are running between Baker Street and Harrow-on-the-Hill, approximately every 10 minutes, between Harrow-on-the-Hill and Uxbridge every 15 minutes, between Harrow-on-the-Hill and Watford every 40 minutes and between Harrow-on-the-Hill and Amersham/Chesham every 30 minutes. No service between Baker Street and Aldgate due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
-    ex:currentStatus "Severe Delays"^^xsd:string ;
-    ex:disruptionName "Severe Delays"^^xsd:string ;
-    ex:hasSeverity inst:Severity_Severe_Delays ;
-    ex:incidentCause "strike action"^^xsd:string ;
-    ex:incidentName "Metropolitan Line: Service is operating at a reduced frequency due to strike act"^^xsd:string ;
-    ex:incidentType "other_unplanned"^^xsd:string ;
-    ex:isPlannedMaintenance false ;
-    ex:occursAtStation
-        inst:940GZZLUALD ,
-        inst:940GZZLUAMS ,
-        inst:940GZZLUBST ,
-        inst:940GZZLUCSM ,
-        inst:940GZZLUHOH ,
-        inst:940GZZLUUXB ,
-        inst:940GZZLUWAF ;
-    ex:primaryLine inst:metropolitan ;
-    ex:severityLabel "Severe Delays"^^xsd:string ;
-.
-
-inst:metropolitan_status_1
-    a ex:ClosureEvent ;
-    ex:affectsLine
-        inst:bakerloo ,
-        inst:circle ,
-        inst:hammersmith-city ,
-        inst:jubilee ,
-        inst:metropolitan ,
-        inst:piccadilly ;
-    ex:closureReason "Metropolitan Line: Service is operating at a reduced frequency due to strike action. Trains are running between Baker Street and Harrow-on-the-Hill, approximately every 10 minutes, between Harrow-on-the-Hill and Uxbridge every 15 minutes, between Harrow-on-the-Hill and Watford every 40 minutes and between Harrow-on-the-Hill and Amersham/Chesham every 30 minutes. No service between Baker Street and Aldgate due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
-    ex:currentStatus "Part Suspended"^^xsd:string ;
-    ex:disruptionName "Part Suspended"^^xsd:string ;
-    ex:hasSeverity inst:Severity_Part_Suspended ;
-    ex:incidentCause "strike action"^^xsd:string ;
-    ex:incidentName "Metropolitan Line: Service is operating at a reduced frequency due to strike act"^^xsd:string ;
-    ex:incidentType "other_unplanned"^^xsd:string ;
-    ex:isPlannedMaintenance false ;
-    ex:occursAtStation
-        inst:940GZZLUALD ,
-        inst:940GZZLUAMS ,
-        inst:940GZZLUBST ,
-        inst:940GZZLUCSM ,
-        inst:940GZZLUHOH ,
-        inst:940GZZLUUXB ,
-        inst:940GZZLUWAF ;
-    ex:primaryLine inst:metropolitan ;
-    ex:severityLabel "Part Suspended"^^xsd:string ;
-.
-
-inst:northern_maintenance_0
-    a ex:MaintenanceEvent ;
-    ex:affectsLine inst:northern ;
-    ex:maintenanceName "Northern Line: Service is operating at a reduced frequency on the entire line every 15 minutes due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
-.
-
-inst:northern_status_0
-    a ex:DelayEvent ;
-    ex:affectsLine inst:northern ;
-    ex:closureReason "Northern Line: Service is operating at a reduced frequency on the entire line every 15 minutes due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
+    ex:affectsLine inst:metropolitan ;
+    ex:closureReason "Metropolitan Line: Minor delays due to train cancellations. "^^xsd:string ;
     ex:currentStatus "Minor Delays"^^xsd:string ;
     ex:disruptionName "Minor Delays"^^xsd:string ;
     ex:hasSeverity inst:Severity_Minor_Delays ;
-    ex:incidentCause "strike action"^^xsd:string ;
-    ex:incidentName "Northern Line: Service is operating at a reduced frequency on the entire line ev"^^xsd:string ;
-    ex:incidentType "other_unplanned"^^xsd:string ;
+    ex:incidentCause "train cancellations"^^xsd:string ;
+    ex:incidentName "Metropolitan Line: Minor delays due to train cancellations"^^xsd:string ;
+    ex:incidentType "train_fault"^^xsd:string ;
     ex:isPlannedMaintenance false ;
-    ex:primaryLine inst:northern ;
+    ex:primaryLine inst:metropolitan ;
     ex:severityLabel "Minor Delays"^^xsd:string ;
+.
+
+inst:northern_status_0
+    a ex:ClosureEvent ;
+    ex:affectsLine
+        inst:bakerloo ,
+        inst:central ,
+        inst:northern ,
+        inst:waterloo-city ;
+    ex:closureReason "NORTHERN LINE: From Monday 12 January to Thursday 28 May, on Monday to Thursday evenings (including Bank Holidays, but not Thursday 2 April), after 2200 each evening, no service between Kennington and Camden Town (via Bank). All trains operate via Charing Cross, and the Mill Hill East service operates as a shuttle service between Finchley Central and Mill Hill East"^^xsd:string ;
+    ex:currentStatus "Part Closure"^^xsd:string ;
+    ex:disruptionName "Part Closure"^^xsd:string ;
+    ex:hasSeverity inst:Severity_Part_Closure ;
+    ex:incidentCause "engineering works"^^xsd:string ;
+    ex:incidentName "NORTHERN LINE: From Monday 12 January to Thursday 28 May, on Monday to Thursday "^^xsd:string ;
+    ex:incidentType "planned_maintenance"^^xsd:string ;
+    ex:isPlannedMaintenance true ;
+    ex:occursAtStation
+        inst:940GZZLUBNK ,
+        inst:940GZZLUCHX ,
+        inst:940GZZLUCTN ,
+        inst:940GZZLUFYC ,
+        inst:940GZZLUKNG ,
+        inst:940GZZLUMHL ;
+    ex:primaryLine inst:northern ;
+    ex:severityLabel "Part Closure"^^xsd:string ;
 .
 
 inst:piccadilly_maintenance_0
     a ex:MaintenanceEvent ;
     ex:affectsLine
         inst:district ,
+        inst:metropolitan ,
         inst:piccadilly ;
-    ex:maintenanceName "Piccadilly Line: Service is operating at a reduced frequency between Acton Town and Heathrow Terminal 4 via Heathrow Terminals 2 & 3, and between Arnos Grove and Cockfosters every 20 minutes. No service on the rest of the line due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
+    ex:maintenanceName "Piccadilly Line: No service between Rayners Lane and Uxbridge due to earlier strike action. Please use the Metropolitan line to complete your journey. SEVERE DELAYS between Acton Town and Rayners Lane and MINOR DELAYS on the rest of the line. "^^xsd:string ;
     ex:occursAtStation
         inst:940GZZLUACT ,
-        inst:940GZZLUASG ,
-        inst:940GZZLUCKS ,
-        inst:940GZZLUHR4 ,
-        inst:HUBH13 ;
+        inst:940GZZLURYL ,
+        inst:940GZZLUUXB ;
 .
 
 inst:piccadilly_maintenance_1
     a ex:MaintenanceEvent ;
     ex:affectsLine
         inst:district ,
+        inst:metropolitan ,
         inst:piccadilly ;
-    ex:maintenanceName "Piccadilly Line: Service is operating at a reduced frequency between Acton Town and Heathrow Terminal 4 via Heathrow Terminals 2 & 3, and between Arnos Grove and Cockfosters every 20 minutes. No service on the rest of the line due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
+    ex:maintenanceName "Piccadilly Line: No service between Rayners Lane and Uxbridge due to earlier strike action. Please use the Metropolitan line to complete your journey. SEVERE DELAYS between Acton Town and Rayners Lane and MINOR DELAYS on the rest of the line. "^^xsd:string ;
     ex:occursAtStation
         inst:940GZZLUACT ,
-        inst:940GZZLUASG ,
-        inst:940GZZLUCKS ,
-        inst:940GZZLUHR4 ,
-        inst:HUBH13 ;
+        inst:940GZZLURYL ,
+        inst:940GZZLUUXB ;
 .
 
 inst:piccadilly_maintenance_2
     a ex:MaintenanceEvent ;
     ex:affectsLine
         inst:district ,
+        inst:metropolitan ,
         inst:piccadilly ;
-    ex:maintenanceName "Piccadilly Line: Service is operating at a reduced frequency between Acton Town and Heathrow Terminal 4 via Heathrow Terminals 2 & 3, and between Arnos Grove and Cockfosters every 20 minutes. No service on the rest of the line due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
+    ex:maintenanceName "Piccadilly Line: No service between Rayners Lane and Uxbridge due to earlier strike action. Please use the Metropolitan line to complete your journey. SEVERE DELAYS between Acton Town and Rayners Lane and MINOR DELAYS on the rest of the line. "^^xsd:string ;
     ex:occursAtStation
         inst:940GZZLUACT ,
-        inst:940GZZLUASG ,
-        inst:940GZZLUCKS ,
-        inst:940GZZLUHR4 ,
-        inst:HUBH13 ;
-.
-
-inst:piccadilly_maintenance_3
-    a ex:MaintenanceEvent ;
-    ex:affectsLine
-        inst:district ,
-        inst:piccadilly ;
-    ex:maintenanceName "Piccadilly Line: Service is operating at a reduced frequency between Acton Town and Heathrow Terminal 4 via Heathrow Terminals 2 & 3, and between Arnos Grove and Cockfosters every 20 minutes. No service on the rest of the line due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
-    ex:occursAtStation
-        inst:940GZZLUACT ,
-        inst:940GZZLUASG ,
-        inst:940GZZLUCKS ,
-        inst:940GZZLUHR4 ,
-        inst:HUBH13 ;
+        inst:940GZZLURYL ,
+        inst:940GZZLUUXB ;
 .
 
 inst:piccadilly_status_0
     a ex:DelayEvent ;
     ex:affectsLine
         inst:district ,
+        inst:metropolitan ,
         inst:piccadilly ;
-    ex:closureReason "Piccadilly Line: Service is operating at a reduced frequency between Acton Town and Heathrow Terminal 4 via Heathrow Terminals 2 & 3, and between Arnos Grove and Cockfosters every 20 minutes. No service on the rest of the line due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
-    ex:currentStatus "Severe Delays"^^xsd:string ;
-    ex:disruptionName "Severe Delays"^^xsd:string ;
-    ex:hasSeverity inst:Severity_Severe_Delays ;
+    ex:closureReason "Piccadilly Line: No service between Rayners Lane and Uxbridge due to earlier strike action. Please use the Metropolitan line to complete your journey. SEVERE DELAYS between Acton Town and Rayners Lane and MINOR DELAYS on the rest of the line. "^^xsd:string ;
+    ex:currentStatus "Minor Delays"^^xsd:string ;
+    ex:disruptionName "Minor Delays"^^xsd:string ;
+    ex:hasSeverity inst:Severity_Minor_Delays ;
     ex:incidentCause "strike action"^^xsd:string ;
-    ex:incidentName "Piccadilly Line: Service is operating at a reduced frequency between Acton Town "^^xsd:string ;
+    ex:incidentName "Piccadilly Line: No service between Rayners Lane and Uxbridge due to earlier str"^^xsd:string ;
     ex:incidentType "other_unplanned"^^xsd:string ;
     ex:isPlannedMaintenance false ;
     ex:occursAtStation
         inst:940GZZLUACT ,
-        inst:940GZZLUASG ,
-        inst:940GZZLUCKS ,
-        inst:940GZZLUHR4 ,
-        inst:HUBH13 ;
+        inst:940GZZLURYL ,
+        inst:940GZZLUUXB ;
+    ex:primaryLine inst:piccadilly ;
+    ex:severityLabel "Minor Delays"^^xsd:string ;
+.
+
+inst:piccadilly_status_1
+    a ex:DelayEvent ;
+    ex:affectsLine
+        inst:district ,
+        inst:metropolitan ,
+        inst:piccadilly ;
+    ex:closureReason "Piccadilly Line: No service between Rayners Lane and Uxbridge due to earlier strike action. Please use the Metropolitan line to complete your journey. SEVERE DELAYS between Acton Town and Rayners Lane and MINOR DELAYS on the rest of the line. "^^xsd:string ;
+    ex:currentStatus "Severe Delays"^^xsd:string ;
+    ex:disruptionName "Severe Delays"^^xsd:string ;
+    ex:hasSeverity inst:Severity_Severe_Delays ;
+    ex:incidentCause "strike action"^^xsd:string ;
+    ex:incidentName "Piccadilly Line: No service between Rayners Lane and Uxbridge due to earlier str"^^xsd:string ;
+    ex:incidentType "other_unplanned"^^xsd:string ;
+    ex:isPlannedMaintenance false ;
+    ex:occursAtStation
+        inst:940GZZLUACT ,
+        inst:940GZZLURYL ,
+        inst:940GZZLUUXB ;
     ex:primaryLine inst:piccadilly ;
     ex:severityLabel "Severe Delays"^^xsd:string ;
 .
 
-inst:piccadilly_status_1
+inst:piccadilly_status_2
     a ex:ClosureEvent ;
     ex:affectsLine
         inst:district ,
+        inst:metropolitan ,
         inst:piccadilly ;
-    ex:closureReason "Piccadilly Line: Service is operating at a reduced frequency between Acton Town and Heathrow Terminal 4 via Heathrow Terminals 2 & 3, and between Arnos Grove and Cockfosters every 20 minutes. No service on the rest of the line due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
+    ex:closureReason "Piccadilly Line: No service between Rayners Lane and Uxbridge due to earlier strike action. Please use the Metropolitan line to complete your journey. SEVERE DELAYS between Acton Town and Rayners Lane and MINOR DELAYS on the rest of the line. "^^xsd:string ;
     ex:currentStatus "Part Suspended"^^xsd:string ;
     ex:disruptionName "Part Suspended"^^xsd:string ;
     ex:hasSeverity inst:Severity_Part_Suspended ;
     ex:incidentCause "strike action"^^xsd:string ;
-    ex:incidentName "Piccadilly Line: Service is operating at a reduced frequency between Acton Town "^^xsd:string ;
+    ex:incidentName "Piccadilly Line: No service between Rayners Lane and Uxbridge due to earlier str"^^xsd:string ;
     ex:incidentType "other_unplanned"^^xsd:string ;
     ex:isPlannedMaintenance false ;
     ex:occursAtStation
         inst:940GZZLUACT ,
-        inst:940GZZLUASG ,
-        inst:940GZZLUCKS ,
-        inst:940GZZLUHR4 ,
-        inst:HUBH13 ;
+        inst:940GZZLURYL ,
+        inst:940GZZLUUXB ;
     ex:primaryLine inst:piccadilly ;
     ex:severityLabel "Part Suspended"^^xsd:string ;
-.
-
-inst:victoria_maintenance_0
-    a ex:MaintenanceEvent ;
-    ex:affectsLine
-        inst:circle ,
-        inst:district ,
-        inst:victoria ;
-    ex:maintenanceName "Victoria Line: Service is operating at a reduced frequency on the entire line every 5 minutes due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
-    ex:occursAtStation inst:940GZZLUVIC ;
-.
-
-inst:victoria_status_0
-    a ex:DelayEvent ;
-    ex:affectsLine
-        inst:circle ,
-        inst:district ,
-        inst:victoria ;
-    ex:closureReason "Victoria Line: Service is operating at a reduced frequency on the entire line every 5 minutes due to strike action. Services will finish early tonight so please complete your journey by 20:00. "^^xsd:string ;
-    ex:currentStatus "Severe Delays"^^xsd:string ;
-    ex:disruptionName "Severe Delays"^^xsd:string ;
-    ex:hasSeverity inst:Severity_Severe_Delays ;
-    ex:incidentCause "strike action"^^xsd:string ;
-    ex:incidentName "Victoria Line: Service is operating at a reduced frequency on the entire line ev"^^xsd:string ;
-    ex:incidentType "other_unplanned"^^xsd:string ;
-    ex:isPlannedMaintenance false ;
-    ex:occursAtStation inst:940GZZLUVIC ;
-    ex:primaryLine inst:victoria ;
-    ex:severityLabel "Severe Delays"^^xsd:string ;
-.
-
-inst:waterloo-city_maintenance_0
-    a ex:MaintenanceEvent ;
-    ex:affectsLine
-        inst:bakerloo ,
-        inst:jubilee ,
-        inst:northern ,
-        inst:waterloo-city ;
-    ex:maintenanceName "Waterloo and City Line: No service on the entire line due to strike action. "^^xsd:string ;
-    ex:occursAtStation inst:940GZZLUWLO ;
-.
-
-inst:waterloo-city_status_0
-    a ex:ClosureEvent ;
-    ex:affectsLine
-        inst:bakerloo ,
-        inst:jubilee ,
-        inst:northern ,
-        inst:waterloo-city ;
-    ex:closureReason "Waterloo and City Line: No service on the entire line due to strike action. "^^xsd:string ;
-    ex:currentStatus "Suspended"^^xsd:string ;
-    ex:disruptionName "Suspended"^^xsd:string ;
-    ex:hasSeverity inst:Severity_Suspended ;
-    ex:incidentCause "strike action"^^xsd:string ;
-    ex:incidentName "Waterloo and City Line: No service on the entire line due to strike action"^^xsd:string ;
-    ex:incidentType "other_unplanned"^^xsd:string ;
-    ex:isPlannedMaintenance false ;
-    ex:occursAtStation inst:940GZZLUWLO ;
-    ex:primaryLine inst:waterloo-city ;
-    ex:severityLabel "Suspended"^^xsd:string ;
 .
 
 <http://example.org/ontology-express>
@@ -4253,6 +4049,53 @@ ex:usesRollingStockType
     rdfs:comment "Relates a London Underground line to the rolling stock type used on that line."@en ;
     rdfs:domain ex:UndergroundLine ;
     rdfs:range ex:RollingStockType ;
+.
+
+inst:940GZZLUCHX
+    a
+        ex:InterchangeStation ,
+        ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:interchangesWithLine
+        inst:bakerloo ,
+        inst:northern ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
+    ex:servedByLine
+        inst:bakerloo ,
+        inst:northern ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUCHX ;
+    ex:stationName "Charing Cross Station"^^xsd:string ;
+.
+
+inst:940GZZLUCTN
+    a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
+    ex:servedByLine inst:northern ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUCTN ;
+    ex:stationName "Camden Town Station"^^xsd:string ;
+.
+
+inst:940GZZLUFYC
+    a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:officialAccessibilityStatus "Full wheelchair access"^^xsd:string ;
+    ex:servedByLine inst:northern ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUFYC ;
+    ex:stationName "Finchley Central"^^xsd:string ;
+.
+
+inst:940GZZLUKNG
+    a ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
+    ex:servedByLine inst:northern ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUKNG ;
+    ex:stationName "Kennington Station"^^xsd:string ;
 .
 
 inst:Accessibility_9400ZZLUCWR1
@@ -5980,6 +5823,32 @@ inst:Accessibility_HUBZWL
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
 .
 
+inst:BusReplacement_circle_status_0
+    a ex:BusReplacementService ;
+    ex:replacementFollowsRoute
+        inst:circle_route_inbound ,
+        inst:circle_route_outbound ;
+    ex:replacementRouteName "via any reasonable route"^^xsd:string ;
+.
+
+inst:BusReplacement_circle_status_1
+    a ex:BusReplacementService ;
+    ex:replacementFollowsRoute
+        inst:circle_route_inbound ,
+        inst:circle_route_outbound ;
+    ex:replacementRouteName "via any reasonable route"^^xsd:string ;
+.
+
+inst:Severity_Part_Closure
+    a ex:SeverityLevel ;
+    ex:severityLabel "Part Closure"^^xsd:string ;
+.
+
+inst:Severity_Part_Suspended
+    a ex:SeverityLevel ;
+    ex:severityLabel "Part Suspended"^^xsd:string ;
+.
+
 inst:Stock_1972_Stock
     a ex:RollingStockType ;
     ex:rollingStockName "1972 Stock"^^xsd:string ;
@@ -6062,24 +5931,6 @@ inst:central_route_outbound
         inst:940GZZLUEPG ,
         inst:940GZZLUHLT ,
         inst:940GZZLUWRP ;
-.
-
-inst:circle_route_inbound
-    a ex:UndergroundRoute ;
-    ex:inaugurationYear "1863"^^xsd:gYear ;
-    ex:routeName "Edgware Road (Circle Line) Underground Station - Hammersmith (H&C Line) Underground Station"^^xsd:string ;
-    ex:routeServesStop
-        inst:940GZZLUERC ,
-        inst:940GZZLUHSC ;
-.
-
-inst:circle_route_outbound
-    a ex:UndergroundRoute ;
-    ex:inaugurationYear "1863"^^xsd:gYear ;
-    ex:routeName "Hammersmith (H&C Line) Underground Station - Edgware Road (Circle Line) Underground Station"^^xsd:string ;
-    ex:routeServesStop
-        inst:940GZZLUERC ,
-        inst:940GZZLUHSC ;
 .
 
 inst:district_route_inbound
@@ -6290,11 +6141,39 @@ inst:waterloo-city_route_outbound
 
 inst:940GZZBPSUST
     a ex:UndergroundStation ;
+    ex:fareZone 1 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
     ex:servedByLine inst:northern ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZBPSUST ;
     ex:stationName "Battersea Power Station Underground Station"^^xsd:string ;
+.
+
+inst:940GZZLUALD
+    a
+        ex:InterchangeStation ,
+        ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:interchangesWithLine
+        inst:circle ,
+        inst:metropolitan ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
+    ex:servedByLine
+        inst:circle ,
+        inst:metropolitan ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUALD ;
+    ex:stationName "Aldgate Station"^^xsd:string ;
+.
+
+inst:940GZZLUAMS
+    a ex:UndergroundStation ;
+    ex:fareZone 9 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
+    ex:servedByLine inst:metropolitan ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUAMS ;
+    ex:stationName "Amersham Underground Station"^^xsd:string ;
 .
 
 inst:940GZZLUBKG
@@ -6314,25 +6193,6 @@ inst:940GZZLUBKG
     ex:stationName "Barking Underground Station"^^xsd:string ;
 .
 
-inst:940GZZLUBNK
-    a
-        ex:InterchangeStation ,
-        ex:UndergroundStation ;
-    ex:fareZone 1 ;
-    ex:interchangesWithLine
-        inst:central ,
-        inst:northern ,
-        inst:waterloo-city ;
-    ex:isFullyWheelchairAccessible false ;
-    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine
-        inst:central ,
-        inst:northern ,
-        inst:waterloo-city ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUBNK ;
-    ex:stationName "Bank Underground Station"^^xsd:string ;
-.
-
 inst:940GZZLUBXN
     a ex:UndergroundStation ;
     ex:fareZone 2 ;
@@ -6341,6 +6201,43 @@ inst:940GZZLUBXN
     ex:servedByLine inst:victoria ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUBXN ;
     ex:stationName "Brixton Station"^^xsd:string ;
+.
+
+inst:940GZZLUCKS
+    a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUCKS ;
+    ex:stationName "Cockfosters Station"^^xsd:string ;
+.
+
+inst:940GZZLUCSM
+    a ex:UndergroundStation ;
+    ex:fareZone 9 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
+    ex:servedByLine inst:metropolitan ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUCSM ;
+    ex:stationName "Chesham Underground Station"^^xsd:string ;
+.
+
+inst:940GZZLUEAC
+    a
+        ex:InterchangeStation ,
+        ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:interchangesWithLine
+        inst:bakerloo ,
+        inst:northern ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:officialAccessibilityStatus "Full wheelchair access"^^xsd:string ;
+    ex:servedByLine
+        inst:bakerloo ,
+        inst:northern ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUEAC ;
+    ex:stationName "Elephant & Castle Station"^^xsd:string ;
 .
 
 inst:940GZZLUEGW
@@ -6353,6 +6250,26 @@ inst:940GZZLUEGW
     ex:stationName "Edgware Bus Station"^^xsd:string ;
 .
 
+inst:940GZZLUEPG
+    a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
+    ex:servedByLine inst:central ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUEPG ;
+    ex:stationName "Epping Underground Station"^^xsd:string ;
+.
+
+inst:940GZZLUHAW
+    a ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
+    ex:servedByLine inst:bakerloo ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUHAW ;
+    ex:stationName "Harrow & Wealdstone Underground Station"^^xsd:string ;
+.
+
 inst:940GZZLUHBT
     a ex:UndergroundStation ;
     ex:fareZone 5 ;
@@ -6361,6 +6278,26 @@ inst:940GZZLUHBT
     ex:servedByLine inst:northern ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUHBT ;
     ex:stationName "High Barnet Station"^^xsd:string ;
+.
+
+inst:940GZZLUHLT
+    a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
+    ex:servedByLine inst:central ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUHLT ;
+    ex:stationName "Hainault Underground Station"^^xsd:string ;
+.
+
+inst:940GZZLUHR4
+    a ex:UndergroundStation ;
+    ex:fareZone 6 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
+    ex:servedByLine inst:piccadilly ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUHR4 ;
+    ex:stationName "Heathrow Terminal 4 Underground Station"^^xsd:string ;
 .
 
 inst:940GZZLUHR5
@@ -6391,16 +6328,6 @@ inst:940GZZLUMDN
     ex:servedByLine inst:northern ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUMDN ;
     ex:stationName "Morden Station"^^xsd:string ;
-.
-
-inst:940GZZLUMHL
-    a ex:UndergroundStation ;
-    ex:fareZone 4 ;
-    ex:isFullyWheelchairAccessible false ;
-    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine inst:northern ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUMHL ;
-    ex:stationName "Mill Hill East Station"^^xsd:string ;
 .
 
 inst:940GZZLURMD
@@ -6452,23 +6379,14 @@ inst:940GZZLUUPM
     ex:stationName "Upminster Underground Station"^^xsd:string ;
 .
 
-inst:940GZZLUVIC
-    a
-        ex:InterchangeStation ,
-        ex:UndergroundStation ;
-    ex:fareZone 1 ;
-    ex:interchangesWithLine
-        inst:circle ,
-        inst:district ,
-        inst:victoria ;
+inst:940GZZLUWAF
+    a ex:UndergroundStation ;
+    ex:fareZone 7 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine
-        inst:circle ,
-        inst:district ,
-        inst:victoria ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUVIC ;
-    ex:stationName "Victoria Station"^^xsd:string ;
+    ex:servedByLine inst:metropolitan ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUWAF ;
+    ex:stationName "Watford Underground Station"^^xsd:string ;
 .
 
 inst:940GZZLUWIM
@@ -6479,204 +6397,6 @@ inst:940GZZLUWIM
     ex:servedByLine inst:district ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUWIM ;
     ex:stationName "Wimbledon Underground Station"^^xsd:string ;
-.
-
-inst:940GZZLUWWL
-    a ex:UndergroundStation ;
-    ex:fareZone 3 ;
-    ex:isFullyWheelchairAccessible false ;
-    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine inst:victoria ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUWWL ;
-    ex:stationName "Walthamstow Central Underground Station"^^xsd:string ;
-.
-
-inst:HUBHMS
-    a ex:UndergroundStation ;
-    ex:fareZone 2 ;
-    ex:isFullyWheelchairAccessible false ;
-    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_HUBHMS ;
-    ex:stationName "Hammersmith"^^xsd:string ;
-.
-
-inst:Severity_Minor_Delays
-    a ex:SeverityLevel ;
-    ex:severityLabel "Minor Delays"^^xsd:string ;
-.
-
-inst:Severity_Suspended
-    a ex:SeverityLevel ;
-    ex:severityLabel "Suspended"^^xsd:string ;
-.
-
-inst:Stock_1992_Stock
-    a ex:RollingStockType ;
-    ex:rollingStockName "1992 Stock"^^xsd:string ;
-    ex:standardPassengerCapacity 1047 ;
-.
-
-inst:Severity_Part_Suspended
-    a ex:SeverityLevel ;
-    ex:severityLabel "Part Suspended"^^xsd:string ;
-.
-
-inst:Stock_S7_Stock
-    a ex:RollingStockType ;
-    ex:rollingStockName "S7 Stock"^^xsd:string ;
-    ex:standardPassengerCapacity 1209 ;
-.
-
-ex:BusReplacementService
-    a owl:Class ;
-    rdfs:label "Bus Replacement Service"@en ;
-    rdfs:comment "An alternative bus service provided when a London Underground station or service is unavailable."@en ;
-.
-
-inst:940GZZLUBST
-    a
-        ex:InterchangeStation ,
-        ex:UndergroundStation ;
-    ex:fareZone 1 ;
-    ex:interchangesWithLine
-        inst:bakerloo ,
-        inst:circle ,
-        inst:hammersmith-city ,
-        inst:jubilee ,
-        inst:metropolitan ;
-    ex:isFullyWheelchairAccessible false ;
-    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine
-        inst:bakerloo ,
-        inst:circle ,
-        inst:hammersmith-city ,
-        inst:jubilee ,
-        inst:metropolitan ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUBST ;
-    ex:stationName "Baker Street Station"^^xsd:string ;
-.
-
-inst:940GZZLUERC
-    a
-        ex:InterchangeStation ,
-        ex:UndergroundStation ;
-    ex:fareZone 1 ;
-    ex:interchangesWithLine
-        inst:circle ,
-        inst:district ,
-        inst:hammersmith-city ;
-    ex:isFullyWheelchairAccessible false ;
-    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine
-        inst:circle ,
-        inst:district ,
-        inst:hammersmith-city ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUERC ;
-    ex:stationName "Edgware Road (Circle Line) Underground Station"^^xsd:string ;
-.
-
-inst:940GZZLUHOH
-    a ex:UndergroundStation ;
-    ex:fareZone 5 ;
-    ex:isFullyWheelchairAccessible false ;
-    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine inst:metropolitan ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUHOH ;
-    ex:stationName "Harrow-on-the-Hill Underground Station"^^xsd:string ;
-.
-
-inst:940GZZLUHSC
-    a
-        ex:InterchangeStation ,
-        ex:UndergroundStation ;
-    ex:fareZone 2 ;
-    ex:interchangesWithLine
-        inst:circle ,
-        inst:hammersmith-city ;
-    ex:isFullyWheelchairAccessible false ;
-    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine
-        inst:circle ,
-        inst:hammersmith-city ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUHSC ;
-    ex:stationName "Hammersmith (H&C Line) Underground Station"^^xsd:string ;
-.
-
-inst:940GZZLULVT
-    a
-        ex:InterchangeStation ,
-        ex:UndergroundStation ;
-    ex:fareZone 1 ;
-    ex:interchangesWithLine
-        inst:central ,
-        inst:circle ,
-        inst:hammersmith-city ,
-        inst:metropolitan ;
-    ex:isFullyWheelchairAccessible true ;
-    ex:officialAccessibilityStatus "Full wheelchair access"^^xsd:string ;
-    ex:servedByLine
-        inst:central ,
-        inst:circle ,
-        inst:hammersmith-city ,
-        inst:metropolitan ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLULVT ;
-    ex:stationName "Liverpool Street Station"^^xsd:string ;
-.
-
-inst:940GZZLULYN
-    a ex:UndergroundStation ;
-    ex:fareZone 3 ;
-    ex:isFullyWheelchairAccessible false ;
-    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine inst:central ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLULYN ;
-    ex:stationName "Leyton Station"^^xsd:string ;
-.
-
-inst:940GZZLULYS
-    a ex:UndergroundStation ;
-    ex:isFullyWheelchairAccessible false ;
-    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine inst:central ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLULYS ;
-    ex:stationName "Leytonstone Station"^^xsd:string ;
-.
-
-inst:940GZZLUQPS
-    a ex:UndergroundStation ;
-    ex:fareZone 2 ;
-    ex:isFullyWheelchairAccessible false ;
-    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine inst:bakerloo ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUQPS ;
-    ex:stationName "Queen's Park Underground Station"^^xsd:string ;
-.
-
-inst:940GZZLURSP
-    a
-        ex:InterchangeStation ,
-        ex:UndergroundStation ;
-    ex:fareZone 6 ;
-    ex:interchangesWithLine
-        inst:metropolitan ,
-        inst:piccadilly ;
-    ex:isFullyWheelchairAccessible false ;
-    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine
-        inst:metropolitan ,
-        inst:piccadilly ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLURSP ;
-    ex:stationName "Ruislip Station"^^xsd:string ;
-.
-
-inst:940GZZLUWCY
-    a ex:UndergroundStation ;
-    ex:fareZone 2 ;
-    ex:isFullyWheelchairAccessible false ;
-    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine inst:central ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUWCY ;
-    ex:stationName "White City Station"^^xsd:string ;
 .
 
 inst:940GZZLUWLO
@@ -6700,132 +6420,6 @@ inst:940GZZLUWLO
     ex:stationName "Waterloo Station"^^xsd:string ;
 .
 
-ex:Incident
-    a owl:Class ;
-    rdfs:label "Incident"@en ;
-    rdfs:comment "An operational incident reported within the London Underground network."@en ;
-.
-
-inst:940GZZLUACT
-    a
-        ex:InterchangeStation ,
-        ex:UndergroundStation ;
-    ex:fareZone 3 ;
-    ex:interchangesWithLine
-        inst:district ,
-        inst:piccadilly ;
-    ex:isFullyWheelchairAccessible true ;
-    ex:officialAccessibilityStatus "Full wheelchair access"^^xsd:string ;
-    ex:servedByLine
-        inst:district ,
-        inst:piccadilly ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUACT ;
-    ex:stationName "Acton Town Station"^^xsd:string ;
-.
-
-inst:940GZZLUALD
-    a
-        ex:InterchangeStation ,
-        ex:UndergroundStation ;
-    ex:fareZone 1 ;
-    ex:interchangesWithLine
-        inst:circle ,
-        inst:metropolitan ;
-    ex:isFullyWheelchairAccessible false ;
-    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine
-        inst:circle ,
-        inst:metropolitan ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUALD ;
-    ex:stationName "Aldgate Station"^^xsd:string ;
-.
-
-inst:940GZZLUAMS
-    a ex:UndergroundStation ;
-    ex:fareZone 9 ;
-    ex:isFullyWheelchairAccessible false ;
-    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine inst:metropolitan ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUAMS ;
-    ex:stationName "Amersham Underground Station"^^xsd:string ;
-.
-
-inst:940GZZLUASG
-    a ex:UndergroundStation ;
-    ex:fareZone 4 ;
-    ex:isFullyWheelchairAccessible false ;
-    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine inst:piccadilly ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUASG ;
-    ex:stationName "Arnos Grove Station"^^xsd:string ;
-.
-
-inst:940GZZLUCSM
-    a ex:UndergroundStation ;
-    ex:fareZone 9 ;
-    ex:isFullyWheelchairAccessible false ;
-    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine inst:metropolitan ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUCSM ;
-    ex:stationName "Chesham Underground Station"^^xsd:string ;
-.
-
-inst:940GZZLUEAC
-    a
-        ex:InterchangeStation ,
-        ex:UndergroundStation ;
-    ex:interchangesWithLine
-        inst:bakerloo ,
-        inst:northern ;
-    ex:isFullyWheelchairAccessible true ;
-    ex:officialAccessibilityStatus "Full wheelchair access"^^xsd:string ;
-    ex:servedByLine
-        inst:bakerloo ,
-        inst:northern ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUEAC ;
-    ex:stationName "Elephant & Castle Station"^^xsd:string ;
-.
-
-inst:940GZZLUEPG
-    a ex:UndergroundStation ;
-    ex:fareZone 6 ;
-    ex:isFullyWheelchairAccessible false ;
-    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine inst:central ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUEPG ;
-    ex:stationName "Epping Underground Station"^^xsd:string ;
-.
-
-inst:940GZZLUHAW
-    a ex:UndergroundStation ;
-    ex:fareZone 5 ;
-    ex:isFullyWheelchairAccessible false ;
-    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine inst:bakerloo ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUHAW ;
-    ex:stationName "Harrow & Wealdstone Underground Station"^^xsd:string ;
-.
-
-inst:940GZZLUHLT
-    a ex:UndergroundStation ;
-    ex:fareZone 4 ;
-    ex:isFullyWheelchairAccessible false ;
-    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine inst:central ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUHLT ;
-    ex:stationName "Hainault Underground Station"^^xsd:string ;
-.
-
-inst:940GZZLUWAF
-    a ex:UndergroundStation ;
-    ex:fareZone 7 ;
-    ex:isFullyWheelchairAccessible false ;
-    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine inst:metropolitan ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUWAF ;
-    ex:stationName "Watford Underground Station"^^xsd:string ;
-.
-
 inst:940GZZLUWRP
     a ex:UndergroundStation ;
     ex:fareZone 6 ;
@@ -6836,49 +6430,78 @@ inst:940GZZLUWRP
     ex:stationName "West Ruislip Underground Station"^^xsd:string ;
 .
 
-inst:HUBH13
+inst:940GZZLUWWL
     a ex:UndergroundStation ;
-    ex:fareZone 6 ;
+    ex:fareZone 3 ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_HUBH13 ;
-    ex:stationName "Heathrow Terminals 2 & 3"^^xsd:string ;
+    ex:servedByLine inst:victoria ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUWWL ;
+    ex:stationName "Walthamstow Central Underground Station"^^xsd:string ;
 .
 
-ex:DisruptionEvent
-    a owl:Class ;
-    rdfs:label "Disruption Event"@en ;
-    rdfs:comment "An incident that disrupts normal operation of one or more London Underground lines."@en ;
-    rdfs:subClassOf ex:Incident ;
+inst:Severity_Severe_Delays
+    a ex:SeverityLevel ;
+    ex:severityLabel "Severe Delays"^^xsd:string ;
 .
 
-inst:waterloo-city
-    a ex:UndergroundLine ;
-    ex:currentStatus "Active"^^xsd:string ;
-    ex:inaugurationYear "1898"^^xsd:gYear ;
-    ex:lineHasRoute
-        inst:waterloo-city_route_inbound ,
-        inst:waterloo-city_route_outbound ;
-    ex:lineName "Waterloo & City"^^xsd:string ;
-    ex:operationalLengthMiles 1.47 ;
-    ex:usesRollingStockType inst:Stock_1992_Stock ;
+inst:Stock_1992_Stock
+    a ex:RollingStockType ;
+    ex:rollingStockName "1992 Stock"^^xsd:string ;
+    ex:standardPassengerCapacity 1047 ;
 .
 
-ex:ClosureEvent
-    a owl:Class ;
-    rdfs:label "Closure Event"@en ;
-    rdfs:comment "A disruption event in which a station or service is closed temporarily."@en ;
-    rdfs:subClassOf ex:DisruptionEvent ;
-.
-
-inst:940GZZLUCKS
-    a ex:UndergroundStation ;
-    ex:fareZone 5 ;
+inst:940GZZLUBNK
+    a
+        ex:InterchangeStation ,
+        ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:interchangesWithLine
+        inst:central ,
+        inst:northern ,
+        inst:waterloo-city ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine inst:piccadilly ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUCKS ;
-    ex:stationName "Cockfosters Station"^^xsd:string ;
+    ex:servedByLine
+        inst:central ,
+        inst:northern ,
+        inst:waterloo-city ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUBNK ;
+    ex:stationName "Bank Underground Station"^^xsd:string ;
+.
+
+inst:940GZZLUMHL
+    a ex:UndergroundStation ;
+    ex:fareZone 4 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
+    ex:servedByLine inst:northern ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUMHL ;
+    ex:stationName "Mill Hill East Station"^^xsd:string ;
+.
+
+inst:Stock_S7_Stock
+    a ex:RollingStockType ;
+    ex:rollingStockName "S7 Stock"^^xsd:string ;
+    ex:standardPassengerCapacity 1209 ;
+.
+
+inst:circle_route_inbound
+    a ex:UndergroundRoute ;
+    ex:inaugurationYear "1863"^^xsd:gYear ;
+    ex:routeName "Edgware Road (Circle Line) Underground Station - Hammersmith (H&C Line) Underground Station"^^xsd:string ;
+    ex:routeServesStop
+        inst:940GZZLUERC ,
+        inst:940GZZLUHSC ;
+.
+
+inst:circle_route_outbound
+    a ex:UndergroundRoute ;
+    ex:inaugurationYear "1863"^^xsd:gYear ;
+    ex:routeName "Hammersmith (H&C Line) Underground Station - Edgware Road (Circle Line) Underground Station"^^xsd:string ;
+    ex:routeServesStop
+        inst:940GZZLUERC ,
+        inst:940GZZLUHSC ;
 .
 
 inst:940GZZLUEBY
@@ -6898,14 +6521,133 @@ inst:940GZZLUEBY
     ex:stationName "Ealing Broadway Underground Station"^^xsd:string ;
 .
 
-inst:940GZZLUHR4
-    a ex:UndergroundStation ;
-    ex:fareZone 6 ;
+inst:940GZZLUERC
+    a
+        ex:InterchangeStation ,
+        ex:UndergroundStation ;
+    ex:fareZone 1 ;
+    ex:interchangesWithLine
+        inst:circle ,
+        inst:district ,
+        inst:hammersmith-city ;
     ex:isFullyWheelchairAccessible false ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:servedByLine inst:piccadilly ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUHR4 ;
-    ex:stationName "Heathrow Terminal 4 Underground Station"^^xsd:string ;
+    ex:servedByLine
+        inst:circle ,
+        inst:district ,
+        inst:hammersmith-city ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUERC ;
+    ex:stationName "Edgware Road (Circle Line) Underground Station"^^xsd:string ;
+.
+
+inst:940GZZLUHSC
+    a
+        ex:InterchangeStation ,
+        ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:interchangesWithLine
+        inst:circle ,
+        inst:hammersmith-city ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
+    ex:servedByLine
+        inst:circle ,
+        inst:hammersmith-city ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUHSC ;
+    ex:stationName "Hammersmith (H&C Line) Underground Station"^^xsd:string ;
+.
+
+inst:HUBHMS
+    a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_HUBHMS ;
+    ex:stationName "Hammersmith"^^xsd:string ;
+.
+
+inst:Severity_Minor_Delays
+    a ex:SeverityLevel ;
+    ex:severityLabel "Minor Delays"^^xsd:string ;
+.
+
+ex:ClosureEvent
+    a owl:Class ;
+    rdfs:label "Closure Event"@en ;
+    rdfs:comment "A disruption event in which a station or service is closed temporarily."@en ;
+    rdfs:subClassOf ex:DisruptionEvent ;
+.
+
+ex:Incident
+    a owl:Class ;
+    rdfs:label "Incident"@en ;
+    rdfs:comment "An operational incident reported within the London Underground network."@en ;
+.
+
+inst:waterloo-city
+    a ex:UndergroundLine ;
+    ex:currentStatus "Active"^^xsd:string ;
+    ex:inaugurationYear "1898"^^xsd:gYear ;
+    ex:lineHasRoute
+        inst:waterloo-city_route_inbound ,
+        inst:waterloo-city_route_outbound ;
+    ex:lineName "Waterloo & City"^^xsd:string ;
+    ex:operationalLengthMiles 1.47 ;
+    ex:usesRollingStockType inst:Stock_1992_Stock ;
+.
+
+ex:BusReplacementService
+    a owl:Class ;
+    rdfs:label "Bus Replacement Service"@en ;
+    rdfs:comment "An alternative bus service provided when a London Underground station or service is unavailable."@en ;
+.
+
+inst:940GZZLUACT
+    a
+        ex:InterchangeStation ,
+        ex:UndergroundStation ;
+    ex:fareZone 3 ;
+    ex:interchangesWithLine
+        inst:district ,
+        inst:piccadilly ;
+    ex:isFullyWheelchairAccessible true ;
+    ex:officialAccessibilityStatus "Full wheelchair access"^^xsd:string ;
+    ex:servedByLine
+        inst:district ,
+        inst:piccadilly ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUACT ;
+    ex:stationName "Acton Town Station"^^xsd:string ;
+.
+
+inst:940GZZLURYL
+    a
+        ex:InterchangeStation ,
+        ex:UndergroundStation ;
+    ex:fareZone 5 ;
+    ex:interchangesWithLine
+        inst:metropolitan ,
+        inst:piccadilly ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
+    ex:servedByLine
+        inst:metropolitan ,
+        inst:piccadilly ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLURYL ;
+    ex:stationName "Rayners Lane Station"^^xsd:string ;
+.
+
+ex:DisruptionEvent
+    a owl:Class ;
+    rdfs:label "Disruption Event"@en ;
+    rdfs:comment "An incident that disrupts normal operation of one or more London Underground lines."@en ;
+    rdfs:subClassOf ex:Incident ;
+.
+
+ex:DelayEvent
+    a owl:Class ;
+    rdfs:label "Delay Event"@en ;
+    rdfs:comment "A disruption event that causes a measurable service delay on the London Underground."@en ;
+    rdfs:subClassOf ex:DisruptionEvent ;
 .
 
 inst:940GZZLUUXB
@@ -6925,9 +6667,11 @@ inst:940GZZLUUXB
     ex:stationName "Uxbridge Station"^^xsd:string ;
 .
 
-inst:Severity_Severe_Delays
-    a ex:SeverityLevel ;
-    ex:severityLabel "Severe Delays"^^xsd:string ;
+ex:MaintenanceEvent
+    a owl:Class ;
+    rdfs:label "Maintenance Event"@en ;
+    rdfs:comment "A planned engineering or maintenance activity affecting the London Underground network."@en ;
+    rdfs:subClassOf ex:DisruptionEvent ;
 .
 
 ex:RollingStockType
@@ -6937,25 +6681,11 @@ ex:RollingStockType
     rdfs:subClassOf tmfac:VehicleType ;
 .
 
-ex:DelayEvent
-    a owl:Class ;
-    rdfs:label "Delay Event"@en ;
-    rdfs:comment "A disruption event that causes a measurable service delay on the London Underground."@en ;
-    rdfs:subClassOf ex:DisruptionEvent ;
-.
-
 ex:UndergroundLine
     a owl:Class ;
     rdfs:label "Underground Line"@en ;
     rdfs:comment "A named London Underground line such as the Victoria Line or Circle Line."@en ;
     rdfs:subClassOf tmj:Line ;
-.
-
-ex:MaintenanceEvent
-    a owl:Class ;
-    rdfs:label "Maintenance Event"@en ;
-    rdfs:comment "A planned engineering or maintenance activity affecting the London Underground network."@en ;
-    rdfs:subClassOf ex:DisruptionEvent ;
 .
 
 inst:victoria
@@ -7001,16 +6731,16 @@ inst:jubilee
     ex:usesRollingStockType inst:Stock_1996_Stock ;
 .
 
-inst:metropolitan
+inst:hammersmith-city
     a ex:UndergroundLine ;
     ex:currentStatus "Active"^^xsd:string ;
     ex:inaugurationYear "1863"^^xsd:gYear ;
     ex:lineHasRoute
-        inst:metropolitan_route_inbound ,
-        inst:metropolitan_route_outbound ;
-    ex:lineName "Metropolitan"^^xsd:string ;
-    ex:operationalLengthMiles 41.63 ;
-    ex:usesRollingStockType inst:Stock_S8_Stock ;
+        inst:hammersmith-city_route_inbound ,
+        inst:hammersmith-city_route_outbound ;
+    ex:lineName "Hammersmith & City"^^xsd:string ;
+    ex:operationalLengthMiles 15.84 ;
+    ex:usesRollingStockType inst:Stock_S7_Stock ;
 .
 
 inst:central
@@ -7025,16 +6755,16 @@ inst:central
     ex:usesRollingStockType inst:Stock_1992_Stock ;
 .
 
-inst:hammersmith-city
+inst:metropolitan
     a ex:UndergroundLine ;
     ex:currentStatus "Active"^^xsd:string ;
     ex:inaugurationYear "1863"^^xsd:gYear ;
     ex:lineHasRoute
-        inst:hammersmith-city_route_inbound ,
-        inst:hammersmith-city_route_outbound ;
-    ex:lineName "Hammersmith & City"^^xsd:string ;
-    ex:operationalLengthMiles 15.84 ;
-    ex:usesRollingStockType inst:Stock_S7_Stock ;
+        inst:metropolitan_route_inbound ,
+        inst:metropolitan_route_outbound ;
+    ex:lineName "Metropolitan"^^xsd:string ;
+    ex:operationalLengthMiles 41.63 ;
+    ex:usesRollingStockType inst:Stock_S8_Stock ;
 .
 
 inst:northern
@@ -7049,13 +6779,6 @@ inst:northern
     ex:usesRollingStockType inst:Stock_1995_Stock ;
 .
 
-ex:InterchangeStation
-    a owl:Class ;
-    rdfs:label "Interchange Station"@en ;
-    rdfs:comment "A London Underground station that provides interchange between two or more Underground lines."@en ;
-    rdfs:subClassOf ex:UndergroundStation ;
-.
-
 inst:circle
     a ex:UndergroundLine ;
     ex:currentStatus "Active"^^xsd:string ;
@@ -7066,6 +6789,13 @@ inst:circle
     ex:lineName "Circle"^^xsd:string ;
     ex:operationalLengthMiles 16.78 ;
     ex:usesRollingStockType inst:Stock_S7_Stock ;
+.
+
+ex:InterchangeStation
+    a owl:Class ;
+    rdfs:label "Interchange Station"@en ;
+    rdfs:comment "A London Underground station that provides interchange between two or more Underground lines."@en ;
+    rdfs:subClassOf ex:UndergroundStation ;
 .
 
 inst:piccadilly

@@ -599,7 +599,7 @@ This project employs a **sequential two-chat orchestration** methodology to exte
     ```
 </details>
 
-## RAG Implementation
+# RAG Implementation
 
 Goal: Implement a RAG strategy to resolve some of the incompleteness found
 

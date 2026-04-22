@@ -57,37 +57,40 @@ A London Underground knowledge graph project built with Python and RDF. The repo
 python -m pip install -r requirements.txt
 ```
 
-1. Generate the ontology:
+2. Generate the ontology:
 
 ```bash
 python ontology_builder.py
 ```
 
-1. Set the TfL API key:
+3. Set the TfL API key:
 
 ```bash
 export TFL_API_KEY=your_key_here
 ```
+```bash
+set TFL_API_KEY=your_key_here
+```
 
-1. Run the structured data pipeline:
+4. Run the structured data pipeline:
 
 ```bash
 python pipeline.py
 ```
 
-1. Run RAG completion
+5. Run RAG completion
 
 ```bash
 python pipeline_rag.py
 ```
 
-1. Merge TBox and ABox Turtle files
+6. Merge TBox and ABox Turtle files
 
 ```bash
 python merge_ontologies.py
 ```
 
-1. Validate with SPARQLs
+7. Validate with SPARQLs
 
 ```bash
 python run_sparqls.py

@@ -51,33 +51,25 @@ Executing: Transport disruptions affecting the Piccadilly Line
 --------------------------------------------------------------------------------
 disruption                     | disruptionName                 | status                        
 ------------------------------------------------------------------------------------------------
-central_status_1               | Part Suspended                 | Part Suspended                
-metropolitan_status_1          | Part Suspended                 | Part Suspended                
-piccadilly_status_1            | Part Suspended                 | Part Suspended                
-central_status_0               | Severe Delays                  | Severe Delays                 
-metropolitan_status_0          | Severe Delays                  | Severe Delays                 
-piccadilly_status_0            | Severe Delays                  | Severe Delays                 
+piccadilly_status_2            | Part Suspended                 | Part Suspended                
+piccadilly_status_0            | Minor Delays                   | Minor Delays                  
+piccadilly_status_1            | Severe Delays                  | Severe Delays                 
 
-Total Results: 6
+Total Results: 3
 
 ================================================================================
 Executing: Total number of stations affected by each disruption event
 --------------------------------------------------------------------------------
 disruption                     | disruptionName                 | stationCount                  
 ------------------------------------------------------------------------------------------------
-central_status_1               | Part Suspended                 | 9                             
-central_status_0               | Severe Delays                  | 9                             
-metropolitan_status_1          | Part Suspended                 | 7                             
-metropolitan_status_0          | Severe Delays                  | 7                             
-piccadilly_status_1            | Part Suspended                 | 5                             
-piccadilly_status_0            | Severe Delays                  | 5                             
-bakerloo_status_0              | Minor Delays                   | 3                             
-bakerloo_status_1              | Severe Delays                  | 3                             
-waterloo-city_status_0         | Suspended                      | 1                             
-hammersmith-city_status_0      | Severe Delays                  | 1                             
-victoria_status_0              | Severe Delays                  | 1                             
+northern_status_0              | Part Closure                   | 6                             
+piccadilly_status_2            | Part Suspended                 | 3                             
+piccadilly_status_0            | Minor Delays                   | 3                             
+piccadilly_status_1            | Severe Delays                  | 3                             
+circle_status_0                | Severe Delays                  | 1                             
+circle_status_1                | Minor Delays                   | 1                             
 
-Total Results: 11
+Total Results: 6
 
 ================================================================================
 Executing: Interchange points between the District Line and Bakerloo Line
@@ -101,6 +93,7 @@ station                        | stationName
 HUBBAN                         | Bank                          
 940GZZLUBNK                    | Bank Underground Station      
 940GZZLUBBN                    | Barbican Station              
+940GZZBPSUST                   | Battersea Power Station Underground Station
 940GZZLUBWT                    | Bayswater Station             
 HUBBFR                         | Blackfriars                   
 940GZZLUBKF                    | Blackfriars Underground Station
@@ -113,8 +106,11 @@ HUBCST                         | Cannon Street
 HUBCHX                         | Charing Cross                 
 940GZZLUCHX                    | Charing Cross Station         
 940GZZLUCGN                    | Covent Garden Station         
+940GZZLUECT                    | Earl's Court Station          
 940GZZLUERB                    | Edgware Road (Bakerloo) Underground Station
 940GZZLUERC                    | Edgware Road (Circle Line) Underground Station
+HUBEPH                         | Elephant & Castle             
+940GZZLUEAC                    | Elephant & Castle Station     
 940GZZLUEMB                    | Embankment Station            
 HUBEUS                         | Euston                        
 940GZZLUESQ                    | Euston Square Station         
@@ -128,6 +124,7 @@ HUBZFD                         | Farringdon
 940GZZLUHSK                    | High Street Kensington Station
 940GZZLUHBN                    | Holborn Station               
 940GZZLUHPC                    | Hyde Park Corner              
+940GZZLUKNG                    | Kennington Station            
 HUBKGX                         | King's Cross & St Pancras International
 940GZZLUKSX                    | King's Cross St. Pancras Underground Station
 940GZZLUKNB                    | Knightsbridge Station         
@@ -145,10 +142,12 @@ HUBMYB                         | Marylebone
 940GZZLUMMT                    | Monument Station              
 HUBZMG                         | Moorgate                      
 940GZZLUMGT                    | Moorgate Underground Station  
+940GZZLUNHG                    | Notting Hill Gate Station     
 HUBOLD                         | Old Street                    
 940GZZLUODS                    | Old Street Station            
 940GZZLUOXC                    | Oxford Circus Station         
 HUBPAD                         | Paddington                    
+940GZZLUPAH                    | Paddington (H&C Line)         
 940GZZLUPAC                    | Paddington Underground Station
 940GZZLUPCC                    | Piccadilly Circus             
 940GZZLUPCO                    | Pimlico Station               
@@ -164,6 +163,8 @@ HUBPAD                         | Paddington
 HUBTCR                         | Tottenham Court Road          
 940GZZLUTCR                    | Tottenham Court Road Station  
 940GZZLUTWH                    | Tower Hill                    
+940GZZLUVXL                    | Vauxhall                      
+HUBVXH                         | Vauxhall                      
 HUBVIC                         | Victoria                      
 940GZZLUVIC                    | Victoria Station              
 940GZZLUWRR                    | Warren Street Station         
@@ -172,15 +173,13 @@ HUBWAT                         | Waterloo
 HUBWSM                         | Westminster                   
 940GZZLUWSM                    | Westminster Station           
 
-Total Results: 77
+Total Results: 86
 
 ================================================================================
 Executing: Transport routes inaugurated before the year 1989
 --------------------------------------------------------------------------------
 route                          | routeName                      | inaugYear                     
 ------------------------------------------------------------------------------------------------
-circle_route_inbound           | Edgware Road (Circle Line) Underground Station - Hammersmith (H&C Line) Underground Station | 1863                          
-circle_route_outbound          | Hammersmith (H&C Line) Underground Station - Edgware Road (Circle Line) Underground Station | 1863                          
 hammersmith-city_route_inbound | Barking Underground Station - Hammersmith (H&C Line) Underground Station | 1863                          
 hammersmith-city_route_outbound | Hammersmith (H&C Line) Underground Station - Barking Underground Station | 1863                          
 metropolitan_route_inbound     | Aldgate Underground Station - Amersham Underground Station | 1863                          
@@ -191,6 +190,8 @@ metropolitan_route_outbound    | Amersham Underground Station - Aldgate Undergro
 metropolitan_route_outbound    | Chesham Underground Station - Aldgate Underground Station | 1863                          
 metropolitan_route_outbound    | Uxbridge Underground Station - Aldgate Underground Station | 1863                          
 metropolitan_route_outbound    | Watford Underground Station - Aldgate Underground Station | 1863                          
+circle_route_inbound           | Edgware Road (Circle Line) Underground Station - Hammersmith (H&C Line) Underground Station | 1863                          
+circle_route_outbound          | Hammersmith (H&C Line) Underground Station - Edgware Road (Circle Line) Underground Station | 1863                          
 district_route_inbound         | Edgware Road (Circle Line) Underground Station - Ealing Broadway Underground Station | 1868                          
 district_route_inbound         | Edgware Road (Circle Line) Underground Station - Kensington (Olympia) Underground Station | 1868                          
 district_route_inbound         | Edgware Road (Circle Line) Underground Station - Richmond Underground Station | 1868                          
@@ -276,34 +277,11 @@ Executing: Stations affected by both a disruption and a scheduled maintenance ev
 station                        | stationName                   
 ---------------------------------------------------------------
 940GZZLUACT                    | Acton Town Station            
-940GZZLUALD                    | Aldgate Station               
-940GZZLUAMS                    | Amersham Underground Station  
-940GZZLUASG                    | Arnos Grove Station           
-940GZZLUBST                    | Baker Street Station          
-940GZZLUCSM                    | Chesham Underground Station   
-940GZZLUCKS                    | Cockfosters Station           
-940GZZLUEBY                    | Ealing Broadway Underground Station
-940GZZLUEAC                    | Elephant & Castle Station     
-940GZZLUEPG                    | Epping Underground Station    
-940GZZLUHLT                    | Hainault Underground Station  
 HUBHMS                         | Hammersmith                   
-940GZZLUHAW                    | Harrow & Wealdstone Underground Station
-940GZZLUHOH                    | Harrow-on-the-Hill Underground Station
-940GZZLUHR4                    | Heathrow Terminal 4 Underground Station
-HUBH13                         | Heathrow Terminals 2 & 3      
-940GZZLULYN                    | Leyton Station                
-940GZZLULYS                    | Leytonstone Station           
-940GZZLULVT                    | Liverpool Street Station      
-940GZZLUQPS                    | Queen's Park Underground Station
-940GZZLURSP                    | Ruislip Station               
+940GZZLURYL                    | Rayners Lane Station          
 940GZZLUUXB                    | Uxbridge Station              
-940GZZLUVIC                    | Victoria Station              
-940GZZLUWLO                    | Waterloo Station              
-940GZZLUWAF                    | Watford Underground Station   
-940GZZLUWRP                    | West Ruislip Underground Station
-940GZZLUWCY                    | White City Station            
 
-Total Results: 27
+Total Results: 4
 
 ================================================================================
 Executing: Standard passenger capacity of the rolling stock used on the Victoria Line
@@ -658,18 +636,12 @@ Executing: Disruption events affected more than one Underground line at the same
 --------------------------------------------------------------------------------
 disruption                     | disruptionName                 | lineCount                     
 ------------------------------------------------------------------------------------------------
-central_status_1               | Part Suspended                 | 6                             
-metropolitan_status_1          | Part Suspended                 | 6                             
-piccadilly_status_1            | Part Suspended                 | 2                             
-waterloo-city_status_0         | Suspended                      | 4                             
-bakerloo_status_0              | Minor Delays                   | 2                             
-bakerloo_status_1              | Severe Delays                  | 2                             
-central_status_0               | Severe Delays                  | 6                             
-metropolitan_status_0          | Severe Delays                  | 6                             
-piccadilly_status_0            | Severe Delays                  | 2                             
-victoria_status_0              | Severe Delays                  | 3                             
+northern_status_0              | Part Closure                   | 4                             
+piccadilly_status_2            | Part Suspended                 | 3                             
+piccadilly_status_0            | Minor Delays                   | 3                             
+piccadilly_status_1            | Severe Delays                  | 3                             
 
-Total Results: 10
+Total Results: 4
 
 ================================================================================
 Executing: Stations affected by the current closure event on the Piccadilly Line
@@ -677,12 +649,10 @@ Executing: Stations affected by the current closure event on the Piccadilly Line
 station                        | stationName                    | closureName                   
 ------------------------------------------------------------------------------------------------
 940GZZLUACT                    | Acton Town Station             | Part Suspended                
-940GZZLUASG                    | Arnos Grove Station            | Part Suspended                
-HUBH13                         | Heathrow Terminals 2 & 3       | Part Suspended                
-940GZZLUCKS                    | Cockfosters Station            | Part Suspended                
-940GZZLUHR4                    | Heathrow Terminal 4 Underground Station | Part Suspended                
+940GZZLURYL                    | Rayners Lane Station           | Part Suspended                
+940GZZLUUXB                    | Uxbridge Station               | Part Suspended                
 
-Total Results: 5
+Total Results: 3
 
 ================================================================================
 Executing: Underground lines have no reported disruptions at the current time
@@ -693,9 +663,9 @@ waterloo-city                  | Waterloo & City
 victoria                       | Victoria                      
 bakerloo                       | Bakerloo                      
 jubilee                        | Jubilee                       
-metropolitan                   | Metropolitan                  
-central                        | Central                       
 hammersmith-city               | Hammersmith & City            
+central                        | Central                       
+metropolitan                   | Metropolitan                  
 northern                       | Northern                      
 circle                         | Circle                        
 piccadilly                     | Piccadilly                    
@@ -987,85 +957,31 @@ Executing: Incidents classified with severity level Severe
 --------------------------------------------------------------------------------
 incident                       | station                        | stationName                   
 ------------------------------------------------------------------------------------------------
-bakerloo_status_1              | 940GZZLUEAC                    | Elephant & Castle Station     
-bakerloo_status_1              | 940GZZLUHAW                    | Harrow & Wealdstone Underground Station
-bakerloo_status_1              | 940GZZLUQPS                    | Queen's Park Underground Station
-central_status_0               | 940GZZLUEBY                    | Ealing Broadway Underground Station
-central_status_0               | 940GZZLUEPG                    | Epping Underground Station    
-central_status_0               | 940GZZLUHLT                    | Hainault Underground Station  
-central_status_0               | 940GZZLULVT                    | Liverpool Street Station      
-central_status_0               | 940GZZLULYN                    | Leyton Station                
-central_status_0               | 940GZZLULYS                    | Leytonstone Station           
-central_status_0               | 940GZZLURSP                    | Ruislip Station               
-central_status_0               | 940GZZLUWCY                    | White City Station            
-central_status_0               | 940GZZLUWRP                    | West Ruislip Underground Station
-hammersmith-city_status_0      | HUBHMS                         | Hammersmith                   
-metropolitan_status_0          | 940GZZLUALD                    | Aldgate Station               
-metropolitan_status_0          | 940GZZLUAMS                    | Amersham Underground Station  
-metropolitan_status_0          | 940GZZLUBST                    | Baker Street Station          
-metropolitan_status_0          | 940GZZLUCSM                    | Chesham Underground Station   
-metropolitan_status_0          | 940GZZLUHOH                    | Harrow-on-the-Hill Underground Station
-metropolitan_status_0          | 940GZZLUUXB                    | Uxbridge Station              
-metropolitan_status_0          | 940GZZLUWAF                    | Watford Underground Station   
-piccadilly_status_0            | 940GZZLUACT                    | Acton Town Station            
-piccadilly_status_0            | 940GZZLUASG                    | Arnos Grove Station           
-piccadilly_status_0            | 940GZZLUCKS                    | Cockfosters Station           
-piccadilly_status_0            | 940GZZLUHR4                    | Heathrow Terminal 4 Underground Station
-piccadilly_status_0            | HUBH13                         | Heathrow Terminals 2 & 3      
-victoria_status_0              | 940GZZLUVIC                    | Victoria Station              
+circle_status_0                | HUBHMS                         | Hammersmith                   
+piccadilly_status_1            | 940GZZLUACT                    | Acton Town Station            
+piccadilly_status_1            | 940GZZLURYL                    | Rayners Lane Station          
+piccadilly_status_1            | 940GZZLUUXB                    | Uxbridge Station              
 
-Total Results: 26
+Total Results: 4
 
 ================================================================================
 Executing: Which stations have accessibility limitations and are also affected by current disruptions?
 --------------------------------------------------------------------------------
 station                        | stationName                    | disruptionName                
 ------------------------------------------------------------------------------------------------
-940GZZLUVIC                    | Victoria Station               | Severe Delays                 
+940GZZLUCHX                    | Charing Cross Station          | Part Closure                  
+940GZZLUCTN                    | Camden Town Station            | Part Closure                  
+940GZZLUKNG                    | Kennington Station             | Part Closure                  
+940GZZLUBNK                    | Bank Underground Station       | Part Closure                  
+940GZZLUMHL                    | Mill Hill East Station         | Part Closure                  
 HUBHMS                         | Hammersmith                    | Severe Delays                 
-940GZZLUBST                    | Baker Street Station           | Part Suspended                
-940GZZLUBST                    | Baker Street Station           | Severe Delays                 
-940GZZLUHOH                    | Harrow-on-the-Hill Underground Station | Part Suspended                
-940GZZLUHOH                    | Harrow-on-the-Hill Underground Station | Severe Delays                 
-940GZZLULYN                    | Leyton Station                 | Part Suspended                
-940GZZLULYN                    | Leyton Station                 | Severe Delays                 
-940GZZLULYS                    | Leytonstone Station            | Part Suspended                
-940GZZLULYS                    | Leytonstone Station            | Severe Delays                 
-940GZZLUQPS                    | Queen's Park Underground Station | Minor Delays                  
-940GZZLUQPS                    | Queen's Park Underground Station | Severe Delays                 
-940GZZLURSP                    | Ruislip Station                | Part Suspended                
-940GZZLURSP                    | Ruislip Station                | Severe Delays                 
-940GZZLUWCY                    | White City Station             | Part Suspended                
-940GZZLUWCY                    | White City Station             | Severe Delays                 
-940GZZLUWLO                    | Waterloo Station               | Suspended                     
-940GZZLUALD                    | Aldgate Station                | Part Suspended                
-940GZZLUALD                    | Aldgate Station                | Severe Delays                 
-940GZZLUAMS                    | Amersham Underground Station   | Part Suspended                
-940GZZLUAMS                    | Amersham Underground Station   | Severe Delays                 
-940GZZLUASG                    | Arnos Grove Station            | Part Suspended                
-940GZZLUASG                    | Arnos Grove Station            | Severe Delays                 
-940GZZLUCSM                    | Chesham Underground Station    | Part Suspended                
-940GZZLUCSM                    | Chesham Underground Station    | Severe Delays                 
-940GZZLUEPG                    | Epping Underground Station     | Part Suspended                
-940GZZLUEPG                    | Epping Underground Station     | Severe Delays                 
-940GZZLUHAW                    | Harrow & Wealdstone Underground Station | Minor Delays                  
-940GZZLUHAW                    | Harrow & Wealdstone Underground Station | Severe Delays                 
-940GZZLUHLT                    | Hainault Underground Station   | Part Suspended                
-940GZZLUHLT                    | Hainault Underground Station   | Severe Delays                 
-940GZZLUWAF                    | Watford Underground Station    | Part Suspended                
-940GZZLUWAF                    | Watford Underground Station    | Severe Delays                 
-940GZZLUWRP                    | West Ruislip Underground Station | Part Suspended                
-940GZZLUWRP                    | West Ruislip Underground Station | Severe Delays                 
-HUBH13                         | Heathrow Terminals 2 & 3       | Part Suspended                
-HUBH13                         | Heathrow Terminals 2 & 3       | Severe Delays                 
-940GZZLUCKS                    | Cockfosters Station            | Part Suspended                
-940GZZLUCKS                    | Cockfosters Station            | Severe Delays                 
-940GZZLUEBY                    | Ealing Broadway Underground Station | Part Suspended                
-940GZZLUEBY                    | Ealing Broadway Underground Station | Severe Delays                 
-940GZZLUHR4                    | Heathrow Terminal 4 Underground Station | Part Suspended                
-940GZZLUHR4                    | Heathrow Terminal 4 Underground Station | Severe Delays                 
+HUBHMS                         | Hammersmith                    | Minor Delays                  
+940GZZLURYL                    | Rayners Lane Station           | Part Suspended                
+940GZZLURYL                    | Rayners Lane Station           | Minor Delays                  
+940GZZLURYL                    | Rayners Lane Station           | Severe Delays                 
 940GZZLUUXB                    | Uxbridge Station               | Part Suspended                
+940GZZLUUXB                    | Uxbridge Station               | Minor Delays                  
 940GZZLUUXB                    | Uxbridge Station               | Severe Delays                 
 
-Total Results: 45
+Total Results: 13
 

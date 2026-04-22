@@ -1,0 +1,265 @@
+# SPARQL Queries for Ontology Express Team 
+
+# Common Prefixes
+
+PREFIX ex:   <http://example.org/ontology-express#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+PREFIX time: <http://www.w3.org/2006/time#>
+
+# 1. Which public transport stations are officially designated as fully wheelchair accessible?
+SELECT ?station ?stationName
+WHERE {
+    ?station a ex:UndergroundStation ;
+             ex:stationName ?stationName ;
+             ex:isFullyWheelchairAccessible true .
+}
+ORDER BY ?stationName
+
+
+# 2. What is the total operational length, in miles, of the Circle Line?
+SELECT ?lengthMiles
+WHERE {
+  ?line a ex:UndergroundLine ;
+         ex:lineName "Circle"^^xsd:string ;
+         ex:operationalLengthMiles ?lengthMiles .
+}
+
+
+# 3. Which transport disruptions are currently affecting the Piccadilly Line?
+SELECT ?disruption ?disruptionName ?status
+WHERE {
+    { ?disruption a ex:DisruptionEvent }
+    UNION { ?disruption a ex:ClosureEvent }
+    UNION { ?disruption a ex:DelayEvent }
+    ?disruption ex:affectsLine ?line ;
+                ex:disruptionName ?disruptionName ;
+                ex:currentStatus ?status .
+    ?line ex:lineName "Piccadilly"^^xsd:string .
+}
+
+
+# 4. What is the total number of stations affected by each disruption event?
+SELECT ?disruption ?disruptionName (COUNT(DISTINCT ?station) AS ?stationCount)
+WHERE {
+    { ?disruption a ex:DisruptionEvent }
+    UNION { ?disruption a ex:ClosureEvent }
+    UNION { ?disruption a ex:DelayEvent }
+    ?disruption ex:disruptionName ?disruptionName ;
+                ex:occursAtStation ?station .
+    ?station a ex:UndergroundStation .
+}
+GROUP BY ?disruption ?disruptionName
+ORDER BY DESC(?stationCount)
+
+
+# 5. Which stations serve as interchange points between the District Line and Bakerloo Line?
+SELECT ?station ?stationName
+WHERE {
+  ?station a ex:InterchangeStation ;
+           ex:stationName ?stationName ;
+           ex:servedByLine ?line1, ?line2 .
+  ?line1 ex:lineName "District"^^xsd:string .
+  ?line2 ex:lineName "Bakerloo"^^xsd:string .
+}
+ORDER BY ?stationName
+
+
+# 6. Which stations are in Zone 1?
+SELECT DISTINCT ?station ?stationName
+WHERE {
+    ?station a ex:UndergroundStation ;
+             ex:stationName ?stationName ;
+             ex:fareZone 1 .
+}
+ORDER BY ?stationName
+
+
+# 7. Which transport routes were inaugurated before the year 1989?
+SELECT ?route ?routeName ?inaugYear
+WHERE {
+    ?route a ex:UndergroundRoute ;
+           ex:routeName ?routeName ;
+           ex:inaugurationYear ?inaugYear .
+    FILTER (STR(?inaugYear) < "1989")
+}
+ORDER BY ?inaugYear
+
+
+# 8. Which stations are served by more than two Underground lines?
+SELECT ?station ?stationName (COUNT(DISTINCT ?line) AS ?lineCount)
+WHERE {
+    ?station a ex:UndergroundStation ;
+             ex:stationName ?stationName ;
+             ex:servedByLine ?line .
+    ?line a ex:UndergroundLine .
+}
+GROUP BY ?station ?stationName
+HAVING (COUNT(DISTINCT ?line) > 2)
+ORDER BY DESC(?lineCount) ?stationName
+
+
+# 9. Which stations are affected by both a disruption and a scheduled maintenance event?
+SELECT DISTINCT ?station ?stationName
+WHERE {
+    ?station a ex:UndergroundStation ;
+             ex:stationName ?stationName .
+    { ?disruption a ex:DisruptionEvent }
+    UNION { ?disruption a ex:ClosureEvent }
+    UNION { ?disruption a ex:DelayEvent }
+    ?disruption ex:occursAtStation ?station .
+    ?maintenance a ex:MaintenanceEvent ;
+                 ex:occursAtStation ?station .
+    FILTER (?disruption != ?maintenance)
+}
+ORDER BY ?stationName
+
+
+# 10. What is the standard passenger capacity of the rolling stock used on the Victoria Line?
+SELECT ?lineName ?stockName ?capacity
+WHERE {
+    ?line a ex:UndergroundLine ;
+          ex:lineName ?lineName ;
+          ex:usesRollingStockType ?stock .
+    ?stock ex:rollingStockName ?stockName ;
+           ex:standardPassengerCapacity ?capacity .
+    FILTER (?lineName = "Victoria"^^xsd:string)
+}
+
+
+# 11. Which Underground stations have an accessibility assessment indicating step-free access but not full wheelchair access?
+SELECT ?station ?stationName ?accessibilityStatus
+WHERE {
+    ?station a ex:UndergroundStation ;
+             ex:stationName ?stationName ;
+             ex:isFullyWheelchairAccessible false ;
+             ex:officialAccessibilityStatus ?accessibilityStatus .
+    FILTER (CONTAINS(LCASE(STR(?accessibilityStatus)), "step-free"))
+}
+ORDER BY ?stationName
+
+
+# 12. Which lines share at least one interchange station with the Victoria Line?
+SELECT DISTINCT ?otherLineName
+WHERE {
+    ?station a ex:InterchangeStation ;
+             ex:interchangesWithLine ?victoriaLine ;
+             ex:interchangesWithLine ?otherLine .
+    ?victoriaLine ex:lineName "Victoria"^^xsd:string .
+    ?otherLine ex:lineName ?otherLineName .
+    FILTER (?otherLineName != "Victoria"^^xsd:string)
+}
+
+
+# 13. Which disruption events affected more than one Underground line at the same time?
+SELECT ?disruption ?disruptionName (COUNT(DISTINCT ?line) AS ?lineCount)
+WHERE {
+    { ?disruption a ex:DisruptionEvent }
+    UNION { ?disruption a ex:ClosureEvent }
+    UNION { ?disruption a ex:DelayEvent }
+    ?disruption ex:disruptionName ?disruptionName ;
+                ex:affectsLine ?line .
+}
+GROUP BY ?disruption ?disruptionName
+HAVING (COUNT(DISTINCT ?line) > 1)
+
+
+# 14. What stations are affected by the current closure event on the Piccadilly Line?
+SELECT DISTINCT ?station ?stationName ?closureName
+WHERE {
+    ?closure a ex:ClosureEvent ;
+             ex:disruptionName ?closureName ;
+             ex:primaryLine ?line ;
+             ex:occursAtStation ?station ;
+             ex:currentStatus ?status .
+    FILTER(CONTAINS(LCASE(STR(?status)), "suspended") || CONTAINS(LCASE(STR(?status)), "closure"))
+    ?line ex:lineName "Piccadilly"^^xsd:string .
+    ?station a ex:UndergroundStation ;
+             ex:stationName ?stationName .
+}
+
+
+# 15. Which Underground lines have no reported disruptions at the current time?
+SELECT DISTINCT ?line ?lineName
+WHERE {
+    ?line a ex:UndergroundLine ;
+          ex:lineName ?lineName .
+    FILTER NOT EXISTS {
+        ?disruption a ex:DisruptionEvent ;
+                    ex:affectsLine ?line ;
+                    ex:currentStatus ?status .
+        FILTER(LCASE(STR(?status)) = "active")
+    }
+}
+
+
+# 16. Which rolling stock types are used exclusively by a single Underground line?
+SELECT ?stock ?stockName (COUNT(DISTINCT ?line) AS ?lineCount)
+WHERE {
+    ?stock a ex:RollingStockType ;
+           ex:rollingStockName ?stockName .
+    ?line a ex:UndergroundLine ;
+          ex:usesRollingStockType ?stock .
+}
+GROUP BY ?stock ?stockName
+HAVING (COUNT(DISTINCT ?line) = 1)
+
+
+# 17. Which stations are endpoints (i.e., served by only one line and not interchange stations)?
+SELECT DISTINCT ?station ?stationName
+WHERE {
+    ?station a ex:UndergroundStation ;
+             ex:stationName ?stationName ;
+             ex:servedByLine ?line .
+    FILTER NOT EXISTS { ?station a ex:InterchangeStation }
+}
+GROUP BY ?station ?stationName
+HAVING (COUNT(DISTINCT ?line) = 1)
+ORDER BY ?stationName
+
+
+# 18. Which routes inaugurated before 1989 are still currently operational?
+SELECT ?route ?routeName ?inaugYear
+WHERE {
+    ?route a ex:UndergroundRoute ;
+           ex:routeName ?routeName ;
+           ex:inaugurationYear ?inaugYear .
+    ?line ex:lineHasRoute ?route ;
+          ex:currentStatus ?lineStatus .
+    FILTER (STR(?inaugYear) < "1989")
+    FILTER(LCASE(STR(?lineStatus)) = "active")
+}
+ORDER BY ?inaugYear ?routeName
+
+
+# 19. Which incidents at stations were classified with severity level "Severe"?
+SELECT ?incident ?station ?stationName
+WHERE {
+    { ?incident a ex:DisruptionEvent }
+    UNION { ?incident a ex:ClosureEvent }
+    UNION { ?incident a ex:DelayEvent }
+    ?incident ex:severityLabel ?severity ;
+              ex:occursAtStation ?station .
+    ?station ex:stationName ?stationName .
+    FILTER(CONTAINS(LCASE(STR(?severity)), "severe"))
+}
+
+# 20. Which stations have accessibility limitations and are also affected by current disruptions?
+SELECT DISTINCT ?station ?stationName ?disruptionName
+WHERE {
+        ?station a ex:UndergroundStation ;
+                         ex:stationName ?stationName .
+        OPTIONAL { ?station ex:isFullyWheelchairAccessible ?wheelchair . }
+        OPTIONAL { ?station ex:officialAccessibilityStatus ?accessStatus .}
+        FILTER(
+            (BOUND(?wheelchair) && ?wheelchair = false)
+            || (BOUND(?accessStatus) && CONTAINS(LCASE(STR(?accessStatus)), "step-free"))
+            || (BOUND(?accessStatus) && CONTAINS(LCASE(STR(?accessStatus)), "limited"))
+        )
+        { ?disruption a ex:DisruptionEvent }
+        UNION { ?disruption a ex:ClosureEvent }
+        UNION { ?disruption a ex:DelayEvent }
+        ?disruption ex:occursAtStation ?station ;
+                    ex:disruptionName ?disruptionName .
+}

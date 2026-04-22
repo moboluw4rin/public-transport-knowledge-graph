@@ -1,5 +1,5 @@
 """
-Build and serialise the London Underground ontology graph.
+London Underground Knowledge Graph - Ontology Builder and Serialiser.
 
 This module uses rdflib to declare ontology classes, object properties, datatype
 properties, and serialisation to Turtle.
@@ -9,6 +9,8 @@ properties, and serialisation to Turtle.
 
 from rdflib import Graph, Namespace, Literal, URIRef
 from rdflib.namespace import RDF, RDFS, OWL, XSD
+
+from pipeline_common import EX
 
 
 def add_class(graph: Graph, class_iri, label: str, comment: str):
@@ -47,7 +49,6 @@ def main():
     # ------------------------------------------------------------------
     # Namespaces
     # ------------------------------------------------------------------
-    EX = Namespace("http://example.org/ontology-express#")
     TMFAC = Namespace("https://w3id.org/transmodel/facilities#")
     TMJ = Namespace("https://w3id.org/transmodel/journeys#")
     TIME = Namespace("http://www.w3.org/2006/time#")

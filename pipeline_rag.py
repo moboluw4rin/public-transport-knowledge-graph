@@ -1,9 +1,10 @@
 """
-RAG-based KG completion for two identified gaps:
+London Underground Knowledge Graph - RAG-based KG Completion Pipeline.
 
-  Gap A -  Missing ex:fareZone on 41 UndergroundStation instances
-  Gap B -  Missing ex:WheelchairAccessibilityAssessment instances
-          (only 1 of 345 stations currently has one)
+RAG-based KG completion for:
+
+  Missing ex:fareZone on 41 UndergroundStation instances
+  Missing ex:WheelchairAccessibilityAssessment instances
 
 RAG pattern used:
   1. RETRIEVE  - query the existing KG (rdflib) + TfL Unified API
@@ -15,29 +16,36 @@ Usage:
     python pipeline_rag.py
 
 Environment variables required:
-    TFL_API_KEY   – TfL Unified API key
-    OPENAI_API_KEY – OpenAI API key
+    TFL_API_KEY   - TfL Unified API key
+    OPENAI_API_KEY - OpenAI API key
 
 Outputs:
-    ontologies/rag_completions.ttl  – new triples only (merge manually or via pipeline.py)
-    ontologies/instances_completed.ttl – full merged graph
+    ontologies/rag_completions.ttl  - new triples only (merge manually or via pipeline.py)
+    ontologies/instances_completed.ttl - full merged graph
 """
 
+# pylint: disable=C0301,C0413,W1203
+
+import re
 import os
 import json
 import time
 import logging
 import requests
+
 from dotenv import load_dotenv
 
 # Load .env file from the script's directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
 load_dotenv(os.path.join(script_dir, ".env"))
-from rdflib import Graph, Namespace, RDF, Literal, URIRef
+
+from rdflib import Graph, RDF, Literal, URIRef
 from rdflib.namespace import XSD
 from openai import OpenAI
+from pipeline_common import EX, INST
 
 # ── Logging ────────────────────────────────────────────────────────────────────
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s"
@@ -45,11 +53,11 @@ logging.basicConfig(
 log = logging.getLogger(__name__)
 
 # ── Namespaces ─────────────────────────────────────────────────────────────────
-EX   = Namespace("http://example.org/ontology-express#")
-INST = Namespace("http://example.org/instances#")
+
 XSD_NS = XSD
 
 # ── Config ─────────────────────────────────────────────────────────────────────
+
 TFL_BASE        = "https://api.tfl.gov.uk"
 INSTANCES_PATH  = "ontologies/instances.ttl"
 OUTPUT_NEW      = "ontologies/rag_completions.ttl"
@@ -60,7 +68,7 @@ LLM_TEMPERATURE = 0.0                    # deterministic outputs for factual tas
 REQUEST_DELAY   = 0.3                    # seconds between TfL API calls (rate limiting)
 
 
-# STEP 1 – RETRIEVE: load KG and identify gaps
+# STEP 1 - RETRIEVE: load KG and identify gaps
 
 def load_kg(path: str) -> Graph:
     """Load the existing knowledge graph from a Turtle file."""
@@ -133,7 +141,7 @@ def find_stations_missing_accessibility_assessment(g: Graph) -> list[dict]:
     return results
 
 
-# STEP 2 – RETRIEVE: fetch context from TfL API
+# STEP 2 - RETRIEVE: fetch context from TfL API
 
 def tfl_get(endpoint: str) -> dict | list | None:
     """
@@ -162,14 +170,14 @@ def fetch_fare_zone_from_tfl(naptan: str) -> dict:
         return {"zones": [], "raw": {}}
 
     zones = []
+
     # TfL encodes zones in the 'lines' and 'lineModeGroups' arrays
     # The most reliable location is additionalProperties
     if isinstance(data, dict):
         for prop in data.get("additionalProperties", []):
             if prop.get("key") == "Zone":
                 zone_str = prop.get("value", "")
-                # Can be "1", "2+3", "4/5" – parse all integers
-                import re
+                # Can be "1", "2+3", "4/5" - parse all integers
                 zones = [int(z) for z in re.findall(r'\d+', zone_str)]
                 break
 
@@ -197,9 +205,10 @@ def fetch_accessibility_from_tfl(naptan: str) -> dict:
     }
 
 
-# STEP 3 – AUGMENT + GENERATE: LLM prompt + structured output
+# STEP 3 - AUGMENT + GENERATE: LLM prompt + structured output
 
 def build_openai_client() -> OpenAI:
+    """Initialise the OpenAI API client using the API key from the environment."""
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
         raise EnvironmentError("OPENAI_API_KEY environment variable not set")
@@ -258,7 +267,7 @@ Rules:
         )
         result = response.choices[0].message.content.strip()
         return int(result)
-    except (ValueError, Exception) as e:
+    except (ValueError, Exception) as e: # pylint: disable=W0718
         log.warning(f"LLM fare zone error for {station_name}: {e}")
         return None
 
@@ -322,18 +331,19 @@ Rules:
             messages=[{"role": "user", "content": prompt}]
         )
         raw = response.choices[0].message.content.strip()
+
         # Strip markdown fences if the model adds them despite instructions
         if raw.startswith("```"):
             raw = raw.split("```")[1]
             if raw.startswith("json"):
                 raw = raw[4:]
         return json.loads(raw)
-    except (json.JSONDecodeError, Exception) as e:
+    except (json.JSONDecodeError, Exception) as e: # pylint: disable=W0718
         log.warning(f"LLM accessibility error for {station_name}: {e}")
         return None
 
 
-# STEP 4 – MERGE: convert LLM output to RDF triples
+# STEP 4 - MERGE: convert LLM output to RDF triples
 
 def add_fare_zone_triple(g: Graph, station_iri: str, zone: int) -> None:
     """Add a single ex:fareZone triple to the graph."""
@@ -357,7 +367,7 @@ def add_accessibility_assessment_triples(
     # Type the new assessment instance
     g.add((assess_id, RDF.type, EX.WheelchairAccessibilityAssessment))
 
-    # Link station → assessment
+    # Link station leads to assessment
     g.add((station, EX.stationHasAccessibilityAssessment, assess_id))
 
     # Add data properties from LLM-generated JSON
@@ -369,7 +379,7 @@ def add_accessibility_assessment_triples(
         g.add((assess_id, EX.isFullyWheelchairAccessible,
                Literal(bool(assessment["isFullyWheelchairAccessible"]), datatype=XSD.boolean)))
 
-    # Extended properties (beyond core ontology — kept as annotations)
+    # Extended properties (beyond core ontology - kept as annotations)
     for field, predicate in [
         ("stepFreeToStreet",   "stepFreeToStreet"),
         ("stepFreeToPlatform", "stepFreeToPlatform"),
@@ -471,6 +481,7 @@ def run_gap_b_accessibility(g: Graph, new_triples: Graph, client: OpenAI) -> int
 
 
 def main():
+    """Main execution function for the RAG KG completion pipeline."""
     os.makedirs("ontologies", exist_ok=True)
 
     # ── Load existing KG ────────────────────────────────────────────────────
@@ -504,7 +515,7 @@ def main():
     print(f"  Gap B (Accessibility):           {b_count} assessment instances created")
     print(f"  New triples generated:           {len(new_triples)}")
     print(f"  Total triples in merged graph:   {len(g)}")
-    print(f"\n  Output files:")
+    print("\n  Output files:")
     print(f"    New triples only:  {OUTPUT_NEW}")
     print(f"    Merged full graph: {OUTPUT_MERGED}")
     print("═" * 60)

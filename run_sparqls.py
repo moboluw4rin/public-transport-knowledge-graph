@@ -1,16 +1,34 @@
+"""
+London Underground Knowledge Graph - SPARQL Query Executor.
+
+This script loads the full knowledge graph from the Turtle
+file and executes a series of SPARQL queries to extract insights.
+
+The results of each query are logged to a text file in a readable format.
+
+The queries cover various aspects of the London Underground system,
+including station accessibility, line disruptions, interchange stations,
+and more. This serves as a demonstration of how to interact with the RDF
+graph using SPARQL and can be easily extended with additional queries
+as needed.
+"""
+
+# pylint: disable=C0301
+
 from pathlib import Path
 import rdflib
 
 def run_queries():
-    basePath = Path(__file__).parent
+    """Load the RDF graph and execute predefined SPARQL queries."""
+    basePath = Path(__file__).parent # pylint: disable=C0103
     ttl_path = basePath / "ontologies" / "full_knowledge_graph.ttl"
     log_path = basePath / "queries" /  "sparql_results.txt"
 
-    # 1. Initialize the graph and parse the Turtle file
+    # 1. Initialise the graph and parse the Turtle file
     g = rdflib.Graph()
     try:
         g.parse(ttl_path, format="turtle")
-    except Exception as e:
+    except Exception as e: # pylint: disable=W0718
         print(f"Failed to load graph: {e}")
         return
 
@@ -34,7 +52,7 @@ def run_queries():
             }
             ORDER BY ?stationName
         """,
-        
+
         "Total operational length of the Circle Line": prefixes + """
             SELECT ?lengthMiles
             WHERE {
@@ -43,7 +61,7 @@ def run_queries():
                     ex:operationalLengthMiles ?lengthMiles .
             }
         """,
-        
+
         "Transport disruptions affecting the Piccadilly Line": prefixes + """
             SELECT ?disruption ?disruptionName ?status
             WHERE {
@@ -56,7 +74,7 @@ def run_queries():
                 ?line ex:lineName "Piccadilly"^^xsd:string .
             }
         """,
-        
+
         "Total number of stations affected by each disruption event": prefixes + """
             SELECT ?disruption ?disruptionName (COUNT(DISTINCT ?station) AS ?stationCount)
             WHERE {
@@ -70,7 +88,7 @@ def run_queries():
             GROUP BY ?disruption ?disruptionName
             ORDER BY DESC(?stationCount)
         """,
-        
+
         "Interchange points between the District Line and Bakerloo Line": prefixes + """
             SELECT ?station ?stationName
             WHERE {
@@ -82,7 +100,7 @@ def run_queries():
             }
             ORDER BY ?stationName
         """,
-        
+
         "Stations in Zone 1": prefixes + """
             SELECT DISTINCT ?station ?stationName
             WHERE {
@@ -92,7 +110,7 @@ def run_queries():
             }
             ORDER BY ?stationName
         """,
-        
+
         "Transport routes inaugurated before the year 1989": prefixes + """
             SELECT ?route ?routeName ?inaugYear
             WHERE {
@@ -103,7 +121,7 @@ def run_queries():
             }
             ORDER BY ?inaugYear
         """,
-        
+
         "Stations served by more than two Underground lines": prefixes + """
             SELECT ?station ?stationName (COUNT(DISTINCT ?line) AS ?lineCount)
             WHERE {
@@ -116,7 +134,7 @@ def run_queries():
             HAVING (COUNT(DISTINCT ?line) > 2)
             ORDER BY DESC(?lineCount) ?stationName
         """,
-        
+
         "Stations affected by both a disruption and a scheduled maintenance event": prefixes + """
             SELECT DISTINCT ?station ?stationName
             WHERE {
@@ -132,7 +150,7 @@ def run_queries():
             }
             ORDER BY ?stationName
         """,
-        
+
         "Standard passenger capacity of the rolling stock used on the Victoria Line": prefixes + """
             SELECT ?lineName ?stockName ?capacity
             WHERE {
@@ -144,7 +162,7 @@ def run_queries():
                 FILTER (?lineName = "Victoria"^^xsd:string)
             }
         """,
-        
+
         "Stations with step-free access but not full wheelchair access": prefixes + """
             SELECT ?station ?stationName ?accessibilityStatus
             WHERE {
@@ -156,7 +174,7 @@ def run_queries():
             }
             ORDER BY ?stationName
         """,
-        
+
         "Lines sharing at least one interchange station with the Victoria Line": prefixes + """
             SELECT DISTINCT ?otherLineName
             WHERE {
@@ -168,7 +186,7 @@ def run_queries():
                 FILTER (?otherLineName != "Victoria"^^xsd:string)
             }
         """,
-        
+
         "Disruption events affected more than one Underground line at the same time": prefixes + """
             SELECT ?disruption ?disruptionName (COUNT(DISTINCT ?line) AS ?lineCount)
             WHERE {
@@ -181,7 +199,7 @@ def run_queries():
             GROUP BY ?disruption ?disruptionName
             HAVING (COUNT(DISTINCT ?line) > 1)
         """,
-        
+
         "Stations affected by the current closure event on the Piccadilly Line": prefixes + """
             SELECT DISTINCT ?station ?stationName ?closureName
             WHERE {
@@ -196,7 +214,7 @@ def run_queries():
                         ex:stationName ?stationName .
             }
         """,
-        
+
         "Underground lines have no reported disruptions at the current time": prefixes + """
             SELECT DISTINCT ?line ?lineName
             WHERE {
@@ -210,7 +228,7 @@ def run_queries():
                 }
             }
         """,
-        
+
         "Rolling stock types used exclusively by a single Underground line": prefixes + """
             SELECT ?stock ?stockName (COUNT(DISTINCT ?line) AS ?lineCount)
             WHERE {
@@ -222,7 +240,7 @@ def run_queries():
             GROUP BY ?stock ?stockName
             HAVING (COUNT(DISTINCT ?line) = 1)
         """,
-        
+
         "Stations that are endpoints": prefixes + """
             SELECT DISTINCT ?station ?stationName
             WHERE {
@@ -235,7 +253,7 @@ def run_queries():
             HAVING (COUNT(DISTINCT ?line) = 1)
             ORDER BY ?stationName
         """,
-        
+
         "Routes inaugurated before 1989 still currently operational": prefixes + """
             SELECT ?route ?routeName ?inaugYear
             WHERE {
@@ -249,7 +267,7 @@ def run_queries():
             }
             ORDER BY ?inaugYear ?routeName
         """,
-        
+
         "Incidents classified with severity level Severe": prefixes + """
             SELECT ?incident ?station ?stationName
             WHERE {
@@ -262,7 +280,7 @@ def run_queries():
                 FILTER(CONTAINS(LCASE(STR(?severity)), "severe"))
             }
         """,
-        
+
         "Which stations have accessibility limitations and are also affected by current disruptions?": prefixes + """
             SELECT DISTINCT ?station ?stationName ?disruptionName
             WHERE {
@@ -283,7 +301,7 @@ def run_queries():
             }
         """
     }
- 
+
     # 4. Open file and execute queries
     with open(log_path, "w", encoding="utf-8") as f:
         for query_name, sparql_query in queries_dict.items():
@@ -291,16 +309,16 @@ def run_queries():
             try:
                 results = g.query(sparql_query)
                 vars_list = results.vars
-                
+
                 if not vars_list:
                     f.write("No variables returned.\n\n")
                     continue
-                
+
                 # Format headers
                 header_row = " | ".join([str(var).ljust(30) for var in vars_list])
                 f.write(header_row + "\n")
                 f.write("-" * len(header_row) + "\n")
-                
+
                 # Format each result row
                 count = 0
                 for row in results:
@@ -313,13 +331,13 @@ def run_queries():
                             val_str = str(val)
                             # Clean URIs for logging
                             if isinstance(val, rdflib.URIRef):
-                                val_str = val_str.split('#')[-1].split('/')[-1]
+                                val_str = val_str.rsplit('#', maxsplit=1)[-1].split('/')[-1]
                             row_strs.append(val_str.ljust(30))
                     f.write(" | ".join(row_strs) + "\n")
-                
+
                 f.write(f"\nTotal Results: {count}\n\n")
-                
-            except Exception as e:
+
+            except Exception as e: # pylint: disable=W0718
                 f.write(f"Error executing query:\n{e}\n\n")
 
     print(f"Query execution complete. Results logged to: {log_path}")

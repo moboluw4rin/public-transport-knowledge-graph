@@ -607,3 +607,14 @@ This project employs a **sequential two-chat orchestration** methodology to exte
     * Do not alter any semantics or graph structure beyond adding labels/comments.
     ```
 </details>
+
+### RAG Implementation
+
+<details>
+<summary>Click to view Prompt</summary>
+
+    ```markdown
+    “Here is a pdf explaining my project task. I need help with the RAG strategy task. I have attached my 3 Turtle (.ttl) files below. I’d like to implement RAG for the following two gaps: Accessibility assessments (TfL API + LLM formatting) and Missing fare zones (TfL API + LLM disambiguation). Please help me write RAG python code for these two gaps.”
+    ```
+
+</details>

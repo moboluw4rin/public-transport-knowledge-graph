@@ -599,13 +599,15 @@ This project employs a **sequential two-chat orchestration** methodology to exte
     ```
 </details>
 
-### RAG Implementation
+## RAG Implementation
+
+Goal: Implement a RAG strategy to resolve some of the incompleteness found
 
 <details>
 <summary>Click to view Prompt</summary>
 
     ```markdown
-    “Here is a pdf explaining my project task. I need help with the RAG strategy task. I have attached 3 Turtle (.ttl) files below. I’d like to implement RAG for the following two gaps: Accessibility assessments (TfL API + LLM formatting) and Missing fare zones (TfL API + LLM disambiguation). Please help me write RAG python code for these two gaps.”
+    “Here is a pdf explaining my project task, I need to implement the RAG strategy task. I’d like to implement RAG for the following two gaps: Accessibility assessments (TfL API + LLM formatting) and Missing fare zones (TfL API + LLM disambiguation). I have attached 3 Turtle (.ttl) files below. Please help me generate a python script that uses RAG to resolve these two gaps in our ontology.”
     ```
 
 </details>

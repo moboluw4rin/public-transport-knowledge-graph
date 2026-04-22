@@ -66,7 +66,9 @@ def main():
     # Ontology declaration
     # ------------------------------------------------------------------
     ontology_iri = URIRef("http://example.org/ontology-express")
+    version_iri = URIRef("http://example.org/ontology-express/version/1.0")
     graph.add((ontology_iri, RDF.type, OWL.Ontology))
+    graph.add((ontology_iri, OWL.versionIRI, version_iri))
     graph.add((ontology_iri, RDFS.label, Literal("London Underground Ontology Foundation", lang="en")))
     graph.add((
         ontology_iri,

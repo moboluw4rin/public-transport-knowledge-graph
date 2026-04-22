@@ -11,7 +11,8 @@
     rdfs:comment "A TBox ontology for modelling London Underground stations, lines, routes, incidents, accessibility, maintenance, and rolling stock in line with the defined competency questions."@en ;
     owl:imports <http://www.w3.org/2006/time>,
         tmfac:,
-        tmj: .
+        tmj: ;
+    owl:versionIRI <http://example.org/ontology-express/version/1.0> .
 
 ex:affectsLine a owl:ObjectProperty ;
     rdfs:label "affects line"@en ;

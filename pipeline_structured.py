@@ -119,7 +119,7 @@ def fetch_line_status() -> list:
     return data
 
 
-def load_tbox(path: str = "ontologies/base_ontology.ttl") -> Graph:
+def load_tbox(path: str = "ontologies/tbox_ontology.ttl") -> Graph:
     """Load the TBox ontology into a graph so instances inherit its structure."""
     graph = Graph()
     graph.parse(path, format="turtle")

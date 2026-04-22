@@ -3642,7 +3642,7 @@ inst:northern_status_0
     ex:currentStatus "Part Closure"^^xsd:string ;
     ex:disruptionName "Part Closure"^^xsd:string ;
     ex:hasSeverity inst:Severity_Part_Closure ;
-    ex:incidentCause "engineering works"^^xsd:string ;
+    ex:incidentCause "planned maintenance"^^xsd:string ;
     ex:incidentName "NORTHERN LINE: From Monday 12 January to Thursday 28 May, on Monday to Thursday "^^xsd:string ;
     ex:incidentType "planned_maintenance"^^xsd:string ;
     ex:isPlannedMaintenance true ;

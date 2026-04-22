@@ -64,12 +64,14 @@ python ontology_builder.py
 ```
 
 3. Set the TfL API key:
+Mac/Linux:
 
 ```bash
-export TFL_API_KEY=your_key_here #Mac/Linux
+export TFL_API_KEY=your_key_here 
 ```
+Windows:
 ```bash
-set TFL_API_KEY=your_key_here #Windows
+set TFL_API_KEY=your_key_here 
 ```
 
 4. Run the structured data pipeline:

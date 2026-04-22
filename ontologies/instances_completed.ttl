@@ -2399,6 +2399,13 @@ inst:HUBHHY a ex:UndergroundStation ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_HUBHHY ;
     ex:stationName "Highbury & Islington"^^xsd:string .
 
+inst:HUBHMS a ex:UndergroundStation ;
+    ex:fareZone 2 ;
+    ex:isFullyWheelchairAccessible false ;
+    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
+    ex:stationHasAccessibilityAssessment inst:Accessibility_HUBHMS ;
+    ex:stationName "Hammersmith"^^xsd:string .
+
 inst:HUBHOH a ex:UndergroundStation ;
     ex:fareZone 5 ;
     ex:isFullyWheelchairAccessible false ;
@@ -2736,41 +2743,18 @@ inst:central_status_0 a ex:DelayEvent ;
 
 inst:circle_maintenance_0 a ex:MaintenanceEvent ;
     ex:affectsLine inst:circle ;
-    ex:maintenanceName "Circle Line: Severe delays between Edgware Road and Hammersmith and MINOR DELAYS on the rest of the line due to train cancellations. Tickets are being accepted on London Buses. "^^xsd:string ;
-    ex:occursAtStation inst:HUBHMS .
-
-inst:circle_maintenance_1 a ex:MaintenanceEvent ;
-    ex:affectsLine inst:circle ;
-    ex:maintenanceName "Circle Line: Severe delays between Edgware Road and Hammersmith and MINOR DELAYS on the rest of the line due to train cancellations. Tickets are being accepted on London Buses. "^^xsd:string ;
-    ex:occursAtStation inst:HUBHMS .
+    ex:maintenanceName "Circle Line: Minor delays due to train cancellations. "^^xsd:string .
 
 inst:circle_status_0 a ex:DelayEvent ;
     ex:affectsLine inst:circle ;
-    ex:closureReason "Circle Line: Severe delays between Edgware Road and Hammersmith and MINOR DELAYS on the rest of the line due to train cancellations. Tickets are being accepted on London Buses. "^^xsd:string ;
-    ex:currentStatus "Severe Delays"^^xsd:string ;
-    ex:disruptionName "Severe Delays"^^xsd:string ;
-    ex:hasReplacementService inst:BusReplacement_circle_status_0 ;
-    ex:hasSeverity inst:Severity_Severe_Delays ;
-    ex:incidentCause "train cancellations"^^xsd:string ;
-    ex:incidentName "Circle Line: Severe delays between Edgware Road and Hammersmith and MINOR DELAYS"^^xsd:string ;
-    ex:incidentType "train_fault"^^xsd:string ;
-    ex:isPlannedMaintenance false ;
-    ex:occursAtStation inst:HUBHMS ;
-    ex:primaryLine inst:circle ;
-    ex:severityLabel "Severe Delays"^^xsd:string .
-
-inst:circle_status_1 a ex:DelayEvent ;
-    ex:affectsLine inst:circle ;
-    ex:closureReason "Circle Line: Severe delays between Edgware Road and Hammersmith and MINOR DELAYS on the rest of the line due to train cancellations. Tickets are being accepted on London Buses. "^^xsd:string ;
+    ex:closureReason "Circle Line: Minor delays due to train cancellations. "^^xsd:string ;
     ex:currentStatus "Minor Delays"^^xsd:string ;
     ex:disruptionName "Minor Delays"^^xsd:string ;
-    ex:hasReplacementService inst:BusReplacement_circle_status_1 ;
     ex:hasSeverity inst:Severity_Minor_Delays ;
     ex:incidentCause "train cancellations"^^xsd:string ;
-    ex:incidentName "Circle Line: Severe delays between Edgware Road and Hammersmith and MINOR DELAYS"^^xsd:string ;
+    ex:incidentName "Circle Line: Minor delays due to train cancellations"^^xsd:string ;
     ex:incidentType "train_fault"^^xsd:string ;
     ex:isPlannedMaintenance false ;
-    ex:occursAtStation inst:HUBHMS ;
     ex:primaryLine inst:circle ;
     ex:severityLabel "Minor Delays"^^xsd:string .
 
@@ -2800,7 +2784,7 @@ inst:northern_status_0 a ex:ClosureEvent ;
     ex:currentStatus "Part Closure"^^xsd:string ;
     ex:disruptionName "Part Closure"^^xsd:string ;
     ex:hasSeverity inst:Severity_Part_Closure ;
-    ex:incidentCause "planned maintenance"^^xsd:string ;
+    ex:incidentCause "engineering works"^^xsd:string ;
     ex:incidentName "NORTHERN LINE: From Monday 12 January to Thursday 28 May, on Monday to Thursday "^^xsd:string ;
     ex:incidentType "planned_maintenance"^^xsd:string ;
     ex:isPlannedMaintenance true ;
@@ -2899,7 +2883,8 @@ inst:piccadilly_status_2 a ex:ClosureEvent ;
     rdfs:comment "A TBox ontology for modelling London Underground stations, lines, routes, incidents, accessibility, maintenance, and rolling stock in line with the defined competency questions."@en ;
     owl:imports <http://www.w3.org/2006/time>,
         tmfac:,
-        tmj: .
+        tmj: ;
+    owl:versionIRI <http://example.org/ontology-express/version/1.0> .
 
 ex:affectsLine a owl:ObjectProperty ;
     rdfs:label "affects line"@en ;
@@ -4181,21 +4166,14 @@ inst:Accessibility_HUBZMG a ex:WheelchairAccessibilityAssessment ;
 inst:Accessibility_HUBZWL a ex:WheelchairAccessibilityAssessment ;
     ex:officialAccessibilityStatus "No step-free access"^^xsd:string .
 
-inst:BusReplacement_circle_status_0 a ex:BusReplacementService ;
-    ex:replacementFollowsRoute inst:circle_route_inbound,
-        inst:circle_route_outbound ;
-    ex:replacementRouteName "via any reasonable route"^^xsd:string .
-
-inst:BusReplacement_circle_status_1 a ex:BusReplacementService ;
-    ex:replacementFollowsRoute inst:circle_route_inbound,
-        inst:circle_route_outbound ;
-    ex:replacementRouteName "via any reasonable route"^^xsd:string .
-
 inst:Severity_Part_Closure a ex:SeverityLevel ;
     ex:severityLabel "Part Closure"^^xsd:string .
 
 inst:Severity_Part_Suspended a ex:SeverityLevel ;
     ex:severityLabel "Part Suspended"^^xsd:string .
+
+inst:Severity_Severe_Delays a ex:SeverityLevel ;
+    ex:severityLabel "Severe Delays"^^xsd:string .
 
 inst:Stock_1972_Stock a ex:RollingStockType ;
     ex:rollingStockName "1972 Stock"^^xsd:string ;
@@ -4254,6 +4232,18 @@ inst:central_route_outbound a ex:UndergroundRoute ;
         inst:940GZZLUEPG,
         inst:940GZZLUHLT,
         inst:940GZZLUWRP .
+
+inst:circle_route_inbound a ex:UndergroundRoute ;
+    ex:inaugurationYear "1863"^^xsd:gYear ;
+    ex:routeName "Edgware Road (Circle Line) Underground Station - Hammersmith (H&C Line) Underground Station"^^xsd:string ;
+    ex:routeServesStop inst:940GZZLUERC,
+        inst:940GZZLUHSC .
+
+inst:circle_route_outbound a ex:UndergroundRoute ;
+    ex:inaugurationYear "1863"^^xsd:gYear ;
+    ex:routeName "Hammersmith (H&C Line) Underground Station - Edgware Road (Circle Line) Underground Station"^^xsd:string ;
+    ex:routeServesStop inst:940GZZLUERC,
+        inst:940GZZLUHSC .
 
 inst:district_route_inbound a ex:UndergroundRoute ;
     ex:inaugurationYear "1868"^^xsd:gYear ;
@@ -4638,9 +4628,6 @@ inst:940GZZLUWWL a ex:UndergroundStation ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUWWL ;
     ex:stationName "Walthamstow Central Underground Station"^^xsd:string .
 
-inst:Severity_Severe_Delays a ex:SeverityLevel ;
-    ex:severityLabel "Severe Delays"^^xsd:string .
-
 inst:Stock_1992_Stock a ex:RollingStockType ;
     ex:rollingStockName "1992 Stock"^^xsd:string ;
     ex:standardPassengerCapacity 1047 .
@@ -4671,17 +4658,9 @@ inst:Stock_S7_Stock a ex:RollingStockType ;
     ex:rollingStockName "S7 Stock"^^xsd:string ;
     ex:standardPassengerCapacity 1209 .
 
-inst:circle_route_inbound a ex:UndergroundRoute ;
-    ex:inaugurationYear "1863"^^xsd:gYear ;
-    ex:routeName "Edgware Road (Circle Line) Underground Station - Hammersmith (H&C Line) Underground Station"^^xsd:string ;
-    ex:routeServesStop inst:940GZZLUERC,
-        inst:940GZZLUHSC .
-
-inst:circle_route_outbound a ex:UndergroundRoute ;
-    ex:inaugurationYear "1863"^^xsd:gYear ;
-    ex:routeName "Hammersmith (H&C Line) Underground Station - Edgware Road (Circle Line) Underground Station"^^xsd:string ;
-    ex:routeServesStop inst:940GZZLUERC,
-        inst:940GZZLUHSC .
+ex:BusReplacementService a owl:Class ;
+    rdfs:label "Bus Replacement Service"@en ;
+    rdfs:comment "An alternative bus service provided when a London Underground station or service is unavailable."@en .
 
 inst:940GZZLUEBY a ex:InterchangeStation,
         ex:UndergroundStation ;
@@ -4721,13 +4700,6 @@ inst:940GZZLUHSC a ex:InterchangeStation,
     ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUHSC ;
     ex:stationName "Hammersmith (H&C Line) Underground Station"^^xsd:string .
 
-inst:HUBHMS a ex:UndergroundStation ;
-    ex:fareZone 2 ;
-    ex:isFullyWheelchairAccessible false ;
-    ex:officialAccessibilityStatus "No step-free access"^^xsd:string ;
-    ex:stationHasAccessibilityAssessment inst:Accessibility_HUBHMS ;
-    ex:stationName "Hammersmith"^^xsd:string .
-
 inst:Severity_Minor_Delays a ex:SeverityLevel ;
     ex:severityLabel "Minor Delays"^^xsd:string .
 
@@ -4748,10 +4720,6 @@ inst:waterloo-city a ex:UndergroundLine ;
     ex:lineName "Waterloo & City"^^xsd:string ;
     ex:operationalLengthMiles 1.47 ;
     ex:usesRollingStockType inst:Stock_1992_Stock .
-
-ex:BusReplacementService a owl:Class ;
-    rdfs:label "Bus Replacement Service"@en ;
-    rdfs:comment "An alternative bus service provided when a London Underground station or service is unavailable."@en .
 
 inst:940GZZLUACT a ex:InterchangeStation,
         ex:UndergroundStation ;
@@ -4787,6 +4755,11 @@ ex:DelayEvent a owl:Class ;
     rdfs:comment "A disruption event that causes a measurable service delay on the London Underground."@en ;
     rdfs:subClassOf ex:DisruptionEvent .
 
+ex:MaintenanceEvent a owl:Class ;
+    rdfs:label "Maintenance Event"@en ;
+    rdfs:comment "A planned engineering or maintenance activity affecting the London Underground network."@en ;
+    rdfs:subClassOf ex:DisruptionEvent .
+
 inst:940GZZLUUXB a ex:InterchangeStation,
         ex:UndergroundStation ;
     ex:fareZone 6 ;
@@ -4798,11 +4771,6 @@ inst:940GZZLUUXB a ex:InterchangeStation,
         inst:piccadilly ;
     ex:stationHasAccessibilityAssessment inst:Accessibility_940GZZLUUXB ;
     ex:stationName "Uxbridge Station"^^xsd:string .
-
-ex:MaintenanceEvent a owl:Class ;
-    rdfs:label "Maintenance Event"@en ;
-    rdfs:comment "A planned engineering or maintenance activity affecting the London Underground network."@en ;
-    rdfs:subClassOf ex:DisruptionEvent .
 
 ex:RollingStockType a owl:Class ;
     rdfs:label "Rolling Stock Type"@en ;

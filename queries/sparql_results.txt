@@ -66,10 +66,8 @@ northern_status_0              | Part Closure                   | 6
 piccadilly_status_2            | Part Suspended                 | 3                             
 piccadilly_status_0            | Minor Delays                   | 3                             
 piccadilly_status_1            | Severe Delays                  | 3                             
-circle_status_0                | Severe Delays                  | 1                             
-circle_status_1                | Minor Delays                   | 1                             
 
-Total Results: 6
+Total Results: 4
 
 ================================================================================
 Executing: Interchange points between the District Line and Bakerloo Line
@@ -180,6 +178,8 @@ Executing: Transport routes inaugurated before the year 1989
 --------------------------------------------------------------------------------
 route                          | routeName                      | inaugYear                     
 ------------------------------------------------------------------------------------------------
+circle_route_inbound           | Edgware Road (Circle Line) Underground Station - Hammersmith (H&C Line) Underground Station | 1863                          
+circle_route_outbound          | Hammersmith (H&C Line) Underground Station - Edgware Road (Circle Line) Underground Station | 1863                          
 hammersmith-city_route_inbound | Barking Underground Station - Hammersmith (H&C Line) Underground Station | 1863                          
 hammersmith-city_route_outbound | Hammersmith (H&C Line) Underground Station - Barking Underground Station | 1863                          
 metropolitan_route_inbound     | Aldgate Underground Station - Amersham Underground Station | 1863                          
@@ -190,8 +190,6 @@ metropolitan_route_outbound    | Amersham Underground Station - Aldgate Undergro
 metropolitan_route_outbound    | Chesham Underground Station - Aldgate Underground Station | 1863                          
 metropolitan_route_outbound    | Uxbridge Underground Station - Aldgate Underground Station | 1863                          
 metropolitan_route_outbound    | Watford Underground Station - Aldgate Underground Station | 1863                          
-circle_route_inbound           | Edgware Road (Circle Line) Underground Station - Hammersmith (H&C Line) Underground Station | 1863                          
-circle_route_outbound          | Hammersmith (H&C Line) Underground Station - Edgware Road (Circle Line) Underground Station | 1863                          
 district_route_inbound         | Edgware Road (Circle Line) Underground Station - Ealing Broadway Underground Station | 1868                          
 district_route_inbound         | Edgware Road (Circle Line) Underground Station - Kensington (Olympia) Underground Station | 1868                          
 district_route_inbound         | Edgware Road (Circle Line) Underground Station - Richmond Underground Station | 1868                          
@@ -277,11 +275,10 @@ Executing: Stations affected by both a disruption and a scheduled maintenance ev
 station                        | stationName                   
 ---------------------------------------------------------------
 940GZZLUACT                    | Acton Town Station            
-HUBHMS                         | Hammersmith                   
 940GZZLURYL                    | Rayners Lane Station          
 940GZZLUUXB                    | Uxbridge Station              
 
-Total Results: 4
+Total Results: 3
 
 ================================================================================
 Executing: Standard passenger capacity of the rolling stock used on the Victoria Line
@@ -957,12 +954,11 @@ Executing: Incidents classified with severity level Severe
 --------------------------------------------------------------------------------
 incident                       | station                        | stationName                   
 ------------------------------------------------------------------------------------------------
-circle_status_0                | HUBHMS                         | Hammersmith                   
 piccadilly_status_1            | 940GZZLUACT                    | Acton Town Station            
 piccadilly_status_1            | 940GZZLURYL                    | Rayners Lane Station          
 piccadilly_status_1            | 940GZZLUUXB                    | Uxbridge Station              
 
-Total Results: 4
+Total Results: 3
 
 ================================================================================
 Executing: Which stations have accessibility limitations and are also affected by current disruptions?
@@ -974,8 +970,6 @@ station                        | stationName                    | disruptionName
 940GZZLUKNG                    | Kennington Station             | Part Closure                  
 940GZZLUBNK                    | Bank Underground Station       | Part Closure                  
 940GZZLUMHL                    | Mill Hill East Station         | Part Closure                  
-HUBHMS                         | Hammersmith                    | Severe Delays                 
-HUBHMS                         | Hammersmith                    | Minor Delays                  
 940GZZLURYL                    | Rayners Lane Station           | Part Suspended                
 940GZZLURYL                    | Rayners Lane Station           | Minor Delays                  
 940GZZLURYL                    | Rayners Lane Station           | Severe Delays                 
@@ -983,5 +977,5 @@ HUBHMS                         | Hammersmith                    | Minor Delays
 940GZZLUUXB                    | Uxbridge Station               | Minor Delays                  
 940GZZLUUXB                    | Uxbridge Station               | Severe Delays                 
 
-Total Results: 13
+Total Results: 11
 

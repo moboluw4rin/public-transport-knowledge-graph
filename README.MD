@@ -26,13 +26,12 @@ A London Underground knowledge graph project built with Python and RDF. The repo
 
 - `pipeline_rag.py`: identies and fills gaps in the knowledge graph
 - `count_rag_triples.py`: counts the number of additional triples added by RAG
-- `run_sparql.py`: runs SPARQL queries on complete Turtle file
 
 ### SPARQL
 
 - `sparqls.txt`: sparql queries
 - `sparql_results.txt`: sparql queries output log
-- `run_sparqls.py`: merges ABox and TBox files into a single Turtle file
+- `run_sparqls.py`: runs SPARQL queries on complete Turtle file
 - `queries/`: contains sparql queries and results
 
 ### Misc

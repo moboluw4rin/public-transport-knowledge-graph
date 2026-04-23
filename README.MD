@@ -37,6 +37,7 @@ A London Underground knowledge graph project built with Python and RDF. The repo
 ### Misc
 
 - `kXXXXXXXX_prompts.txt`: prompt engineering and modelling workflow used for ontology design. **NOTE: This is the final submission-led prompts file, renamed for each member in the group.**
+- `PROMPTS.md`: the full list of relevent prompts used during development
 - `merge_ontologies.py`: merges ABox and TBox files into a single Turtle file
 - `ontologies/`: output Turtle files and ontology artifacts. (see [Output](#output))
 

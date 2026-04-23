@@ -7,7 +7,7 @@ This project employs a sequential two-chat orchestration methodology to extend e
 * Chat A - The Orchestrator: Acts as the strategic lead. It handles research, evaluates outputs from the builder, and performs "Prompt Engineering" to create high-fidelity instructions.
 * Chat B - The Builder: Acts as the technical executor. It receives refined prompts from the Orchestrator to perform script generation and RDF construction without the "noise" of the brainstorming phase.
 
-* For full Builder prompts generated at each phase, see: PROMPT.MD
+* For full Builder prompts generated at each phase, see: PROMPT.MD in the Git repository linked in the report.
 
 ## Phase 1: Mapping and Prompt Creation
 
